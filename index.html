@@ -7,141 +7,237 @@
     <link rel="icon" href="favicon.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..600&family=Geist:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- Floating Left Navigation -->
-    <nav class="side-nav">
-        <ul class="nav-links">
+    <!-- Floating Island Navigation -->
+    <header class="nav-wrap">
+        <nav class="nav-pill" aria-label="Main">
+            <a href="#hero" class="nav-mark" aria-label="Back to top">AJ</a>
+            <ul class="nav-links">
+                <li><a href="#hero">Intro</a></li>
+                <li><a href="#experiences">Experience</a></li>
+                <li><a href="#projects">Projects</a></li>
+            </ul>
+            <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="menu-overlay">
+                <span></span><span></span>
+            </button>
+        </nav>
+    </header>
+
+    <!-- Mobile Menu Overlay -->
+    <div id="menu-overlay" class="menu-overlay" aria-hidden="true">
+        <ul>
             <li><a href="#hero">Intro</a></li>
-            <li><a href="#experiences">Experiences</a></li>
+            <li><a href="#experiences">Experience</a></li>
             <li><a href="#projects">Projects</a></li>
         </ul>
-    </nav>
+    </div>
 
-    <!-- Hero Section -->
-    <section id="hero" class="hero scroll-anim">
-        <div class="hero-content">
-            <h1>Audi Joel Rahardja</h1>
-            <p class="hero-role">Computer Science (Artificial Intelligence) &middot; BINUS University</p>
-            <p class="hero-bio">
-                I'm a CS student who likes figuring out why models work, not just getting them to run.
-                Most of my free time goes into Kaggle competitions and Codeforces problem sets, and in 2026
-                I presented my first research paper at ICORIS.
-            </p>
-            <div class="social-links">
-                <a href="https://github.com/AudiJRahardja" class="social-btn social-btn--solid" target="_blank" rel="noopener noreferrer">
-                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
-                    GitHub
-                </a>
-                <a href="https://www.linkedin.com/in/audijoelrahardja/" class="social-btn social-btn--outline" target="_blank" rel="noopener noreferrer">
-                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.745 1.637-1.636 3.37-1.636 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-                    LinkedIn
-                </a>
-            </div>
-        </div>
-        <div class="hero-photo">
-            <img src="images/Profile%20Picture.jpeg" alt="Portrait of Audi Joel Rahardja" width="200" height="200">
-        </div>
-    </section>
-
-    <!-- Experiences Section -->
-    <section id="experiences" class="experiences section scroll-anim">
-        <h2>Experiences & Background</h2>
-        <div class="timeline">
-            <div class="timeline-item">
-                <div class="timeline-dot"></div>
-                <div class="timeline-content">
-                    <h3>ICORIS Conference</h3>
-                    <p class="date">2026</p>
-                    <p>Presented a research paper at the International Conference on Cybernetics and Intelligent Systems (ICORIS).</p>
+    <main>
+        <!-- Hero Section -->
+        <section id="hero" class="hero">
+            <div class="hero-text">
+                <span class="eyebrow reveal">Portfolio &middot; 2026</span>
+                <h1 class="reveal" style="--d: 80ms">Audi Joel<br><em>Rahardja</em></h1>
+                <p class="hero-role reveal" style="--d: 160ms">Computer Science (Artificial Intelligence) &middot; BINUS University</p>
+                <p class="hero-bio reveal" style="--d: 220ms">
+                    I'm a CS student who likes figuring out why models work, not just getting them to run.
+                    Most of my free time goes into Kaggle competitions and Codeforces problem sets, and in 2026
+                    I presented my first research paper at ICORIS.
+                </p>
+                <div class="social-links reveal" style="--d: 280ms">
+                    <a href="https://github.com/AudiJRahardja" class="btn btn--solid" target="_blank" rel="noopener noreferrer">
+                        <svg class="btn-logo" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+                        <span>GitHub</span>
+                        <span class="btn-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
+                    </a>
+                    <a href="https://www.linkedin.com/in/audijoelrahardja/" class="btn btn--ghost" target="_blank" rel="noopener noreferrer">
+                        <svg class="btn-logo" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.745 1.637-1.636 3.37-1.636 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                        <span>LinkedIn</span>
+                        <span class="btn-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
+                    </a>
                 </div>
             </div>
-            <div class="timeline-item">
-                <div class="timeline-dot"></div>
-                <div class="timeline-content">
-                    <h3>Data Modeling & Algorithms</h3>
-                    <p class="date">Ongoing</p>
-                    <p>Active participant in data modeling competitions on Kaggle and algorithmic problem-solving contests on Codeforces.</p>
+
+            <figure class="hero-photo reveal" style="--d: 200ms">
+                <div class="bezel">
+                    <div class="core">
+                        <img src="images/Profile%20Picture.jpeg" alt="Portrait of Audi Joel Rahardja" width="200" height="200">
+                    </div>
+                </div>
+                <figcaption>Currently studying CS (AI) at BINUS</figcaption>
+            </figure>
+
+            <a href="#experiences" class="scroll-cue" aria-label="Scroll to experience">
+                <span>Scroll</span><i></i>
+            </a>
+        </section>
+
+        <!-- Experiences Section -->
+        <section id="experiences" class="section split">
+            <div class="split-head">
+                <span class="eyebrow reveal">Experience</span>
+                <h2 class="reveal" style="--d: 80ms">Experiences &amp;<br><em>Background</em></h2>
+            </div>
+
+            <ol class="exp-list">
+                <li class="bezel reveal">
+                    <div class="core exp-item">
+                        <span class="exp-index">01</span>
+                        <div>
+                            <div class="exp-top">
+                                <h3>ICORIS Conference</h3>
+                                <span class="tag">2026</span>
+                            </div>
+                            <p>Presented a research paper at the International Conference on Cybernetics and Intelligent Systems (ICORIS).</p>
+                        </div>
+                    </div>
+                </li>
+                <li class="bezel reveal" style="--d: 100ms">
+                    <div class="core exp-item">
+                        <span class="exp-index">02</span>
+                        <div>
+                            <div class="exp-top">
+                                <h3>Data Modeling &amp; Algorithms</h3>
+                                <span class="tag">Ongoing</span>
+                            </div>
+                            <p>Active participant in data modeling competitions on Kaggle and algorithmic problem-solving contests on Codeforces.</p>
+                        </div>
+                    </div>
+                </li>
+            </ol>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="section projects">
+            <div class="section-head">
+                <div>
+                    <span class="eyebrow reveal">Selected work</span>
+                    <h2 class="reveal" style="--d: 80ms">Featured <em>Projects</em></h2>
+                </div>
+                <div class="carousel-controls reveal" style="--d: 160ms">
+                    <span class="carousel-count"><b class="current">01</b> / <span class="total">03</span></span>
+                    <button class="round-btn prev-btn" aria-label="Previous project">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5 8 12l7 7"/></svg>
+                    </button>
+                    <button class="round-btn next-btn" aria-label="Next project">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg>
+                    </button>
                 </div>
             </div>
-        </div>
-    </section>
 
-    <!-- Projects Section -->
-    <section id="projects" class="projects section">
-        <h2 class="scroll-anim">Featured Projects</h2>
-        
-        <!-- Carousel (Top Half) -->
-        <div class="carousel-container scroll-anim">
-            <button class="carousel-btn prev-btn">&#10094;</button>
-            <div class="carousel-track-wrapper">
-                <ul class="carousel-track">
-                    <li class="carousel-slide current-slide">
-                        <div class="slide-content">
+            <!-- Carousel -->
+            <div class="bezel carousel reveal" style="--d: 120ms">
+                <div class="core carousel-stage">
+                    <ul class="carousel-track">
+                        <li class="carousel-slide">
+                            <span class="slide-num">01</span>
                             <h3>Machine Learning Research</h3>
                             <p>Predictive modeling presented at ICORIS.</p>
-                        </div>
-                    </li>
-                    <li class="carousel-slide">
-                        <div class="slide-content">
+                        </li>
+                        <li class="carousel-slide">
+                            <span class="slide-num">02</span>
                             <h3>Data Visualization Dashboard</h3>
                             <p>Interactive web dashboard using modern JS frameworks.</p>
-                        </div>
-                    </li>
-                    <li class="carousel-slide">
-                        <div class="slide-content">
+                        </li>
+                        <li class="carousel-slide">
+                            <span class="slide-num">03</span>
                             <h3>AI Algorithm Prototyping</h3>
                             <p>Custom data structures and training models.</p>
-                        </div>
-                    </li>
-                </ul>
+                        </li>
+                    </ul>
+                    <div class="carousel-progress"><span></span></div>
+                </div>
             </div>
-            <button class="carousel-btn next-btn">&#10095;</button>
-        </div>
 
-        <h2 class="scroll-anim" style="margin-top: 4rem;">All Projects</h2>
-        
-        <!-- Grid (Bottom Half) -->
-        <div class="project-grid scroll-anim">
-            <div class="grid-item" data-title="UI/UX Design" data-tech="Figma" data-desc="A comprehensive UI/UX design project focusing on user-centered design principles, wireframing, and interactive prototyping to deliver seamless digital experiences.">
-                <div class="grid-img-placeholder">UI/UX</div>
-                <h3>UI/UX Design</h3>
-                <p>Figma</p>
+            <div class="section-head section-head--sub">
+                <div>
+                    <span class="eyebrow reveal">Archive</span>
+                    <h2 class="reveal" style="--d: 80ms">All <em>Projects</em></h2>
+                </div>
             </div>
-            <div class="grid-item" data-title="Data Modeling" data-tech="Python, Kaggle, Scikit-Learn" data-desc="Participated in a Kaggle competition. Handled data preprocessing, exploratory data analysis, and trained various machine learning models to optimize accuracy.">
-                <div class="grid-img-placeholder">Data</div>
-                <h3>Kaggle Data Modeling</h3>
-                <p>Data Science</p>
+
+            <!-- Bento Grid -->
+            <div class="project-grid">
+                <button class="grid-item bezel reveal" data-title="UI/UX Design" data-tech="Figma" data-desc="A comprehensive UI/UX design project focusing on user-centered design principles, wireframing, and interactive prototyping to deliver seamless digital experiences.">
+                    <span class="core">
+                        <span class="grid-visual" data-label="UI/UX"></span>
+                        <span class="grid-meta">
+                            <span>
+                                <span class="grid-title">UI/UX Design</span>
+                                <span class="grid-cat">Figma</span>
+                            </span>
+                            <span class="btn-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
+                        </span>
+                    </span>
+                </button>
+                <button class="grid-item bezel reveal" style="--d: 100ms" data-title="Data Modeling" data-tech="Python, Kaggle, Scikit-Learn" data-desc="Participated in a Kaggle competition. Handled data preprocessing, exploratory data analysis, and trained various machine learning models to optimize accuracy.">
+                    <span class="core">
+                        <span class="grid-visual" data-label="Data"></span>
+                        <span class="grid-meta">
+                            <span>
+                                <span class="grid-title">Kaggle Data Modeling</span>
+                                <span class="grid-cat">Data Science</span>
+                            </span>
+                            <span class="btn-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
+                        </span>
+                    </span>
+                </button>
+                <button class="grid-item bezel reveal" data-title="Algorithm Optimization" data-tech="C++, Python" data-desc="A collection of highly optimized algorithms and data structure implementations created for competitive programming on the Codeforces platform.">
+                    <span class="core">
+                        <span class="grid-visual" data-label="Algo"></span>
+                        <span class="grid-meta">
+                            <span>
+                                <span class="grid-title">Codeforces Algorithms</span>
+                                <span class="grid-cat">Competitive Programming</span>
+                            </span>
+                            <span class="btn-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
+                        </span>
+                    </span>
+                </button>
+                <button class="grid-item bezel reveal" style="--d: 100ms" data-title="Open Source Contributions" data-tech="Git, GitHub, Web Tech" data-desc="Various collaborative software development projects hosted on GitHub, showcasing version control mastery, code reviews, and community collaboration.">
+                    <span class="core">
+                        <span class="grid-visual" data-label="Repos"></span>
+                        <span class="grid-meta">
+                            <span>
+                                <span class="grid-title">GitHub Repositories</span>
+                                <span class="grid-cat">Software Engineering</span>
+                            </span>
+                            <span class="btn-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
+                        </span>
+                    </span>
+                </button>
             </div>
-            <div class="grid-item" data-title="Algorithm Optimization" data-tech="C++, Python" data-desc="A collection of highly optimized algorithms and data structure implementations created for competitive programming on the Codeforces platform.">
-                <div class="grid-img-placeholder">Algo</div>
-                <h3>Codeforces Algorithms</h3>
-                <p>Competitive Programming</p>
-            </div>
-            <div class="grid-item" data-title="Open Source Contributions" data-tech="Git, GitHub, Web Tech" data-desc="Various collaborative software development projects hosted on GitHub, showcasing version control mastery, code reviews, and community collaboration.">
-                <div class="grid-img-placeholder">Repos</div>
-                <h3>GitHub Repositories</h3>
-                <p>Software Engineering</p>
-            </div>
-        </div>
-    </section>
+        </section>
+    </main>
 
     <!-- Footer -->
-    <footer>
-        <p>&copy; 2026 Audi Joel Rahardja. All Rights Reserved.</p>
+    <footer class="footer">
+        <p class="footer-name reveal">Audi Joel <em>Rahardja</em></p>
+        <div class="footer-row">
+            <div class="footer-links">
+                <a href="https://github.com/AudiJRahardja" target="_blank" rel="noopener noreferrer">GitHub</a>
+                <a href="https://www.linkedin.com/in/audijoelrahardja/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            </div>
+            <p>&copy; 2026 Audi Joel Rahardja</p>
+        </div>
     </footer>
 
-    <!-- Interactive Modal -->
-    <div id="project-modal" class="modal">
-        <div class="modal-content">
-            <span class="close-btn">&times;</span>
-            <div class="modal-image-placeholder">Image Placeholder</div>
-            <h2 id="modal-title">Project Title</h2>
-            <p class="modal-tech"><strong>Technologies:</strong> <span id="modal-tech">Tech</span></p>
-            <p id="modal-desc">Project description goes here...</p>
+    <!-- Project Modal -->
+    <div id="project-modal" class="modal" aria-hidden="true">
+        <div class="bezel modal-shell" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+            <div class="core modal-content">
+                <button class="round-btn close-btn" aria-label="Close">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
+                </button>
+                <div class="modal-visual">Image coming soon</div>
+                <span class="eyebrow" id="modal-tech">Tech</span>
+                <h2 id="modal-title">Project Title</h2>
+                <p id="modal-desc">Project description goes here...</p>
+            </div>
         </div>
     </div>
 

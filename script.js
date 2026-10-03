@@ -1,98 +1,127 @@
-// 1. Intersection Observer for Scroll Animations
-const scrollElements = document.querySelectorAll('.scroll-anim');
-
-const elementInView = (el, dividend = 1) => {
-    const elementTop = el.getBoundingClientRect().top;
-    return (elementTop <= (window.innerHeight || document.documentElement.clientHeight) / dividend);
-};
-
-const displayScrollElement = (element) => {
-    element.classList.add('visible');
-};
-
-const handleScrollAnimation = () => {
-    scrollElements.forEach((el) => {
-        if (elementInView(el, 1.25)) {
-            displayScrollElement(el);
+// 1. Scroll reveal
+const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            revealObserver.unobserve(entry.target);
         }
-    })
-}
+    });
+}, { rootMargin: '0px 0px -10% 0px' });
 
-window.addEventListener('scroll', () => {
-    handleScrollAnimation();
-});
-// Trigger once on load
-handleScrollAnimation();
+document.querySelectorAll('.reveal').forEach((el) => revealObserver.observe(el));
 
 
-// 2. Carousel Logic
+// 2. Navigation: active link + mobile menu
+const navLinks = document.querySelectorAll('.nav-links a');
+
+const sectionObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        navLinks.forEach((link) => {
+            link.classList.toggle('active', link.getAttribute('href') === `#${entry.target.id}`);
+        });
+    });
+}, { rootMargin: '-45% 0px -50% 0px' });
+
+document.querySelectorAll('#hero, #experiences, #projects').forEach((s) => sectionObserver.observe(s));
+
+const navToggle = document.querySelector('.nav-toggle');
+const menuOverlay = document.getElementById('menu-overlay');
+
+const setMenu = (open) => {
+    document.body.classList.toggle('menu-open', open);
+    navToggle.setAttribute('aria-expanded', open);
+    navToggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    menuOverlay.setAttribute('aria-hidden', !open);
+    document.body.style.overflow = open ? 'hidden' : '';
+};
+
+navToggle.addEventListener('click', () => setMenu(!document.body.classList.contains('menu-open')));
+menuOverlay.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => setMenu(false)));
+
+
+// 3. Carousel
 const track = document.querySelector('.carousel-track');
 const slides = Array.from(track.children);
-const nextButton = document.querySelector('.next-btn');
-const prevButton = document.querySelector('.prev-btn');
+const carousel = document.querySelector('.carousel');
+const progress = document.querySelector('.carousel-progress span');
+const countCurrent = document.querySelector('.carousel-count .current');
+const SLIDE_MS = 6000;
 
 let currentSlideIndex = 0;
+let autoTimer;
 
-const moveToSlide = (track, currentSlideIndex) => {
-    track.style.transform = `translateX(-${currentSlideIndex * 100}%)`;
+document.querySelector('.carousel-count .total').textContent = String(slides.length).padStart(2, '0');
+progress.style.setProperty('--slide-ms', `${SLIDE_MS}ms`);
+
+const restartProgress = () => {
+    progress.classList.remove('run');
+    void progress.offsetWidth; // restart the CSS animation
+    progress.classList.add('run');
 };
 
-// Next Button
-nextButton.addEventListener('click', () => {
-    currentSlideIndex = (currentSlideIndex + 1) % slides.length;
-    moveToSlide(track, currentSlideIndex);
-});
+const moveToSlide = (index) => {
+    currentSlideIndex = (index + slides.length) % slides.length;
+    track.style.transform = `translateX(-${currentSlideIndex * 100}%)`;
+    countCurrent.textContent = String(currentSlideIndex + 1).padStart(2, '0');
+    restartProgress();
+};
 
-// Previous Button
-prevButton.addEventListener('click', () => {
-    currentSlideIndex = (currentSlideIndex - 1 + slides.length) % slides.length;
-    moveToSlide(track, currentSlideIndex);
-});
+const startAuto = () => {
+    clearInterval(autoTimer);
+    autoTimer = setInterval(() => moveToSlide(currentSlideIndex + 1), SLIDE_MS);
+    restartProgress();
+};
 
-// Auto-slide every 5 seconds
-setInterval(() => {
-    currentSlideIndex = (currentSlideIndex + 1) % slides.length;
-    moveToSlide(track, currentSlideIndex);
-}, 5000);
+const stopAuto = () => {
+    clearInterval(autoTimer);
+    progress.classList.remove('run');
+};
+
+document.querySelector('.next-btn').addEventListener('click', () => { moveToSlide(currentSlideIndex + 1); startAuto(); });
+document.querySelector('.prev-btn').addEventListener('click', () => { moveToSlide(currentSlideIndex - 1); startAuto(); });
+carousel.addEventListener('mouseenter', stopAuto);
+carousel.addEventListener('mouseleave', startAuto);
+
+startAuto();
 
 
-// 3. Modal Logic
+// 4. Project modal
 const modal = document.getElementById('project-modal');
-const closeBtn = document.querySelector('.close-btn');
-const gridItems = document.querySelectorAll('.grid-item');
-
-// Modal content elements
+const closeBtn = modal.querySelector('.close-btn');
 const modalTitle = document.getElementById('modal-title');
 const modalTech = document.getElementById('modal-tech');
 const modalDesc = document.getElementById('modal-desc');
+let lastFocused;
 
-// Open modal and populate data
-gridItems.forEach(item => {
-    item.addEventListener('click', () => {
-        const title = item.getAttribute('data-title');
-        const tech = item.getAttribute('data-tech');
-        const desc = item.getAttribute('data-desc');
+const openModal = (item) => {
+    modalTitle.textContent = item.dataset.title;
+    modalTech.textContent = item.dataset.tech;
+    modalDesc.textContent = item.dataset.desc;
 
-        modalTitle.textContent = title;
-        modalTech.textContent = tech;
-        modalDesc.textContent = desc;
-
-        modal.classList.add('show');
-        document.body.style.overflow = 'hidden'; // Prevent background scrolling
-    });
-});
-
-// Close modal logic
-const closeModal = () => {
-    modal.classList.remove('show');
-    document.body.style.overflow = 'auto'; // Restore scrolling
+    lastFocused = item;
+    modal.classList.add('show');
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    closeBtn.focus();
 };
 
-closeBtn.addEventListener('click', closeModal);
+const closeModal = () => {
+    modal.classList.remove('show');
+    modal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+    if (lastFocused) lastFocused.focus();
+};
 
-// Close modal when clicking outside the content box
-window.addEventListener('click', (e) => {
-    if (e.target === modal) {
-        closeModal();
-    }
+document.querySelectorAll('.grid-item').forEach((item) => {
+    item.addEventListener('click', () => openModal(item));
+});
+
+closeBtn.addEventListener('click', closeModal);
+modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
+
+document.addEventListener('keydown', (e) => {
+    if (e.key !== 'Escape') return;
+    if (modal.classList.contains('show')) closeModal();
+    else if (document.body.classList.contains('menu-open')) setMenu(false);
 });
