@@ -18,9 +18,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..600&family=Geist:wght@400;500;600&family=Silkscreen&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../style.css?v=mwz8ss0u">
+    <link rel="stylesheet" href="../style.css?v=mwz9upwa">
 </head>
-<body class="case-study">
+<body class="case-study dd-page">
     <a class="skip-link" href="#main">Skip to content</a>
     <div class="wallpaper" aria-hidden="true"><span class="blob blob--1"></span><span class="blob blob--2"></span><span class="blob blob--3"></span><span class="sun"></span><span class="moon"></span><canvas class="stars"></canvas></div>
     <div class="scroll-progress" aria-hidden="true"><span></span></div>
@@ -35,18 +35,234 @@
     </header>
 
     <main id="main" class="cs">
+        <article class="dd" data-slug="fake-review-detection" aria-labelledby="fake-review-detection-title">
+        <header class="dd-head">
+            <a class="back-link" href="../index.html#projects">← All projects</a>
+            <div class="badges"><span class="badge badge--live">Shipped</span><span class="badge">Course project · NLP</span><span class="badge">Group of 3</span></div>
+            <h1 id="fake-review-detection-title">Fake Review Detection</h1>
+            <p class="cs-tagline">A comparative study of statistical, sequential and transformer models for detecting AI-generated product reviews.</p>
+            <p class="cs-meta">May – Jun 2026</p>
+            <div class="dd-actions"><a class="btn btn--solid btn--sm" href="https://github.com/kellys-codes/NLP-Project" target="_blank" rel="noopener noreferrer">Code<span class="visually-hidden"> (opens in a new tab)</span><span class="btn-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></span></a><a class="btn btn--ghost btn--sm" href="https://drive.google.com/drive/folders/19QWiUWpybigX3JNMT05trKlXvz2Js0bN" target="_blank" rel="noopener noreferrer">Video<span class="visually-hidden"> (opens in a new tab)</span><span class="btn-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></span></a></div>
+            
+        </header>
         
-        <article>
-            <header class="cs-head">
-                <a class="back-link" href="../index.html#projects">← All projects</a>
-                <div class="badges"><span class="badge badge--live">Shipped</span><span class="badge">Course project · NLP</span><span class="badge">Group of 3</span></div>
-                <h1>Fake Review Detection</h1>
-                <p class="cs-tagline">A comparative study of statistical, sequential and transformer models for detecting AI-generated product reviews.</p>
-                <p class="cs-meta">May – Jun 2026</p>
-                <div class="card-links"><a class="text-link" href="https://github.com/kellys-codes/NLP-Project" target="_blank" rel="noopener noreferrer">Code<span class="visually-hidden"> for Fake Review Detection (opens in a new tab)</span></a></div>
-            </header>
 
-            <section class="cs-tables" aria-label="Results tables"><div class="bezel"><div class="core"><figure class="data-table">
+        <div class="dd-grid">
+            <section class="dd-block" aria-labelledby="fake-review-detection-prob-h">
+                <h2 id="fake-review-detection-prob-h">The <em>problem</em></h2>
+                <p>AI-generated fake reviews are cheap to produce and hard for people to spot. We compared four kinds of models, from word counts to a fine-tuned transformer and a zero-shot LLM, on the same 40,432 Amazon-style reviews to see how much model sophistication actually buys.</p>
+            </section>
+            <section class="dd-block" aria-labelledby="fake-review-detection-role-h">
+                <h2 id="fake-review-detection-role-h">My <em>part</em></h2>
+                <p>Overall planning and pipeline. Trained the Logistic Regression and DistilBERT models, and took part in the results analysis.</p>
+                <p class="cs-team">Group of 3 · Course project · NLP</p>
+                <ul class="tech" aria-label="Tech used"><li>Python</li><li>PyTorch</li><li>Hugging Face Transformers</li><li>DistilBERT</li><li>GloVe</li><li>scikit-learn</li><li>Flask</li></ul>
+            </section>
+        </div>
+
+        <section class="dd-block dd-pipeline" aria-labelledby="fake-review-detection-pipe-h">
+            <div class="dd-block-head">
+                <h2 id="fake-review-detection-pipe-h">How it <em>works</em></h2>
+                <button type="button" class="btn btn--ghost btn--sm pipe-run" hidden><span class="pipe-run-label">Run trace</span><span class="btn-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l10-6.5z"/></svg></span></button>
+            </div>
+            <p class="dd-hint">6 stages.<span class="pipe-hint-js" hidden> Pick a stage to see what goes in, what happens and what comes out. Arrow keys move between stages.</span></p>
+            <div class="pipe-wrap">
+                <div class="pipe" role="group" aria-label="Pipeline stages" style="--cols: repeat(5, minmax(0, 1fr) 1.75rem) minmax(0, 1fr)">
+                <div class="pipe-stage">
+                    <button type="button" class="pipe-node pipe-node--done" id="fake-review-detection-st-prepare-btn" aria-controls="fake-review-detection-st-prepare" aria-pressed="true" data-i="0">
+                        <span class="pn-num">01</span>
+                        <span class="pn-label">Clean &amp; split</span>
+                        <span class="pn-tech">pandas · spaCy</span>
+                        
+                    </button>
+                    <div class="pipe-detail" id="fake-review-detection-st-prepare" role="region" aria-labelledby="fake-review-detection-st-prepare-h">
+                        <div class="pd-head">
+                            <span class="pd-num">Stage 01 of 06</span>
+                            <h4 id="fake-review-detection-st-prepare-h">Clean &amp; split</h4>
+                            <span class="pd-status pd-status--done">Done</span>
+                        </div>
+                        <div class="pd-io">
+                            <div class="pd-card pd-card--in"><span class="pd-k">Input</span><p>40,432 product reviews from a Kaggle dataset: 20,216 computer-generated, 20,216 original</p></div>
+                            <span class="pd-arrow" aria-hidden="true"></span>
+                            <div class="pd-card pd-card--op"><span class="pd-k">Operation</span><p>Clean the text in two ways (lemmatized without stopwords for the classic models, light cleaning for DistilBERT) and make one fixed split</p></div>
+                            <span class="pd-arrow" aria-hidden="true"></span>
+                            <div class="pd-card pd-card--out"><span class="pd-k">Output</span><p>40,428 non-empty reviews: 26,277 train, 6,065 validation, 8,086 test, each 50 / 50 fake and real</p></div>
+                        </div>
+                        <ul class="pd-bullets"><li>The split is stratified with seed 42 and saved once, so every model is scored on the same test set.</li><li>Emojis are turned into words, since they can carry meaning in a review.</li></ul>
+                        <p class="pd-flow"><span class="visually-hidden">Flow: </span><code>fake_reviews_dataset.csv &gt;&gt; preprocess_reviews &gt;&gt; remove_stopwords | clean_for_bert &gt;&gt; splits.npz</code></p>
+                    </div>
+                </div><span class="pipe-link" aria-hidden="true"><svg viewBox="0 0 40 14" preserveAspectRatio="none"><path class="pl-line" d="M1 7H33"/><path class="pl-head" d="M31 2.5 37.5 7 31 11.5"/></svg></span>
+                <div class="pipe-stage">
+                    <button type="button" class="pipe-node pipe-node--done" id="fake-review-detection-st-baseline-btn" aria-controls="fake-review-detection-st-baseline" aria-pressed="false" data-i="1">
+                        <span class="pn-num">02</span>
+                        <span class="pn-label">TF-IDF baseline</span>
+                        <span class="pn-tech">scikit-learn</span>
+                        
+                    </button>
+                    <div class="pipe-detail" id="fake-review-detection-st-baseline" role="region" aria-labelledby="fake-review-detection-st-baseline-h">
+                        <div class="pd-head">
+                            <span class="pd-num">Stage 02 of 06</span>
+                            <h4 id="fake-review-detection-st-baseline-h">TF-IDF baseline</h4>
+                            <span class="pd-status pd-status--done">Done</span>
+                        </div>
+                        <div class="pd-io">
+                            <div class="pd-card pd-card--in"><span class="pd-k">Input</span><p>Lemmatized, stopword-free training text</p></div>
+                            <span class="pd-arrow" aria-hidden="true"></span>
+                            <div class="pd-card pd-card--op"><span class="pd-k">Operation</span><p>Turn reviews into TF-IDF vectors over the 5,000 most informative terms and fit Logistic Regression</p></div>
+                            <span class="pd-arrow" aria-hidden="true"></span>
+                            <div class="pd-card pd-card--out"><span class="pd-k">Output</span><p>The baseline every other model is compared with: 84.61% F1</p></div>
+                        </div>
+                        <ul class="pd-bullets"><li>Trains in 0.2 seconds on a CPU.</li><li>Its strongest &quot;fake&quot; words were vague, filler and hedging language, not the extreme superlatives the team expected.</li></ul>
+                        <p class="pd-flow"><span class="visually-hidden">Flow: </span><code>TfidfVectorizer(max_features=5000) &gt;&gt; LogisticRegression &gt;&gt; lr_metrics.pkl</code></p>
+                    </div>
+                </div><span class="pipe-link" aria-hidden="true"><svg viewBox="0 0 40 14" preserveAspectRatio="none"><path class="pl-line" d="M1 7H33"/><path class="pl-head" d="M31 2.5 37.5 7 31 11.5"/></svg></span>
+                <div class="pipe-stage">
+                    <button type="button" class="pipe-node pipe-node--done" id="fake-review-detection-st-bilstm-btn" aria-controls="fake-review-detection-st-bilstm" aria-pressed="false" data-i="2">
+                        <span class="pn-num">03</span>
+                        <span class="pn-label">PosAtt-BiLSTM</span>
+                        <span class="pn-tech">PyTorch · GloVe</span>
+                        
+                    </button>
+                    <div class="pipe-detail" id="fake-review-detection-st-bilstm" role="region" aria-labelledby="fake-review-detection-st-bilstm-h">
+                        <div class="pd-head">
+                            <span class="pd-num">Stage 03 of 06</span>
+                            <h4 id="fake-review-detection-st-bilstm-h">PosAtt-BiLSTM</h4>
+                            <span class="pd-status pd-status--done">Done</span>
+                        </div>
+                        <div class="pd-io">
+                            <div class="pd-card pd-card--in"><span class="pd-k">Input</span><p>Token lists, cut or padded to 100 tokens, with a 20,000-word vocabulary</p></div>
+                            <span class="pd-arrow" aria-hidden="true"></span>
+                            <div class="pd-card pd-card--op"><span class="pd-k">Operation</span><p>GloVe embeddings plus a positional encoding, a two-layer bidirectional LSTM and Bahdanau attention</p></div>
+                            <span class="pd-arrow" aria-hidden="true"></span>
+                            <div class="pd-card pd-card--out"><span class="pd-k">Output</span><p>89.25% F1, with attention weights that show which words drove each decision</p></div>
+                        </div>
+                        <ul class="pd-bullets"><li>The positional encoding was shifted from [-1, 1] to [0, 1] (NN-SPE) so it would not interfere with the GloVe vectors.</li><li>Early stopping at epoch 8; about 5 seconds per epoch and 61 MB of GPU memory.</li></ul>
+                        <p class="pd-flow"><span class="visually-hidden">Flow: </span><code>load_glove &gt;&gt; NN_SPE &gt;&gt; PosAttBiLSTM &gt;&gt; run_epoch &gt;&gt; predict_bilstm</code></p>
+                    </div>
+                </div><span class="pipe-link" aria-hidden="true"><svg viewBox="0 0 40 14" preserveAspectRatio="none"><path class="pl-line" d="M1 7H33"/><path class="pl-head" d="M31 2.5 37.5 7 31 11.5"/></svg></span>
+                <div class="pipe-stage">
+                    <button type="button" class="pipe-node pipe-node--done" id="fake-review-detection-st-distilbert-btn" aria-controls="fake-review-detection-st-distilbert" aria-pressed="false" data-i="3">
+                        <span class="pn-num">04</span>
+                        <span class="pn-label">Fine-tune DistilBERT</span>
+                        <span class="pn-tech">Hugging Face Transformers · PyTorch</span>
+                        
+                    </button>
+                    <div class="pipe-detail" id="fake-review-detection-st-distilbert" role="region" aria-labelledby="fake-review-detection-st-distilbert-h">
+                        <div class="pd-head">
+                            <span class="pd-num">Stage 04 of 06</span>
+                            <h4 id="fake-review-detection-st-distilbert-h">Fine-tune DistilBERT</h4>
+                            <span class="pd-status pd-status--done">Done</span>
+                        </div>
+                        <div class="pd-io">
+                            <div class="pd-card pd-card--in"><span class="pd-k">Input</span><p>Lightly cleaned review text, tokenized to 256 sub-word tokens</p></div>
+                            <span class="pd-arrow" aria-hidden="true"></span>
+                            <div class="pd-card pd-card--op"><span class="pd-k">Operation</span><p>Fine-tune distilbert-base-uncased for fake vs real, keeping the best checkpoint by validation score</p></div>
+                            <span class="pd-arrow" aria-hidden="true"></span>
+                            <div class="pd-card pd-card--out"><span class="pd-k">Output</span><p>The best model: 97.67% F1 and 99.84% ROC-AUC on 8,086 test reviews</p></div>
+                        </div>
+                        <ul class="pd-bullets"><li>My part of the modelling: I fine-tuned and evaluated this model.</li><li>It misses about 1% of fake reviews and wrongly flags about 4% of real ones (151 false positives, 36 false negatives).</li><li>About 580 to 630 seconds per epoch, and about 1.1 GB of GPU memory.</li></ul>
+                        <p class="pd-flow"><span class="visually-hidden">Flow: </span><code>DistilBertTokenizer &gt;&gt; DistilBertForSequenceClassification &gt;&gt; bert_train_epoch &gt;&gt; predict_distilbert</code></p>
+                    </div>
+                </div><span class="pipe-link" aria-hidden="true"><svg viewBox="0 0 40 14" preserveAspectRatio="none"><path class="pl-line" d="M1 7H33"/><path class="pl-head" d="M31 2.5 37.5 7 31 11.5"/></svg></span>
+                <div class="pipe-stage">
+                    <button type="button" class="pipe-node pipe-node--done" id="fake-review-detection-st-phi-btn" aria-controls="fake-review-detection-st-phi" aria-pressed="false" data-i="4">
+                        <span class="pn-num">05</span>
+                        <span class="pn-label">Zero-shot LLM</span>
+                        <span class="pn-tech">Phi-4-mini-instruct · 4-bit</span>
+                        
+                    </button>
+                    <div class="pipe-detail" id="fake-review-detection-st-phi" role="region" aria-labelledby="fake-review-detection-st-phi-h">
+                        <div class="pd-head">
+                            <span class="pd-num">Stage 05 of 06</span>
+                            <h4 id="fake-review-detection-st-phi-h">Zero-shot LLM</h4>
+                            <span class="pd-status pd-status--done">Done</span>
+                        </div>
+                        <div class="pd-io">
+                            <div class="pd-card pd-card--in"><span class="pd-k">Input</span><p>A balanced sample of 100 raw reviews (50 real, 50 fake)</p></div>
+                            <span class="pd-arrow" aria-hidden="true"></span>
+                            <div class="pd-card pd-card--op"><span class="pd-k">Operation</span><p>Ask Phi-4-mini to answer FAKE or REAL with a one-sentence reason, with no training at all</p></div>
+                            <span class="pd-arrow" aria-hidden="true"></span>
+                            <div class="pd-card pd-card--out"><span class="pd-k">Output</span><p>64% accuracy and 51.35% F1</p></div>
+                        </div>
+                        <ul class="pd-bullets"><li>It leaned towards &quot;real&quot;: it caught 45 of 50 real reviews but only 19 of 50 fake ones.</li><li>About 1.7 seconds per review, so it was only run on 100 reviews.</li></ul>
+                        <p class="pd-flow"><span class="visually-hidden">Flow: </span><code>build_prompt &gt;&gt; phi_predict_batch &gt;&gt; first word = label &gt;&gt; phase4_metrics.csv</code></p>
+                    </div>
+                </div><span class="pipe-link" aria-hidden="true"><svg viewBox="0 0 40 14" preserveAspectRatio="none"><path class="pl-line" d="M1 7H33"/><path class="pl-head" d="M31 2.5 37.5 7 31 11.5"/></svg></span>
+                <div class="pipe-stage">
+                    <button type="button" class="pipe-node pipe-node--done" id="fake-review-detection-st-app-btn" aria-controls="fake-review-detection-st-app" aria-pressed="false" data-i="5">
+                        <span class="pn-num">06</span>
+                        <span class="pn-label">Web app</span>
+                        <span class="pn-tech">Flask · HTML / CSS / JS</span>
+                        
+                    </button>
+                    <div class="pipe-detail" id="fake-review-detection-st-app" role="region" aria-labelledby="fake-review-detection-st-app-h">
+                        <div class="pd-head">
+                            <span class="pd-num">Stage 06 of 06</span>
+                            <h4 id="fake-review-detection-st-app-h">Web app</h4>
+                            <span class="pd-status pd-status--done">Done</span>
+                        </div>
+                        <div class="pd-io">
+                            <div class="pd-card pd-card--in"><span class="pd-k">Input</span><p>Any review text pasted by a user</p></div>
+                            <span class="pd-arrow" aria-hidden="true"></span>
+                            <div class="pd-card pd-card--op"><span class="pd-k">Operation</span><p>Run the fine-tuned DistilBERT model, loaded once when the server starts</p></div>
+                            <span class="pd-arrow" aria-hidden="true"></span>
+                            <div class="pd-card pd-card--out"><span class="pd-k">Output</span><p>A REAL or FAKE verdict with both probabilities, in about 0.5 to 1.5 seconds on a CPU</p></div>
+                        </div>
+                        <ul class="pd-bullets"><li>Built by a teammate. The code is on Google Drive, not in the GitHub repo.</li><li>POST /predict takes {&quot;text&quot;: &quot;...&quot;} and returns the label, real_prob and fake_prob.</li></ul>
+                        <p class="pd-flow"><span class="visually-hidden">Flow: </span><code>POST /predict &gt;&gt; tokenizer &gt;&gt; DistilBERT &gt;&gt; softmax &gt;&gt; verdict card</code></p>
+                    </div>
+                </div>
+                </div>
+            </div>
+            <p class="visually-hidden pipe-live" aria-live="polite"></p>
+        </section>
+        <section class="dd-block" aria-labelledby="fake-review-detection-res-h">
+            <h2 id="fake-review-detection-res-h">Results <em>so far</em></h2>
+            
+            <ul class="dd-stats"><li class="bezel"><div class="core">
+                    <span class="metric-value">97.67%</span>
+                    <span class="metric-label">F1, DistilBERT (ROC-AUC 99.84%)</span>
+                    <span class="dd-base">Baseline: TF-IDF + Logistic Regression: 84.61% F1 on the same test set</span>
+                    <span class="dd-plain">Catches about 99 in 100 fake reviews, and wrongly flags about 4 in 100 real ones.</span>
+                    <span class="metric-context">Test set of 8,086 reviews, half fake and half real</span>
+                    <span class="dd-source">Source: <code>Final Exam NLP/Final Exam NLP Kel5_Audi Joel Rahardja/Final Report NLP.pdf</code></span>
+                </div></li>
+<li class="bezel"><div class="core">
+                    <span class="metric-value">89.25%</span>
+                    <span class="metric-label">F1, PosAtt-BiLSTM</span>
+                    <span class="dd-base">Baseline: TF-IDF + Logistic Regression: 84.61% F1 on the same test set</span>
+                    <span class="dd-plain">Better than counting words, at a fraction of the transformer&#39;s memory.</span>
+                    <span class="metric-context">Same test set; 61 MB of GPU memory vs about 1.1 GB for DistilBERT</span>
+                    <span class="dd-source">Source: <code>03_bilstm.ipynb</code></span>
+                </div></li>
+<li class="bezel"><div class="core">
+                    <span class="metric-value">84.61%</span>
+                    <span class="metric-label">F1, TF-IDF + Logistic Regression</span>
+                    
+                    <span class="dd-plain">The simple word-count model already gets about 85 in 100 right.</span>
+                    <span class="metric-context">The project&#39;s baseline; trains in 0.2 seconds</span>
+                    <span class="dd-source">Source: <code>02_tfidf_logistic.ipynb</code></span>
+                </div></li>
+<li class="bezel"><div class="core">
+                    <span class="metric-value">51.35%</span>
+                    <span class="metric-label">F1, Phi-4-mini zero-shot</span>
+                    
+                    <span class="dd-plain">Without training data, the LLM missed most fake reviews.</span>
+                    <span class="metric-context">100-review balanced sample, not the full test set</span>
+                    <span class="dd-source">Source: <code>05_llm_phi-4mini.ipynb</code></span>
+                </div></li></ul>
+            <figure class="dd-chart bezel"><div class="core">
+                <figcaption><span class="dt-title">F1 on the same 8,086 test reviews</span><span class="dt-source">Source: <code>Final Exam NLP/Final Exam NLP Kel5_Audi Joel Rahardja/Final Report NLP.pdf (Table 2)</code></span></figcaption>
+                <ul class="bars">
+                    <li class="bar bar--base"><span class="bar-label">TF-IDF + Logistic Regression <span class="bar-tag">baseline</span></span><span class="bar-track" aria-hidden="true"><span class="bar-fill" style="--w: 86.6%"></span></span><span class="bar-value">84.61%</span></li>
+                    <li class="bar bar--model"><span class="bar-label">PosAtt-BiLSTM</span><span class="bar-track" aria-hidden="true"><span class="bar-fill" style="--w: 91.4%"></span></span><span class="bar-value">89.25%</span></li>
+                    <li class="bar bar--model"><span class="bar-label">DistilBERT (fine-tuned)</span><span class="bar-track" aria-hidden="true"><span class="bar-fill" style="--w: 100.0%"></span></span><span class="bar-value">97.67%</span></li>
+                </ul>
+                <p class="dd-plain">Each step up in model type helped. The fine-tuned transformer is 13 points above the word-count baseline.</p>
+            </div></figure>
+            
+        </section>
+        <div class="cs-tables dd-tables"><div class="bezel"><div class="core"><figure class="data-table">
     <figcaption><span class="dt-title">Model comparison</span><span class="dt-source">Source: Final project report · test set from 40,432 balanced reviews · Phi-4-mini on a 100-sample zero-shot test</span></figcaption>
     <div class="dt-scroll" tabindex="0" role="region" aria-label="Model comparison">
         <table>
@@ -59,45 +275,18 @@
             </tbody>
         </table>
     </div>
-</figure></div></div></section>
-
-            <div class="cs-grid">
-                <section class="cs-block" aria-labelledby="problem-h">
-                    <h2 id="problem-h">Problem</h2>
-                    <p>AI-generated fake reviews are cheap to produce and hard for people to spot. We wanted to know how much model sophistication actually buys you.</p>
-                </section>
-                <section class="cs-block" aria-labelledby="approach-h">
-                    <h2 id="approach-h">Approach</h2>
-                    <ul class="cs-list">
-                        <li>Baseline: TF-IDF features with Logistic Regression.</li>
-                        <li>PosAtt-BiLSTM: GloVe embeddings, positional encoding and Bahdanau attention.</li>
-                        <li>Fine-tuned DistilBERT, plus zero-shot Phi-4-mini as an LLM reference point.</li>
-                        <li>Served the best model through a Flask web app.</li>
-                    </ul>
-                </section>
-                <section class="cs-block" aria-labelledby="role-h">
-                    <h2 id="role-h">My role</h2>
-                    <p>Overall planning and pipeline. Trained the Logistic Regression and DistilBERT models, and took part in the results analysis.</p>
-                    <p class="cs-team">Group of 3 · Course project · NLP</p>
-                </section>
-                <section class="cs-block" aria-labelledby="tech-h">
-                    <h2 id="tech-h">Tech</h2>
-                    <ul class="tech" aria-label="Tech used"><li>Python</li><li>PyTorch</li><li>Hugging Face Transformers</li><li>DistilBERT</li><li>GloVe</li><li>scikit-learn</li><li>Flask</li></ul>
-                </section>
-            </div>
-            <section class="cs-block" aria-labelledby="results-h">
-                <h2 id="results-h">Results</h2>
-                <ul class="results">
-                    <li class="bezel"><div class="core"><span class="metric-value">97.67%</span><span class="metric-label">F1, DistilBERT (ROC-AUC 99.84%)</span><span class="metric-context">Final report</span></div></li>
-                    <li class="bezel"><div class="core"><span class="metric-value">89.25%</span><span class="metric-label">F1, PosAtt-BiLSTM</span><span class="metric-context">Final report</span></div></li>
-                    <li class="bezel"><div class="core"><span class="metric-value">84.61%</span><span class="metric-label">F1, TF-IDF + Logistic Regression</span><span class="metric-context">Final report</span></div></li>
-                    <li class="bezel"><div class="core"><span class="metric-value">51.35%</span><span class="metric-label">F1, Phi-4-mini zero-shot</span><span class="metric-context">100-sample zero-shot test</span></div></li>
-                </ul>
-                
-            </section>
-            
-        </article>
-
+</figure></div></div></div>
+        
+        
+        <div class="dd-grid">
+            <section class="dd-block" aria-labelledby="fake-review-detection-learn-h"><h2 id="fake-review-detection-learn-h">What I <em>learned</em></h2><ul class="cs-list"><li>Task-specific training data mattered more than model size: the zero-shot Phi-4-mini was 46 F1 points behind the fine-tuned DistilBERT.</li><li>A smaller model can still be the right choice: the BiLSTM reached 89% F1 with about 61 MB of GPU memory against about 1.1 GB for DistilBERT, and its attention shows which words drove a decision.</li><li>The test set is 50 / 50, but real platforms have far fewer fakes. The report notes precision drops as fakes get rarer, so the decision threshold must be re-tuned before real use.</li></ul></section>
+            <section class="dd-block" aria-labelledby="fake-review-detection-next-h"><h2 id="fake-review-detection-next-h">What's <em>next</em></h2><ul class="cs-list"><li>Try few-shot and chain-of-thought prompts for Phi-4-mini, then fine-tune it, to see if it can beat DistilBERT.</li><li>Re-tune decision thresholds for realistic fake-review rates and report precision and recall there.</li><li>Test on other domains (hotel and restaurant reviews), multilingual reviews and deliberately adversarial fakes.</li></ul></section>
+        </div>
+        <nav class="dd-pager" aria-label="More projects">
+            <a href="../projects/medsnap.html" data-dd="medsnap" rel="prev"><span class="dd-pager-k">← Previous</span><span class="dd-pager-t">MedSnap</span></a>
+            <a href="../projects/grand-treasure-raid.html" data-dd="grand-treasure-raid" rel="next"><span class="dd-pager-k">Next →</span><span class="dd-pager-t">The Grand Treasure Raid</span></a>
+        </nav>
+    </article>
     </main>
 
     <footer class="footer">
@@ -110,8 +299,8 @@
             <p>&copy; 2026 Audi Joel Rahardja</p>
         </div>
     </footer>
-    <script src="../pixel.js?v=mwz8ss0u" defer></script>
-    <script src="../script.js?v=mwz8ss0u" defer></script>
-    
+    <script src="../pixel.js?v=mwz9upwa" defer></script>
+    <script src="../script.js?v=mwz9upwa" defer></script>
+    <script src="../deepdive.js?v=mwz9upwa" defer></script>
 </body>
 </html>

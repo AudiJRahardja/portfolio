@@ -18,7 +18,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..600&family=Geist:wght@400;500;600&family=Silkscreen&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../style.css?v=mwz8ss0u">
+    <link rel="stylesheet" href="../style.css?v=mwz9upwa">
 </head>
 <body class="case-study dd-page">
     <a class="skip-link" href="#main">Skip to content</a>
@@ -208,7 +208,7 @@
                             <span class="pd-arrow" aria-hidden="true"></span>
                             <div class="pd-card pd-card--out"><span class="pd-k">Output</span><p>Scores per language and channel, each next to a baseline</p></div>
                         </div>
-                        <ul class="pd-bullets"><li>TF-IDF + Naive Bayes, the simplest model, as the baseline.</li><li>Logistic Regression and LightGBM on word and character n-grams plus message metadata, and a fine-tuned multilingual transformer.</li><li>Also tested on the fresh SmishTank spam and the translated slice, which are never trained on.</li></ul>
+                        <ul class="pd-bullets"><li>Baseline: TF-IDF bag-of-words + Naive Bayes, the simplest model.</li><li>Logistic Regression and LightGBM on word and character n-grams plus message metadata, and a fine-tuned multilingual transformer.</li><li>Also tested on the fresh SmishTank spam and the translated slice, which are never trained on.</li></ul>
                         <p class="pd-flow"><span class="visually-hidden">Flow: </span><code>make_splits &gt;&gt; tfidf &gt;&gt; fit(nb, logreg, lgbm, transformer) &gt;&gt; compare</code></p>
                     </div>
                 </div><span class="pipe-link pipe-link--planned" aria-hidden="true"><svg viewBox="0 0 40 14" preserveAspectRatio="none"><path class="pl-line" d="M1 7H33"/><path class="pl-head" d="M31 2.5 37.5 7 31 11.5"/></svg></span>
@@ -290,11 +290,16 @@
             
         </section>
         
+        
+        
         <div class="dd-grid">
             <section class="dd-block" aria-labelledby="spam-filter-learn-h"><h2 id="spam-filter-learn-h">What I <em>learned</em></h2><ul class="cs-list"><li>Public datasets label spam very differently. Mapping them all onto one shared label set, and keeping &quot;untyped&quot; spam out of the type classifier, mattered more than any model choice so far.</li><li>Scam vs phishing vs promo is a judgement call. A written decision order with rules for tricky cases made my hand labels consistent.</li><li>Privacy comes before the data: messages from real phones are masked before they are stored, and the rules over-mask on purpose.</li></ul></section>
-            <section class="dd-block" aria-labelledby="spam-filter-next-h"><h2 id="spam-filter-next-h">What's <em>next</em></h2><ul class="cs-list"><li>Clean and de-duplicate the table, then make the train / validation / test splits.</li><li>Train the four models and compare them against the Naive Bayes baseline.</li><li>Collect my own Indonesian messages as a second &quot;spam from after training&quot; test set.</li><li>Add an illegal online-loan (&quot;pinjol&quot;) label once there are 150 examples.</li><li>Publish the Streamlit demo.</li></ul></section>
+            <section class="dd-block" aria-labelledby="spam-filter-next-h"><h2 id="spam-filter-next-h">What's <em>next</em></h2><ul class="cs-list"><li>Clean and de-duplicate the table, then make the train / validation / test splits.</li><li>Train the four models and compare them against the TF-IDF bag-of-words + Naive Bayes baseline.</li><li>Collect my own Indonesian messages as a second &quot;spam from after training&quot; test set.</li><li>Add an illegal online-loan (&quot;pinjol&quot;) label once there are 150 examples.</li><li>Publish the Streamlit demo.</li></ul></section>
         </div>
-        
+        <nav class="dd-pager" aria-label="More projects">
+            <a href="../projects/library-system-design.html" data-dd="library-system-design" rel="prev"><span class="dd-pager-k">← Previous</span><span class="dd-pager-t">Library Booking System: design &amp; docs</span></a>
+            <a href="../projects/lifebase.html" data-dd="lifebase" rel="next"><span class="dd-pager-k">Next →</span><span class="dd-pager-t">LifeBase</span></a>
+        </nav>
     </article>
     </main>
 
@@ -308,8 +313,8 @@
             <p>&copy; 2026 Audi Joel Rahardja</p>
         </div>
     </footer>
-    <script src="../pixel.js?v=mwz8ss0u" defer></script>
-    <script src="../script.js?v=mwz8ss0u" defer></script>
-    <script src="../deepdive.js?v=mwz8ss0u" defer></script>
+    <script src="../pixel.js?v=mwz9upwa" defer></script>
+    <script src="../script.js?v=mwz9upwa" defer></script>
+    <script src="../deepdive.js?v=mwz9upwa" defer></script>
 </body>
 </html>

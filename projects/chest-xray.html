@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chest X-ray Classification | Audi Joel Rahardja</title>
+    <meta name="description" content="A planned CNN that sorts chest X-rays from the COVID-19 Radiography Database into their diagnosis classes.">
+    <link rel="canonical" href="https://audijrahardja.github.io/portfolio/projects/chest-xray.html">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Chest X-ray Classification">
+    <meta property="og:description" content="A planned CNN that sorts chest X-rays from the COVID-19 Radiography Database into their diagnosis classes.">
+    <meta property="og:url" content="https://audijrahardja.github.io/portfolio/projects/chest-xray.html">
+    <meta property="og:image" content="https://audijrahardja.github.io/portfolio/images/og.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="color-scheme" content="light dark">
+    <script>/*theme*/(function(){var r=document.documentElement,t=null;r.classList.add('js');try{t=localStorage.getItem('theme')}catch(e){}if(t)r.dataset.theme=t;if((t||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'))==='dark')r.classList.add('is-night')})()</script>
+    <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..600&family=Geist:wght@400;500;600&family=Silkscreen&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css?v=mwz9upwa">
+</head>
+<body class="case-study dd-page">
+    <a class="skip-link" href="#main">Skip to content</a>
+    <div class="wallpaper" aria-hidden="true"><span class="blob blob--1"></span><span class="blob blob--2"></span><span class="blob blob--3"></span><span class="sun"></span><span class="moon"></span><canvas class="stars"></canvas></div>
+    <div class="scroll-progress" aria-hidden="true"><span></span></div>
+    <header class="nav-wrap">
+        <nav class="nav-pill" aria-label="Main">
+            <a href="../index.html" class="nav-mark" aria-label="Home">AJ</a>
+            <ul class="nav-links nav-links--always">
+                <li><a href="../index.html#projects">All projects</a></li>
+            </ul>
+            <button type="button" class="theme-toggle" aria-label="Switch to dark theme" hidden></button>
+        </nav>
+    </header>
+
+    <main id="main" class="cs">
+        <article class="dd" data-slug="chest-xray" aria-labelledby="chest-xray-title">
+        <header class="dd-head">
+            <a class="back-link" href="../index.html#projects">← All projects</a>
+            <div class="badges"><span class="badge badge--plan">Planned</span><span class="badge">Course project · Deep Learning</span><span class="badge">Group</span></div>
+            <h1 id="chest-xray-title">Chest X-ray Classification</h1>
+            <p class="cs-tagline">A planned CNN that sorts chest X-rays from the COVID-19 Radiography Database into their diagnosis classes.</p>
+            <p class="cs-meta"></p>
+            
+            
+        </header>
+        
+
+        <div class="dd-grid">
+            <section class="dd-block" aria-labelledby="chest-xray-prob-h">
+                <h2 id="chest-xray-prob-h">The <em>problem</em></h2>
+                <p>Reading chest X-rays takes a trained radiologist&#39;s time. This course project plans to train a convolutional neural network (CNN) to sort X-rays from a public database into their diagnosis classes, and to check how reliable it is.</p>
+            </section>
+            <section class="dd-block" aria-labelledby="chest-xray-role-h">
+                <h2 id="chest-xray-role-h">My <em>part</em></h2>
+                <p><span class="pd-unknown">To be decided.</span></p>
+                <p class="cs-team">Group · Course project · Deep Learning</p>
+                <ul class="tech" aria-label="Tech used"><li class="tech--planned">Python<span class="visually-hidden"> (planned)</span></li></ul>
+            </section>
+        </div>
+
+        <section class="dd-block dd-pipeline" aria-labelledby="chest-xray-pipe-h">
+            <div class="dd-block-head">
+                <h2 id="chest-xray-pipe-h">How it <em>works</em></h2>
+                <button type="button" class="btn btn--ghost btn--sm pipe-run" hidden><span class="pipe-run-label">Run trace</span><span class="btn-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l10-6.5z"/></svg></span></button>
+            </div>
+            <p class="dd-hint">5 stages, 5 still planned (dashed).<span class="pipe-hint-js" hidden> Pick a stage to see what goes in, what happens and what comes out. Arrow keys move between stages.</span></p>
+            <div class="pipe-wrap">
+                <div class="pipe" role="group" aria-label="Pipeline stages" style="--cols: repeat(4, minmax(0, 1fr) 1.75rem) minmax(0, 1fr)">
+                <div class="pipe-stage">
+                    <button type="button" class="pipe-node pipe-node--planned" id="chest-xray-st-images-btn" aria-controls="chest-xray-st-images" aria-pressed="true" data-i="0">
+                        <span class="pn-num">01</span>
+                        <span class="pn-label">Images</span>
+                        <span class="pn-tech">COVID-19 Radiography Database</span>
+                        <span class="pn-status">Planned</span>
+                    </button>
+                    <div class="pipe-detail" id="chest-xray-st-images" role="region" aria-labelledby="chest-xray-st-images-h">
+                        <div class="pd-head">
+                            <span class="pd-num">Stage 01 of 05</span>
+                            <h4 id="chest-xray-st-images-h">Images</h4>
+                            <span class="pd-status pd-status--planned">Planned</span>
+                        </div>
+                        <div class="pd-io">
+                            <div class="pd-card pd-card--in"><span class="pd-k">Input</span><p>The public COVID-19 Radiography Database of chest X-rays</p></div>
+                            <span class="pd-arrow" aria-hidden="true"></span>
+                            <div class="pd-card pd-card--op"><span class="pd-k">Operation</span><p>Download it and split it into training, validation and test sets</p></div>
+                            <span class="pd-arrow" aria-hidden="true"></span>
+                            <div class="pd-card pd-card--out"><span class="pd-k">Output</span><p><span class="pd-unknown">Not known yet</span></p></div>
+                        </div>
+                        <ul class="pd-bullets"><li>Planned. Nothing has been built yet.</li><li>The test set stays untouched until the final evaluation.</li></ul>
+                        <p class="pd-flow"><span class="visually-hidden">Flow: </span><code>download_dataset &gt;&gt; split(train, val, test)</code></p>
+                    </div>
+                </div><span class="pipe-link pipe-link--planned" aria-hidden="true"><svg viewBox="0 0 40 14" preserveAspectRatio="none"><path class="pl-line" d="M1 7H33"/><path class="pl-head" d="M31 2.5 37.5 7 31 11.5"/></svg></span>
+                <div class="pipe-stage">
+                    <button type="button" class="pipe-node pipe-node--planned" id="chest-xray-st-prep-btn" aria-controls="chest-xray-st-prep" aria-pressed="false" data-i="1">
+                        <span class="pn-num">02</span>
+                        <span class="pn-label">Preprocess &amp; augment</span>
+                        
+                        <span class="pn-status">Planned</span>
+                    </button>
+                    <div class="pipe-detail" id="chest-xray-st-prep" role="region" aria-labelledby="chest-xray-st-prep-h">
+                        <div class="pd-head">
+                            <span class="pd-num">Stage 02 of 05</span>
+                            <h4 id="chest-xray-st-prep-h">Preprocess &amp; augment</h4>
+                            <span class="pd-status pd-status--planned">Planned</span>
+                        </div>
+                        <div class="pd-io">
+                            <div class="pd-card pd-card--in"><span class="pd-k">Input</span><p>Raw X-ray images of different sizes</p></div>
+                            <span class="pd-arrow" aria-hidden="true"></span>
+                            <div class="pd-card pd-card--op"><span class="pd-k">Operation</span><p>Resize and normalise every image; add small random changes (augmentation) to the training images</p></div>
+                            <span class="pd-arrow" aria-hidden="true"></span>
+                            <div class="pd-card pd-card--out"><span class="pd-k">Output</span><p>Model-ready image batches</p></div>
+                        </div>
+                        <ul class="pd-bullets"><li>Planned.</li><li>Augmentation gives the model more variety to learn from without collecting new images.</li></ul>
+                        <p class="pd-flow"><span class="visually-hidden">Flow: </span><code>resize &gt;&gt; normalise &gt;&gt; augment &gt;&gt; batch</code></p>
+                    </div>
+                </div><span class="pipe-link pipe-link--planned" aria-hidden="true"><svg viewBox="0 0 40 14" preserveAspectRatio="none"><path class="pl-line" d="M1 7H33"/><path class="pl-head" d="M31 2.5 37.5 7 31 11.5"/></svg></span>
+                <div class="pipe-stage">
+                    <button type="button" class="pipe-node pipe-node--planned" id="chest-xray-st-train-btn" aria-controls="chest-xray-st-train" aria-pressed="false" data-i="2">
+                        <span class="pn-num">03</span>
+                        <span class="pn-label">Train CNN</span>
+                        
+                        <span class="pn-status">Planned</span>
+                    </button>
+                    <div class="pipe-detail" id="chest-xray-st-train" role="region" aria-labelledby="chest-xray-st-train-h">
+                        <div class="pd-head">
+                            <span class="pd-num">Stage 03 of 05</span>
+                            <h4 id="chest-xray-st-train-h">Train CNN</h4>
+                            <span class="pd-status pd-status--planned">Planned</span>
+                        </div>
+                        <div class="pd-io">
+                            <div class="pd-card pd-card--in"><span class="pd-k">Input</span><p>Training and validation batches</p></div>
+                            <span class="pd-arrow" aria-hidden="true"></span>
+                            <div class="pd-card pd-card--op"><span class="pd-k">Operation</span><p>Train a convolutional neural network to predict each image&#39;s class</p></div>
+                            <span class="pd-arrow" aria-hidden="true"></span>
+                            <div class="pd-card pd-card--out"><span class="pd-k">Output</span><p>A trained model</p></div>
+                        </div>
+                        <ul class="pd-bullets"><li>Planned.</li><li>The exact CNN and the baseline to compare it with are still to be chosen.</li></ul>
+                        <p class="pd-flow"><span class="visually-hidden">Flow: </span><code>build_cnn &gt;&gt; fit &gt;&gt; save_best</code></p>
+                    </div>
+                </div><span class="pipe-link pipe-link--planned" aria-hidden="true"><svg viewBox="0 0 40 14" preserveAspectRatio="none"><path class="pl-line" d="M1 7H33"/><path class="pl-head" d="M31 2.5 37.5 7 31 11.5"/></svg></span>
+                <div class="pipe-stage">
+                    <button type="button" class="pipe-node pipe-node--planned" id="chest-xray-st-eval-btn" aria-controls="chest-xray-st-eval" aria-pressed="false" data-i="3">
+                        <span class="pn-num">04</span>
+                        <span class="pn-label">Evaluate</span>
+                        
+                        <span class="pn-status">Planned</span>
+                    </button>
+                    <div class="pipe-detail" id="chest-xray-st-eval" role="region" aria-labelledby="chest-xray-st-eval-h">
+                        <div class="pd-head">
+                            <span class="pd-num">Stage 04 of 05</span>
+                            <h4 id="chest-xray-st-eval-h">Evaluate</h4>
+                            <span class="pd-status pd-status--planned">Planned</span>
+                        </div>
+                        <div class="pd-io">
+                            <div class="pd-card pd-card--in"><span class="pd-k">Input</span><p>The held-out test set</p></div>
+                            <span class="pd-arrow" aria-hidden="true"></span>
+                            <div class="pd-card pd-card--op"><span class="pd-k">Operation</span><p>Measure how often the model is right for each class, next to a simple baseline</p></div>
+                            <span class="pd-arrow" aria-hidden="true"></span>
+                            <div class="pd-card pd-card--out"><span class="pd-k">Output</span><p><span class="pd-unknown">Not known yet</span></p></div>
+                        </div>
+                        <ul class="pd-bullets"><li>Planned.</li><li>Results will be shown per class, because the classes are not the same size.</li></ul>
+                        <p class="pd-flow"><span class="visually-hidden">Flow: </span><code>predict(test) &gt;&gt; per_class_report &gt;&gt; compare_baseline</code></p>
+                    </div>
+                </div><span class="pipe-link pipe-link--planned" aria-hidden="true"><svg viewBox="0 0 40 14" preserveAspectRatio="none"><path class="pl-line" d="M1 7H33"/><path class="pl-head" d="M31 2.5 37.5 7 31 11.5"/></svg></span>
+                <div class="pipe-stage">
+                    <button type="button" class="pipe-node pipe-node--planned" id="chest-xray-st-predict-btn" aria-controls="chest-xray-st-predict" aria-pressed="false" data-i="4">
+                        <span class="pn-num">05</span>
+                        <span class="pn-label">Predictions</span>
+                        
+                        <span class="pn-status">Planned</span>
+                    </button>
+                    <div class="pipe-detail" id="chest-xray-st-predict" role="region" aria-labelledby="chest-xray-st-predict-h">
+                        <div class="pd-head">
+                            <span class="pd-num">Stage 05 of 05</span>
+                            <h4 id="chest-xray-st-predict-h">Predictions</h4>
+                            <span class="pd-status pd-status--planned">Planned</span>
+                        </div>
+                        <div class="pd-io">
+                            <div class="pd-card pd-card--in"><span class="pd-k">Input</span><p>A new chest X-ray</p></div>
+                            <span class="pd-arrow" aria-hidden="true"></span>
+                            <div class="pd-card pd-card--op"><span class="pd-k">Operation</span><p>Run it through the trained model</p></div>
+                            <span class="pd-arrow" aria-hidden="true"></span>
+                            <div class="pd-card pd-card--out"><span class="pd-k">Output</span><p>The predicted class and how confident the model is</p></div>
+                        </div>
+                        <ul class="pd-bullets"><li>Planned.</li><li>For learning only, not for medical use.</li></ul>
+                        <p class="pd-flow"><span class="visually-hidden">Flow: </span><code>load_image &gt;&gt; preprocess &gt;&gt; model.predict</code></p>
+                    </div>
+                </div>
+                </div>
+            </div>
+            <p class="visually-hidden pipe-live" aria-live="polite"></p>
+        </section>
+        <section class="dd-block" aria-labelledby="chest-xray-res-h">
+            <h2 id="chest-xray-res-h">Results <em>so far</em></h2>
+            <p class="dd-note">This project has not started yet, so there are no results.</p>
+            
+            
+            
+        </section>
+        
+        
+        
+        <div class="dd-grid">
+            
+            <section class="dd-block" aria-labelledby="chest-xray-next-h"><h2 id="chest-xray-next-h">What's <em>next</em></h2><ul class="cs-list"><li>Start the project with the group and fill in the dataset size, model and baseline.</li></ul></section>
+        </div>
+        <nav class="dd-pager" aria-label="More projects">
+            <a href="../projects/vstravel.html" data-dd="vstravel" rel="prev"><span class="dd-pager-k">← Previous</span><span class="dd-pager-t">VSTravel</span></a>
+            <a href="../projects/voice-chess.html" data-dd="voice-chess" rel="next"><span class="dd-pager-k">Next →</span><span class="dd-pager-t">Voice Chess</span></a>
+        </nav>
+    </article>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-row">
+            <div class="footer-links">
+                <a href="../index.html#contact">Contact</a>
+                <a href="https://github.com/AudiJRahardja" target="_blank" rel="noopener noreferrer">GitHub</a>
+                <a href="https://www.linkedin.com/in/audijoelrahardja/" target="_blank" rel="noopener noreferrer">LinkedIn</a>            </div>
+            <div class="pixel-controls" data-pixel-controls hidden></div>
+            <p>&copy; 2026 Audi Joel Rahardja</p>
+        </div>
+    </footer>
+    <script src="../pixel.js?v=mwz9upwa" defer></script>
+    <script src="../script.js?v=mwz9upwa" defer></script>
+    <script src="../deepdive.js?v=mwz9upwa" defer></script>
+</body>
+</html>

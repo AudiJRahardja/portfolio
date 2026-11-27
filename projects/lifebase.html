@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LifeBase | Audi Joel Rahardja</title>
+    <meta name="description" content="A local-first personal &quot;second brain&quot; that syncs an Android phone and a browser through my own Supabase project. Only to-dos exist so far.">
+    <link rel="canonical" href="https://audijrahardja.github.io/portfolio/projects/lifebase.html">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="LifeBase">
+    <meta property="og:description" content="A local-first personal &quot;second brain&quot; that syncs an Android phone and a browser through my own Supabase project. Only to-dos exist so far.">
+    <meta property="og:url" content="https://audijrahardja.github.io/portfolio/projects/lifebase.html">
+    <meta property="og:image" content="https://audijrahardja.github.io/portfolio/images/og.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="color-scheme" content="light dark">
+    <script>/*theme*/(function(){var r=document.documentElement,t=null;r.classList.add('js');try{t=localStorage.getItem('theme')}catch(e){}if(t)r.dataset.theme=t;if((t||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'))==='dark')r.classList.add('is-night')})()</script>
+    <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..600&family=Geist:wght@400;500;600&family=Silkscreen&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css?v=mwz9upwa">
+</head>
+<body class="case-study dd-page">
+    <a class="skip-link" href="#main">Skip to content</a>
+    <div class="wallpaper" aria-hidden="true"><span class="blob blob--1"></span><span class="blob blob--2"></span><span class="blob blob--3"></span><span class="sun"></span><span class="moon"></span><canvas class="stars"></canvas></div>
+    <div class="scroll-progress" aria-hidden="true"><span></span></div>
+    <header class="nav-wrap">
+        <nav class="nav-pill" aria-label="Main">
+            <a href="../index.html" class="nav-mark" aria-label="Home">AJ</a>
+            <ul class="nav-links nav-links--always">
+                <li><a href="../index.html#projects">All projects</a></li>
+            </ul>
+            <button type="button" class="theme-toggle" aria-label="Switch to dark theme" hidden></button>
+        </nav>
+    </header>
+
+    <main id="main" class="cs">
+        <article class="dd" data-slug="lifebase" aria-labelledby="lifebase-title">
+        <header class="dd-head">
+            <a class="back-link" href="../index.html#projects">← All projects</a>
+            <div class="badges"><span class="badge badge--wip">In progress</span><span class="badge">Personal learning project</span><span class="badge">Solo</span></div>
+            <h1 id="lifebase-title">LifeBase</h1>
+            <p class="cs-tagline">A local-first personal &quot;second brain&quot; that syncs an Android phone and a browser through my own Supabase project. Only to-dos exist so far.</p>
+            <p class="cs-meta">Oct 2026 – now</p>
+            
+            
+        </header>
+        
+
+        <div class="dd-grid">
+            <section class="dd-block" aria-labelledby="lifebase-prob-h">
+                <h2 id="lifebase-prob-h">The <em>problem</em></h2>
+                <p>I want one personal app for my to-dos, schedule, routines, notes and gym log that works on my Android phone and in the browser on my PC. It should open instantly and work offline, and the data should live in my own database, not in someone else&#39;s app.</p>
+            </section>
+            <section class="dd-block" aria-labelledby="lifebase-role-h">
+                <h2 id="lifebase-role-h">My <em>part</em></h2>
+                <p>Architecture and overall idea. Early stage, and I&#39;m learning the stack as I go.</p>
+                <p class="cs-team">Solo · Personal learning project</p>
+                <ul class="tech" aria-label="Tech used"><li>Expo</li><li>React Native</li><li>TypeScript</li><li>Supabase</li><li class="tech--planned">rrule (repeating events and routines)<span class="visually-hidden"> (planned)</span></li></ul>
+            </section>
+        </div>
+
+        <section class="dd-block dd-pipeline" aria-labelledby="lifebase-pipe-h">
+            <div class="dd-block-head">
+                <h2 id="lifebase-pipe-h">How it <em>works</em></h2>
+                <button type="button" class="btn btn--ghost btn--sm pipe-run" hidden><span class="pipe-run-label">Run trace</span><span class="btn-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l10-6.5z"/></svg></span></button>
+            </div>
+            <p class="dd-hint">7 stages, 1 still planned (dashed).<span class="pipe-hint-js" hidden> Pick a stage to see what goes in, what happens and what comes out. Arrow keys move between stages.</span></p>
+            <div class="pipe-wrap">
+                <div class="pipe" role="group" aria-label="Pipeline stages" style="--cols: repeat(6, minmax(0, 1fr) 1.75rem) minmax(0, 1fr)">
+                <div class="pipe-stage">
+                    <button type="button" class="pipe-node pipe-node--done" id="lifebase-st-signin-btn" aria-controls="lifebase-st-signin" aria-pressed="true" data-i="0">
+                        <span class="pn-num">01</span>
+                        <span class="pn-label">Sign in</span>
+                        <span class="pn-tech">Supabase Auth</span>
+                        
+                    </button>
+                    <div class="pipe-detail" id="lifebase-st-signin" role="region" aria-labelledby="lifebase-st-signin-h">
+                        <div class="pd-head">
+                            <span class="pd-num">Stage 01 of 07</span>
+                            <h4 id="lifebase-st-signin-h">Sign in</h4>
+                            <span class="pd-status pd-status--done">Done</span>
+                        </div>
+                        <div class="pd-io">
+                            <div class="pd-card pd-card--in"><span class="pd-k">Input</span><p>My email and password, on the phone or in the browser</p></div>
+                            <span class="pd-arrow" aria-hidden="true"></span>
+                            <div class="pd-card pd-card--op"><span class="pd-k">Operation</span><p>Sign in once with Supabase and keep the session on the device</p></div>
+                            <span class="pd-arrow" aria-hidden="true"></span>
+                            <div class="pd-card pd-card--out"><span class="pd-k">Output</span><p>A session that still works offline</p></div>
+                        </div>
+                        <ul class="pd-bullets"><li>After creating my one account, new sign-ups are turned off, so nobody else can join the project.</li><li>Local data is wiped only on sign-out or when a different user signs in.</li></ul>
+                        <p class="pd-flow"><span class="visually-hidden">Flow: </span><code>sign-in &gt;&gt; session &gt;&gt; AsyncStorage</code></p>
+                    </div>
+                </div><span class="pipe-link" aria-hidden="true"><svg viewBox="0 0 40 14" preserveAspectRatio="none"><path class="pl-line" d="M1 7H33"/><path class="pl-head" d="M31 2.5 37.5 7 31 11.5"/></svg></span>
+                <div class="pipe-stage">
+                    <button type="button" class="pipe-node pipe-node--done" id="lifebase-st-local-btn" aria-controls="lifebase-st-local" aria-pressed="false" data-i="1">
+                        <span class="pn-num">02</span>
+                        <span class="pn-label">Save locally</span>
+                        <span class="pn-tech">Zustand · AsyncStorage</span>
+                        
+                    </button>
+                    <div class="pipe-detail" id="lifebase-st-local" role="region" aria-labelledby="lifebase-st-local-h">
+                        <div class="pd-head">
+                            <span class="pd-num">Stage 02 of 07</span>
+                            <h4 id="lifebase-st-local-h">Save locally</h4>
+                            <span class="pd-status pd-status--done">Done</span>
+                        </div>
+                        <div class="pd-io">
+                            <div class="pd-card pd-card--in"><span class="pd-k">Input</span><p>An edit on any screen, such as adding or ticking off a task</p></div>
+                            <span class="pd-arrow" aria-hidden="true"></span>
+                            <div class="pd-card pd-card--op"><span class="pd-k">Operation</span><p>Write the row and an &quot;outbox&quot; entry for it in one saved update, so neither can be lost without the other</p></div>
+                            <span class="pd-arrow" aria-hidden="true"></span>
+                            <div class="pd-card pd-card--out"><span class="pd-k">Output</span><p>The change on screen at once, plus a queued change waiting to sync</p></div>
+                        </div>
+                        <ul class="pd-bullets"><li>Screens never talk to the server; they read through hooks and write through repositories.</li><li>Row ids are made on the device, so new rows work offline.</li><li>The local store sits behind an interface so it can be swapped for SQLite later.</li></ul>
+                        <p class="pd-flow"><span class="visually-hidden">Flow: </span><code>useRows &gt;&gt; createRepository &gt;&gt; localStore + outbox</code></p>
+                    </div>
+                </div><span class="pipe-link" aria-hidden="true"><svg viewBox="0 0 40 14" preserveAspectRatio="none"><path class="pl-line" d="M1 7H33"/><path class="pl-head" d="M31 2.5 37.5 7 31 11.5"/></svg></span>
+                <div class="pipe-stage">
+                    <button type="button" class="pipe-node pipe-node--done" id="lifebase-st-todos-btn" aria-controls="lifebase-st-todos" aria-pressed="false" data-i="2">
+                        <span class="pn-num">03</span>
+                        <span class="pn-label">To-dos</span>
+                        <span class="pn-tech">Expo · React Native · expo-router</span>
+                        
+                    </button>
+                    <div class="pipe-detail" id="lifebase-st-todos" role="region" aria-labelledby="lifebase-st-todos-h">
+                        <div class="pd-head">
+                            <span class="pd-num">Stage 03 of 07</span>
+                            <h4 id="lifebase-st-todos-h">To-dos</h4>
+                            <span class="pd-status pd-status--done">Done</span>
+                        </div>
+                        <div class="pd-io">
+                            <div class="pd-card pd-card--in"><span class="pd-k">Input</span><p>Tasks and task lists</p></div>
+                            <span class="pd-arrow" aria-hidden="true"></span>
+                            <div class="pd-card pd-card--op"><span class="pd-k">Operation</span><p>Show tasks in Inbox, Today, Upcoming, All or a custom list, with subtasks, priorities and due dates</p></div>
+                            <span class="pd-arrow" aria-hidden="true"></span>
+                            <div class="pd-card pd-card--out"><span class="pd-k">Output</span><p>The one module built so far, on Android and web from one codebase</p></div>
+                        </div>
+                        <ul class="pd-bullets"><li>A due time is stored as local wall time, so &quot;5 pm&quot; stays 5 pm.</li><li>Overdue and due-date labels, sorting and new-task defaults are small pure functions with unit tests.</li></ul>
+                        <p class="pd-flow"><span class="visually-hidden">Flow: </span><code>ViewPicker &gt;&gt; tasksForView &gt;&gt; sortTasks &gt;&gt; TaskRow</code></p>
+                    </div>
+                </div><span class="pipe-link" aria-hidden="true"><svg viewBox="0 0 40 14" preserveAspectRatio="none"><path class="pl-line" d="M1 7H33"/><path class="pl-head" d="M31 2.5 37.5 7 31 11.5"/></svg></span>
+                <div class="pipe-stage">
+                    <button type="button" class="pipe-node pipe-node--done" id="lifebase-st-sync-btn" aria-controls="lifebase-st-sync" aria-pressed="false" data-i="3">
+                        <span class="pn-num">04</span>
+                        <span class="pn-label">Sync engine</span>
+                        <span class="pn-tech">TypeScript · Jest</span>
+                        
+                    </button>
+                    <div class="pipe-detail" id="lifebase-st-sync" role="region" aria-labelledby="lifebase-st-sync-h">
+                        <div class="pd-head">
+                            <span class="pd-num">Stage 04 of 07</span>
+                            <h4 id="lifebase-st-sync-h">Sync engine</h4>
+                            <span class="pd-status pd-status--done">Done</span>
+                        </div>
+                        <div class="pd-io">
+                            <div class="pd-card pd-card--in"><span class="pd-k">Input</span><p>The outbox and the time of the last pull for each table</p></div>
+                            <span class="pd-arrow" aria-hidden="true"></span>
+                            <div class="pd-card pd-card--op"><span class="pd-k">Operation</span><p>Push queued rows (parents before children), then pull rows changed on the server since the last pull, minus a 10-second overlap</p></div>
+                            <span class="pd-arrow" aria-hidden="true"></span>
+                            <div class="pd-card pd-card--out"><span class="pd-k">Output</span><p>Phone and browser hold the same data; the last write to reach the server wins per row</p></div>
+                        </div>
+                        <ul class="pd-bullets"><li>Runs on app start, on reconnect, when the app comes back to the front, 1.5 s after an edit and every 60 s.</li><li>Deletes are soft (deleted_at) so they sync like edits. An edit made during a push is not lost.</li><li>15 unit tests against a fake server cover offline edits, crashes mid-push, conflicts, paging and the overlap window.</li></ul>
+                        <p class="pd-flow"><span class="visually-hidden">Flow: </span><code>startSyncLoop &gt;&gt; requestSync &gt;&gt; syncOnce &gt;&gt; push &gt;&gt; pull</code></p>
+                    </div>
+                </div><span class="pipe-link" aria-hidden="true"><svg viewBox="0 0 40 14" preserveAspectRatio="none"><path class="pl-line" d="M1 7H33"/><path class="pl-head" d="M31 2.5 37.5 7 31 11.5"/></svg></span>
+                <div class="pipe-stage">
+                    <button type="button" class="pipe-node pipe-node--done" id="lifebase-st-server-btn" aria-controls="lifebase-st-server" aria-pressed="false" data-i="4">
+                        <span class="pn-num">05</span>
+                        <span class="pn-label">Own database</span>
+                        <span class="pn-tech">Supabase Postgres · RLS</span>
+                        
+                    </button>
+                    <div class="pipe-detail" id="lifebase-st-server" role="region" aria-labelledby="lifebase-st-server-h">
+                        <div class="pd-head">
+                            <span class="pd-num">Stage 05 of 07</span>
+                            <h4 id="lifebase-st-server-h">Own database</h4>
+                            <span class="pd-status pd-status--done">Done</span>
+                        </div>
+                        <div class="pd-io">
+                            <div class="pd-card pd-card--in"><span class="pd-k">Input</span><p>Rows pushed from my devices</p></div>
+                            <span class="pd-arrow" aria-hidden="true"></span>
+                            <div class="pd-card pd-card--op"><span class="pd-k">Operation</span><p>Store them with row-level security, and let a server trigger set every updated_at</p></div>
+                            <span class="pd-arrow" aria-hidden="true"></span>
+                            <div class="pd-card pd-card--out"><span class="pd-k">Output</span><p>My data in my own free Supabase project, readable only by my user</p></div>
+                        </div>
+                        <ul class="pd-bullets"><li>Because the server sets the timestamps, a wrong clock on a device does not break sync.</li><li>The app only holds the public key; the service key is never in the client.</li><li>No unique rules besides the id, because two offline devices could break them and block sync.</li></ul>
+                        <p class="pd-flow"><span class="visually-hidden">Flow: </span><code>supabaseRemote.upsert &gt;&gt; schema.sql (RLS) &gt;&gt; pullSince</code></p>
+                    </div>
+                </div><span class="pipe-link" aria-hidden="true"><svg viewBox="0 0 40 14" preserveAspectRatio="none"><path class="pl-line" d="M1 7H33"/><path class="pl-head" d="M31 2.5 37.5 7 31 11.5"/></svg></span>
+                <div class="pipe-stage">
+                    <button type="button" class="pipe-node pipe-node--done" id="lifebase-st-backup-btn" aria-controls="lifebase-st-backup" aria-pressed="false" data-i="5">
+                        <span class="pn-num">06</span>
+                        <span class="pn-label">Backup</span>
+                        <span class="pn-tech">JSON export</span>
+                        
+                    </button>
+                    <div class="pipe-detail" id="lifebase-st-backup" role="region" aria-labelledby="lifebase-st-backup-h">
+                        <div class="pd-head">
+                            <span class="pd-num">Stage 06 of 07</span>
+                            <h4 id="lifebase-st-backup-h">Backup</h4>
+                            <span class="pd-status pd-status--done">Done</span>
+                        </div>
+                        <div class="pd-io">
+                            <div class="pd-card pd-card--in"><span class="pd-k">Input</span><p>Everything stored on the device</p></div>
+                            <span class="pd-arrow" aria-hidden="true"></span>
+                            <div class="pd-card pd-card--op"><span class="pd-k">Operation</span><p>Export it as one JSON file</p></div>
+                            <span class="pd-arrow" aria-hidden="true"></span>
+                            <div class="pd-card pd-card--out"><span class="pd-k">Output</span><p>A download in the browser, or a share sheet on Android to save it to Drive or Files</p></div>
+                        </div>
+                        <ul class="pd-bullets"><li>The file records the app name, a format version, the export time and the user id.</li></ul>
+                        <p class="pd-flow"><span class="visually-hidden">Flow: </span><code>buildBackup &gt;&gt; backupFileName &gt;&gt; saveTextFile</code></p>
+                    </div>
+                </div><span class="pipe-link pipe-link--planned" aria-hidden="true"><svg viewBox="0 0 40 14" preserveAspectRatio="none"><path class="pl-line" d="M1 7H33"/><path class="pl-head" d="M31 2.5 37.5 7 31 11.5"/></svg></span>
+                <div class="pipe-stage">
+                    <button type="button" class="pipe-node pipe-node--planned" id="lifebase-st-modules-btn" aria-controls="lifebase-st-modules" aria-pressed="false" data-i="6">
+                        <span class="pn-num">07</span>
+                        <span class="pn-label">More modules</span>
+                        <span class="pn-tech">Planned · rrule</span>
+                        <span class="pn-status">Planned</span>
+                    </button>
+                    <div class="pipe-detail" id="lifebase-st-modules" role="region" aria-labelledby="lifebase-st-modules-h">
+                        <div class="pd-head">
+                            <span class="pd-num">Stage 07 of 07</span>
+                            <h4 id="lifebase-st-modules-h">More modules</h4>
+                            <span class="pd-status pd-status--planned">Planned</span>
+                        </div>
+                        <div class="pd-io">
+                            <div class="pd-card pd-card--in"><span class="pd-k">Input</span><p>Events, routines, notes and workouts</p></div>
+                            <span class="pd-arrow" aria-hidden="true"></span>
+                            <div class="pd-card pd-card--op"><span class="pd-k">Operation</span><p>Planned: add a schedule, routines, notes and a gym tracker on top of the same sync engine, in that order</p></div>
+                            <span class="pd-arrow" aria-hidden="true"></span>
+                            <div class="pd-card pd-card--out"><span class="pd-k">Output</span><p>Planned: the full &quot;second brain&quot;</p></div>
+                        </div>
+                        <ul class="pd-bullets"><li>Planned. The database tables already exist, but no screens for them are built yet.</li><li>Repeating events and routines are planned as RRULE strings, expanded when read instead of stored as rows.</li></ul>
+                        <p class="pd-flow"><span class="visually-hidden">Flow: </span><code>schedule &gt;&gt; routines &gt;&gt; notes &gt;&gt; gym</code></p>
+                    </div>
+                </div>
+                </div>
+            </div>
+            <p class="visually-hidden pipe-live" aria-live="polite"></p>
+        </section>
+        <section class="dd-block" aria-labelledby="lifebase-res-h">
+            <h2 id="lifebase-res-h">Results <em>so far</em></h2>
+            <p class="dd-note">This is an early learning project with no users besides me, so there are no usage numbers.</p>
+            <ul class="dd-stats"><li class="bezel"><div class="core">
+                    <span class="metric-value">25</span>
+                    <span class="metric-label">unit tests</span>
+                    
+                    <span class="dd-plain">15 for the sync engine and 10 for the to-do logic.</span>
+                    <span class="metric-context">Jest; run with npm test</span>
+                    <span class="dd-source">Source: <code>src/sync/engine.test.ts, src/features/todos/logic.test.ts</code></span>
+                </div></li>
+<li class="bezel"><div class="core">
+                    <span class="metric-value">10</span>
+                    <span class="metric-label">database tables with row-level security</span>
+                    
+                    <span class="dd-plain">Every table only lets my own user read or change its rows.</span>
+                    <span class="metric-context">Tables for all planned modules; only the to-do tables are used so far</span>
+                    <span class="dd-source">Source: <code>supabase/schema.sql</code></span>
+                </div></li>
+<li class="bezel"><div class="core">
+                    <span class="metric-value">1 of 5</span>
+                    <span class="metric-label">modules built</span>
+                    
+                    <span class="dd-plain">To-dos work; schedule, routines, notes and the gym tracker are still to come.</span>
+                    <span class="metric-context">Early stage learning project</span>
+                    <span class="dd-source">Source: <code>README.md</code></span>
+                </div></li></ul>
+            
+            
+        </section>
+        
+        
+        
+        <div class="dd-grid">
+            <section class="dd-block" aria-labelledby="lifebase-learn-h"><h2 id="lifebase-learn-h">What I <em>learned</em></h2><ul class="cs-list"><li>Letting the server set every timestamp means device clocks never matter for sync.</li><li>Unique rules that look harmless can block sync forever when two offline devices both write; duplicates are removed when reading instead.</li><li>Writing the sync engine against a fake server made it possible to test offline edits, crashes and conflicts without a phone.</li></ul></section>
+            <section class="dd-block" aria-labelledby="lifebase-next-h"><h2 id="lifebase-next-h">What's <em>next</em></h2><ul class="cs-list"><li>Add the next modules in order: schedule, routines, notes, then the gym tracker.</li><li>Add Google sign-in later.</li><li>Build a standalone Android app instead of running it in Expo Go.</li></ul></section>
+        </div>
+        <nav class="dd-pager" aria-label="More projects">
+            <a href="../projects/spam-filter.html" data-dd="spam-filter" rel="prev"><span class="dd-pager-k">← Previous</span><span class="dd-pager-t">Spam &amp; Scam-Type Classifier</span></a>
+            <a href="../projects/attendance-rfid.html" data-dd="attendance-rfid" rel="next"><span class="dd-pager-k">Next →</span><span class="dd-pager-t">RFID Attendance System</span></a>
+        </nav>
+    </article>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-row">
+            <div class="footer-links">
+                <a href="../index.html#contact">Contact</a>
+                <a href="https://github.com/AudiJRahardja" target="_blank" rel="noopener noreferrer">GitHub</a>
+                <a href="https://www.linkedin.com/in/audijoelrahardja/" target="_blank" rel="noopener noreferrer">LinkedIn</a>            </div>
+            <div class="pixel-controls" data-pixel-controls hidden></div>
+            <p>&copy; 2026 Audi Joel Rahardja</p>
+        </div>
+    </footer>
+    <script src="../pixel.js?v=mwz9upwa" defer></script>
+    <script src="../script.js?v=mwz9upwa" defer></script>
+    <script src="../deepdive.js?v=mwz9upwa" defer></script>
+</body>
+</html>

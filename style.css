@@ -1376,7 +1376,7 @@ body:has(.sky-toggle:hover) .moon { transform: rotate(-25deg) scale(1.12); }
 
 /* ---------- layout ---------- */
 .dd { min-width: 0; }
-.dd-head { max-width: 50rem; margin-bottom: 2.5rem; }
+.dd-head { max-width: 60rem; margin-bottom: 2.5rem; }
 .dd-head h1 { font-size: clamp(2.2rem, 5.5vw, 4.2rem); margin-bottom: 1rem; }
 .dd-actions { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.4rem; }
 .dd-related { margin-top: 1rem; font-size: 0.92rem; }
@@ -1576,7 +1576,7 @@ body:has(.sky-toggle:hover) .moon { transform: rotate(-25deg) scale(1.12); }
 /* ---------- popup ---------- */
 html:has(.dd-dialog[open]) { overflow: hidden; }
 .dd-dialog {
-    width: min(1080px, calc(100vw - 2rem));
+    width: min(1360px, calc(100vw - 2.5rem));
     max-width: none;
     max-height: calc(100dvh - 2rem);
     margin: auto;
@@ -1596,7 +1596,7 @@ html:has(.dd-dialog[open]) { overflow: hidden; }
 @keyframes dd-in { from { opacity: 0; transform: translateY(18px) scale(0.985); } }
 @keyframes dd-fade { from { opacity: 0; } }
 .dd-frame { max-height: calc(100dvh - 2rem); overflow-y: auto; overscroll-behavior: contain; }
-.dd-body { padding: clamp(1.5rem, 4.5vw, 3.25rem); }
+.dd-body { padding: clamp(1.5rem, 4.5vw, 4rem); }
 .dd-body .back-link { display: none; }
 .dd-body .dd-head { padding-right: 3rem; }
 .dd-close {
@@ -1623,3 +1623,5 @@ html:has(.dd-dialog[open]) { overflow: hidden; }
     .dd-dialog[open], .dd-dialog::backdrop, .is-live .pipe-detail:not([hidden]), .pipe-link.is-lit .pl-line { animation: none !important; }
     .pipe-node, .pipe-link, .dd-pager a, .dd-close, .pl-line, .pl-head { transition: none !important; }
 }
+
+.dd-tables { margin: 1.25rem 0 0; }

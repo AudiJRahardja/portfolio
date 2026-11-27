@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LQ45 Stock Direction Predictor | Audi Joel Rahardja</title>
+    <meta name="description" content="Web app that predicts where each of the 45 LQ45 stocks will be in 14 trading days, with Linear Regression on prices, moving averages and RSI.">
+    <link rel="canonical" href="https://audijrahardja.github.io/portfolio/projects/lq45-predictor.html">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="LQ45 Stock Direction Predictor">
+    <meta property="og:description" content="Web app that predicts where each of the 45 LQ45 stocks will be in 14 trading days, with Linear Regression on prices, moving averages and RSI.">
+    <meta property="og:url" content="https://audijrahardja.github.io/portfolio/projects/lq45-predictor.html">
+    <meta property="og:image" content="https://audijrahardja.github.io/portfolio/images/og.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="color-scheme" content="light dark">
+    <script>/*theme*/(function(){var r=document.documentElement,t=null;r.classList.add('js');try{t=localStorage.getItem('theme')}catch(e){}if(t)r.dataset.theme=t;if((t||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'))==='dark')r.classList.add('is-night')})()</script>
+    <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..600&family=Geist:wght@400;500;600&family=Silkscreen&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css?v=mwz9upwa">
+</head>
+<body class="case-study dd-page">
+    <a class="skip-link" href="#main">Skip to content</a>
+    <div class="wallpaper" aria-hidden="true"><span class="blob blob--1"></span><span class="blob blob--2"></span><span class="blob blob--3"></span><span class="sun"></span><span class="moon"></span><canvas class="stars"></canvas></div>
+    <div class="scroll-progress" aria-hidden="true"><span></span></div>
+    <header class="nav-wrap">
+        <nav class="nav-pill" aria-label="Main">
+            <a href="../index.html" class="nav-mark" aria-label="Home">AJ</a>
+            <ul class="nav-links nav-links--always">
+                <li><a href="../index.html#projects">All projects</a></li>
+            </ul>
+            <button type="button" class="theme-toggle" aria-label="Switch to dark theme" hidden></button>
+        </nav>
+    </header>
+
+    <main id="main" class="cs">
+        <article class="dd" data-slug="lq45-predictor" aria-labelledby="lq45-predictor-title">
+        <header class="dd-head">
+            <a class="back-link" href="../index.html#projects">← All projects</a>
+            <div class="badges"><span class="badge badge--live">Shipped</span><span class="badge">Course project · Machine Learning</span><span class="badge">Group of 3</span></div>
+            <h1 id="lq45-predictor-title">LQ45 Stock Direction Predictor</h1>
+            <p class="cs-tagline">Web app that predicts where each of the 45 LQ45 stocks will be in 14 trading days, with Linear Regression on prices, moving averages and RSI.</p>
+            <p class="cs-meta">Jun 2026</p>
+            <div class="dd-actions"><a class="btn btn--solid btn--sm" href="https://linear-regression-lq-45-ml.vercel.app" target="_blank" rel="noopener noreferrer">Live demo<span class="visually-hidden"> (opens in a new tab)</span><span class="btn-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></span></a><a class="btn btn--ghost btn--sm" href="https://github.com/AngeloBryan2705/LinearRegression_LQ45_ML" target="_blank" rel="noopener noreferrer">Code<span class="visually-hidden"> (opens in a new tab)</span><span class="btn-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></span></a><a class="btn btn--ghost btn--sm" href="https://drive.google.com/file/d/1QiKMN4aLyce8TtXNm6dBIiG7tjda9sOE/view?usp=sharing" target="_blank" rel="noopener noreferrer">Video<span class="visually-hidden"> (opens in a new tab)</span><span class="btn-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></span></a></div>
+            
+        </header>
+        
+
+        <div class="dd-grid">
+            <section class="dd-block" aria-labelledby="lq45-predictor-prob-h">
+                <h2 id="lq45-predictor-prob-h">The <em>problem</em></h2>
+                <p>Stock prices are noisy and change behaviour suddenly, and a single indicator such as a moving average or RSI is a weak signal on its own. The goal was not a perfect forecast, but a simple, transparent model whose weights can be read, served end to end as a web app for Indonesian LQ45 stocks.</p>
+            </section>
+            <section class="dd-block" aria-labelledby="lq45-predictor-role-h">
+                <h2 id="lq45-predictor-role-h">My <em>part</em></h2>
+                <p>Planned the overall idea and pipeline; did the model, results and metric analysis; built the frontend and login.</p>
+                <p class="cs-team">Group of 3 · Course project · Machine Learning</p>
+                <ul class="tech" aria-label="Tech used"><li>scikit-learn</li><li>yfinance</li><li>FastAPI</li><li>Hugging Face Spaces</li><li>Vercel</li></ul>
+            </section>
+        </div>
+
+        <section class="dd-block dd-pipeline" aria-labelledby="lq45-predictor-pipe-h">
+            <div class="dd-block-head">
+                <h2 id="lq45-predictor-pipe-h">How it <em>works</em></h2>
+                <button type="button" class="btn btn--ghost btn--sm pipe-run" hidden><span class="pipe-run-label">Run trace</span><span class="btn-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l10-6.5z"/></svg></span></button>
+            </div>
+            <p class="dd-hint">6 stages.<span class="pipe-hint-js" hidden> Pick a stage to see what goes in, what happens and what comes out. Arrow keys move between stages.</span></p>
+            <div class="pipe-wrap">
+                <div class="pipe" role="group" aria-label="Pipeline stages" style="--cols: repeat(5, minmax(0, 1fr) 1.75rem) minmax(0, 1fr)">
+                <div class="pipe-stage">
+                    <button type="button" class="pipe-node pipe-node--done" id="lq45-predictor-st-prototype-btn" aria-controls="lq45-predictor-st-prototype" aria-pressed="true" data-i="0">
+                        <span class="pn-num">01</span>
+                        <span class="pn-label">Prototype &amp; backtest</span>
+                        <span class="pn-tech">scikit-learn · XGBoost · Jupyter</span>
+                        
+                    </button>
+                    <div class="pipe-detail" id="lq45-predictor-st-prototype" role="region" aria-labelledby="lq45-predictor-st-prototype-h">
+                        <div class="pd-head">
+                            <span class="pd-num">Stage 01 of 06</span>
+                            <h4 id="lq45-predictor-st-prototype-h">Prototype &amp; backtest</h4>
+                            <span class="pd-status pd-status--done">Done</span>
+                        </div>
+                        <div class="pd-io">
+                            <div class="pd-card pd-card--in"><span class="pd-k">Input</span><p>A Kaggle dataset of 6 US stocks (AAPL, AMZN, GOOGL, META, MSFT, NVDA): 14,964 daily rows, 2016 to 2026</p></div>
+                            <span class="pd-arrow" aria-hidden="true"></span>
+                            <div class="pd-card pd-card--op"><span class="pd-k">Operation</span><p>Fit Linear Regression per stock on the first 80% of days and test on the last 20%, in time order</p></div>
+                            <span class="pd-arrow" aria-hidden="true"></span>
+                            <div class="pd-card pd-card--out"><span class="pd-k">Output</span><p>Backtest R² between 0.66 (AMZN) and 0.91 (GOOGL), plus MAE and RMSE per stock</p></div>
+                        </div>
+                        <ul class="pd-bullets"><li>The split is chronological, not random, so the model never sees future prices while training.</li><li>The team also tried SVR and XGBoost; both got negative R² on most stocks because they cannot predict prices outside the range they were trained on.</li></ul>
+                        <p class="pd-flow"><span class="visually-hidden">Flow: </span><code>OHLCdataset_ML.csv &gt;&gt; add_features &gt;&gt; split 80 / 20 &gt;&gt; LinearRegression &gt;&gt; MAE · RMSE · R²</code></p>
+                    </div>
+                </div><span class="pipe-link" aria-hidden="true"><svg viewBox="0 0 40 14" preserveAspectRatio="none"><path class="pl-line" d="M1 7H33"/><path class="pl-head" d="M31 2.5 37.5 7 31 11.5"/></svg></span>
+                <div class="pipe-stage">
+                    <button type="button" class="pipe-node pipe-node--done" id="lq45-predictor-st-fetch-btn" aria-controls="lq45-predictor-st-fetch" aria-pressed="false" data-i="1">
+                        <span class="pn-num">02</span>
+                        <span class="pn-label">Fetch prices</span>
+                        <span class="pn-tech">yfinance</span>
+                        
+                    </button>
+                    <div class="pipe-detail" id="lq45-predictor-st-fetch" role="region" aria-labelledby="lq45-predictor-st-fetch-h">
+                        <div class="pd-head">
+                            <span class="pd-num">Stage 02 of 06</span>
+                            <h4 id="lq45-predictor-st-fetch-h">Fetch prices</h4>
+                            <span class="pd-status pd-status--done">Done</span>
+                        </div>
+                        <div class="pd-io">
+                            <div class="pd-card pd-card--in"><span class="pd-k">Input</span><p>The 45 LQ45 tickers, grouped into 5 sectors</p></div>
+                            <span class="pd-arrow" aria-hidden="true"></span>
+                            <div class="pd-card pd-card--op"><span class="pd-k">Operation</span><p>Download 5 years of daily prices for each &lt;ticker&gt;.JK from Yahoo Finance, plus P/E, P/B and analyst ratings</p></div>
+                            <span class="pd-arrow" aria-hidden="true"></span>
+                            <div class="pd-card pd-card--out"><span class="pd-k">Output</span><p>One price table per stock; stocks with fewer than 120 days are skipped</p></div>
+                        </div>
+                        <ul class="pd-bullets"><li>Sectors: Banking, Commodities, Consumer, Telecom &amp; Tech and Industrial.</li><li>Analyst ratings are turned into a simple BUY / HOLD / SELL label.</li></ul>
+                        <p class="pd-flow"><span class="visually-hidden">Flow: </span><code>yf.download(&lt;ticker&gt;.JK, period=&quot;5y&quot;) &gt;&gt; get_sentiment</code></p>
+                    </div>
+                </div><span class="pipe-link" aria-hidden="true"><svg viewBox="0 0 40 14" preserveAspectRatio="none"><path class="pl-line" d="M1 7H33"/><path class="pl-head" d="M31 2.5 37.5 7 31 11.5"/></svg></span>
+                <div class="pipe-stage">
+                    <button type="button" class="pipe-node pipe-node--done" id="lq45-predictor-st-features-btn" aria-controls="lq45-predictor-st-features" aria-pressed="false" data-i="2">
+                        <span class="pn-num">03</span>
+                        <span class="pn-label">Build features</span>
+                        <span class="pn-tech">pandas · NumPy</span>
+                        
+                    </button>
+                    <div class="pipe-detail" id="lq45-predictor-st-features" role="region" aria-labelledby="lq45-predictor-st-features-h">
+                        <div class="pd-head">
+                            <span class="pd-num">Stage 03 of 06</span>
+                            <h4 id="lq45-predictor-st-features-h">Build features</h4>
+                            <span class="pd-status pd-status--done">Done</span>
+                        </div>
+                        <div class="pd-io">
+                            <div class="pd-card pd-card--in"><span class="pd-k">Input</span><p>Daily open, high, low and close prices</p></div>
+                            <span class="pd-arrow" aria-hidden="true"></span>
+                            <div class="pd-card pd-card--op"><span class="pd-k">Operation</span><p>Add 10, 20 and 50-day moving averages and a 14-day RSI; the target is the close 14 trading days later</p></div>
+                            <span class="pd-arrow" aria-hidden="true"></span>
+                            <div class="pd-card pd-card--out"><span class="pd-k">Output</span><p>8 features per day: Open, High, Low, Close, MA10, MA20, MA50, RSI14</p></div>
+                        </div>
+                        <ul class="pd-bullets"><li>The prices and moving averages are almost perfectly correlated (0.99 to 1.00); RSI14 is the only feature that adds a different signal.</li></ul>
+                        <p class="pd-flow"><span class="visually-hidden">Flow: </span><code>compute_features &gt;&gt; MA10 · MA20 · MA50 · RSI14 &gt;&gt; Target = Close.shift(-14)</code></p>
+                    </div>
+                </div><span class="pipe-link" aria-hidden="true"><svg viewBox="0 0 40 14" preserveAspectRatio="none"><path class="pl-line" d="M1 7H33"/><path class="pl-head" d="M31 2.5 37.5 7 31 11.5"/></svg></span>
+                <div class="pipe-stage">
+                    <button type="button" class="pipe-node pipe-node--done" id="lq45-predictor-st-train-btn" aria-controls="lq45-predictor-st-train" aria-pressed="false" data-i="3">
+                        <span class="pn-num">04</span>
+                        <span class="pn-label">Train per stock</span>
+                        <span class="pn-tech">scikit-learn · Google Colab</span>
+                        
+                    </button>
+                    <div class="pipe-detail" id="lq45-predictor-st-train" role="region" aria-labelledby="lq45-predictor-st-train-h">
+                        <div class="pd-head">
+                            <span class="pd-num">Stage 04 of 06</span>
+                            <h4 id="lq45-predictor-st-train-h">Train per stock</h4>
+                            <span class="pd-status pd-status--done">Done</span>
+                        </div>
+                        <div class="pd-io">
+                            <div class="pd-card pd-card--in"><span class="pd-k">Input</span><p>The feature table of one stock</p></div>
+                            <span class="pd-arrow" aria-hidden="true"></span>
+                            <div class="pd-card pd-card--op"><span class="pd-k">Operation</span><p>Scale the features and fit one Linear Regression per stock, then predict from the latest day</p></div>
+                            <span class="pd-arrow" aria-hidden="true"></span>
+                            <div class="pd-card pd-card--out"><span class="pd-k">Output</span><p>A predicted price and date, and UP if it is above the last close, DOWN if not</p></div>
+                        </div>
+                        <ul class="pd-bullets"><li>Linear Regression was chosen as a transparent baseline: every feature&#39;s weight can be read, and it can follow a trend past the prices it was trained on.</li><li>The deployed training uses all 5 years; the 80 / 20 backtest was only run in the prototype.</li></ul>
+                        <p class="pd-flow"><span class="visually-hidden">Flow: </span><code>train_ticker &gt;&gt; StandardScaler &gt;&gt; LinearRegression.fit &gt;&gt; predict(last row) &gt;&gt; UP | DOWN</code></p>
+                    </div>
+                </div><span class="pipe-link" aria-hidden="true"><svg viewBox="0 0 40 14" preserveAspectRatio="none"><path class="pl-line" d="M1 7H33"/><path class="pl-head" d="M31 2.5 37.5 7 31 11.5"/></svg></span>
+                <div class="pipe-stage">
+                    <button type="button" class="pipe-node pipe-node--done" id="lq45-predictor-st-publish-btn" aria-controls="lq45-predictor-st-publish" aria-pressed="false" data-i="4">
+                        <span class="pn-num">05</span>
+                        <span class="pn-label">Publish &amp; serve</span>
+                        <span class="pn-tech">Hugging Face Hub · FastAPI · Docker</span>
+                        
+                    </button>
+                    <div class="pipe-detail" id="lq45-predictor-st-publish" role="region" aria-labelledby="lq45-predictor-st-publish-h">
+                        <div class="pd-head">
+                            <span class="pd-num">Stage 05 of 06</span>
+                            <h4 id="lq45-predictor-st-publish-h">Publish &amp; serve</h4>
+                            <span class="pd-status pd-status--done">Done</span>
+                        </div>
+                        <div class="pd-io">
+                            <div class="pd-card pd-card--in"><span class="pd-k">Input</span><p>All 45 trained models and a summary of every stock</p></div>
+                            <span class="pd-arrow" aria-hidden="true"></span>
+                            <div class="pd-card pd-card--op"><span class="pd-k">Operation</span><p>Upload them to the Hugging Face Hub; a FastAPI server on a Hugging Face Space loads them once at start-up</p></div>
+                            <span class="pd-arrow" aria-hidden="true"></span>
+                            <div class="pd-card pd-card--out"><span class="pd-k">Output</span><p>/tickers (public) and /predict/&lt;ticker&gt; (needs a login token)</p></div>
+                        </div>
+                        <ul class="pd-bullets"><li>Normal accounts get 5 predictions; premium accounts have no limit.</li><li>Models are kept in memory, so a prediction does not reload anything.</li></ul>
+                        <p class="pd-flow"><span class="visually-hidden">Flow: </span><code>all_models.pkl + tickers_summary.json &gt;&gt; hf_hub_download &gt;&gt; GET /predict/{ticker}</code></p>
+                    </div>
+                </div><span class="pipe-link" aria-hidden="true"><svg viewBox="0 0 40 14" preserveAspectRatio="none"><path class="pl-line" d="M1 7H33"/><path class="pl-head" d="M31 2.5 37.5 7 31 11.5"/></svg></span>
+                <div class="pipe-stage">
+                    <button type="button" class="pipe-node pipe-node--done" id="lq45-predictor-st-frontend-btn" aria-controls="lq45-predictor-st-frontend" aria-pressed="false" data-i="5">
+                        <span class="pn-num">06</span>
+                        <span class="pn-label">Dashboard &amp; login</span>
+                        <span class="pn-tech">HTML · CSS · JavaScript · Vercel</span>
+                        
+                    </button>
+                    <div class="pipe-detail" id="lq45-predictor-st-frontend" role="region" aria-labelledby="lq45-predictor-st-frontend-h">
+                        <div class="pd-head">
+                            <span class="pd-num">Stage 06 of 06</span>
+                            <h4 id="lq45-predictor-st-frontend-h">Dashboard &amp; login</h4>
+                            <span class="pd-status pd-status--done">Done</span>
+                        </div>
+                        <div class="pd-io">
+                            <div class="pd-card pd-card--in"><span class="pd-k">Input</span><p>A signed-in user picking a stock</p></div>
+                            <span class="pd-arrow" aria-hidden="true"></span>
+                            <div class="pd-card pd-card--op"><span class="pd-k">Operation</span><p>Show the price chart, RSI and moving averages, and the model&#39;s predicted price and direction</p></div>
+                            <span class="pd-arrow" aria-hidden="true"></span>
+                            <div class="pd-card pd-card--out"><span class="pd-k">Output</span><p>A dashboard on Vercel, with login, register and premium pages</p></div>
+                        </div>
+                        <ul class="pd-bullets"><li>My part: the frontend and the login flow, plus the model and metric analysis.</li><li>Pages without a login token send the user to the login page.</li></ul>
+                        <p class="pd-flow"><span class="visually-hidden">Flow: </span><code>login.html &gt;&gt; setJWT &gt;&gt; fetchWithAuth(&quot;/tickers&quot;) &gt;&gt; fetchWithAuth(&quot;/predict/&lt;ticker&gt;&quot;) &gt;&gt; chart</code></p>
+                    </div>
+                </div>
+                </div>
+            </div>
+            <p class="visually-hidden pipe-live" aria-live="polite"></p>
+        </section>
+        <section class="dd-block" aria-labelledby="lq45-predictor-res-h">
+            <h2 id="lq45-predictor-res-h">Results <em>so far</em></h2>
+            <p class="dd-note">The deployed LQ45 models are not evaluated: they are trained on all 5 years with no held-out data. The only scores are from the 6-stock prototype, and they have no baseline to compare with.</p>
+            <ul class="dd-stats"><li class="bezel"><div class="core">
+                    <span class="metric-value">0.66 – 0.91</span>
+                    <span class="metric-label">backtest R², Linear Regression, 6 US stocks</span>
+                    
+                    <span class="dd-plain">On the last 20% of days, the model explained most of the price movement 14 days ahead, but this is a price level, which is easy to explain.</span>
+                    <span class="metric-context">Prototype only (not the LQ45 app): AMZN 0.66, META 0.71, MSFT 0.75, AAPL 0.79, NVDA 0.84, GOOGL 0.91. No naive baseline was measured.</span>
+                    <span class="dd-source">Source: <code>StockPredictionProject/AOL_ML_LR/AOL_ML_LR/Model2.ipynb</code></span>
+                </div></li>
+<li class="bezel"><div class="core">
+                    <span class="metric-value">45</span>
+                    <span class="metric-label">LQ45 stocks, one model each</span>
+                    
+                    <span class="dd-plain">Every stock in the index gets its own small model, trained on fresh data each time the Colab script runs.</span>
+                    <span class="metric-context">5 years of daily Yahoo Finance data per stock</span>
+                    <span class="dd-source">Source: <code>colab/lq45_training.py</code></span>
+                </div></li></ul>
+            
+            
+        </section>
+        
+        
+        <section class="dd-block" aria-labelledby="lq45-predictor-try-h">
+            <h2 id="lq45-predictor-try-h">Try <em>it</em></h2>
+            <div class="dd-try" data-embed="https://linear-regression-lq-45-ml.vercel.app" data-embed-title="LQ45 Direction Predictor (live)">
+                <p>Needs a login. Demo account from the project slides: normal_user / password123 (5 free predictions).</p>
+                <button type="button" class="btn btn--solid btn--sm">Load the demo<span class="btn-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l10-6.5z"/></svg></span></button>
+                <a class="text-link" href="https://linear-regression-lq-45-ml.vercel.app" target="_blank" rel="noopener noreferrer">Or open it in a new tab</a>
+            </div>
+        </section>
+        <div class="dd-grid">
+            <section class="dd-block" aria-labelledby="lq45-predictor-learn-h"><h2 id="lq45-predictor-learn-h">What I <em>learned</em></h2><ul class="cs-list"><li>Linear Regression could not adapt when a stock changed direction sharply, and predicting the raw price makes errors grow with the price. The team&#39;s next step was to predict percentage returns instead.</li><li>Rupiah error (MAE) is unfair across stocks: IDX tick sizes run from Rp1 to Rp25, so an expensive stock shows a far bigger error for the same percentage miss. R² is the fairer comparison.</li><li>SVR and XGBoost scored negative R² on most stocks: tree and kernel models only predict inside the price range they saw, so a new price high gives a flat line.</li></ul></section>
+            <section class="dd-block" aria-labelledby="lq45-predictor-next-h"><h2 id="lq45-predictor-next-h">What's <em>next</em></h2><ul class="cs-list"><li>Predict percentage returns instead of the raw closing price.</li><li>Move to a sequence model (LSTM) to capture momentum over time.</li><li>Fix data bugs found in user testing, such as ADRO showing a P/B of 18,176x.</li><li>Add the features testers asked for most: paper trading, a timeframe selector, CSV / Excel export and a ticker search bar.</li></ul></section>
+        </div>
+        <nav class="dd-pager" aria-label="More projects">
+            <a href="../projects/transkrip-sidang.html" data-dd="transkrip-sidang" rel="prev"><span class="dd-pager-k">← Previous</span><span class="dd-pager-t">Transkrip Sidang</span></a>
+            <a href="../projects/fruit-ripeness.html" data-dd="fruit-ripeness" rel="next"><span class="dd-pager-k">Next →</span><span class="dd-pager-t">Fruit Ripeness Detection</span></a>
+        </nav>
+    </article>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-row">
+            <div class="footer-links">
+                <a href="../index.html#contact">Contact</a>
+                <a href="https://github.com/AudiJRahardja" target="_blank" rel="noopener noreferrer">GitHub</a>
+                <a href="https://www.linkedin.com/in/audijoelrahardja/" target="_blank" rel="noopener noreferrer">LinkedIn</a>            </div>
+            <div class="pixel-controls" data-pixel-controls hidden></div>
+            <p>&copy; 2026 Audi Joel Rahardja</p>
+        </div>
+    </footer>
+    <script src="../pixel.js?v=mwz9upwa" defer></script>
+    <script src="../script.js?v=mwz9upwa" defer></script>
+    <script src="../deepdive.js?v=mwz9upwa" defer></script>
+</body>
+</html>

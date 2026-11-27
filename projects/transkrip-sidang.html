@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transkrip Sidang | Audi Joel Rahardja</title>
+    <meta name="description" content="Real-time transcription of Indonesian court hearings, using speech recognition trained from scratch, speaker labels and a draft of the hearing record.">
+    <link rel="canonical" href="https://audijrahardja.github.io/portfolio/projects/transkrip-sidang.html">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Transkrip Sidang">
+    <meta property="og:description" content="Real-time transcription of Indonesian court hearings, using speech recognition trained from scratch, speaker labels and a draft of the hearing record.">
+    <meta property="og:url" content="https://audijrahardja.github.io/portfolio/projects/transkrip-sidang.html">
+    <meta property="og:image" content="https://audijrahardja.github.io/portfolio/images/og.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="color-scheme" content="light dark">
+    <script>/*theme*/(function(){var r=document.documentElement,t=null;r.classList.add('js');try{t=localStorage.getItem('theme')}catch(e){}if(t)r.dataset.theme=t;if((t||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'))==='dark')r.classList.add('is-night')})()</script>
+    <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..600&family=Geist:wght@400;500;600&family=Silkscreen&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css?v=mwz9upwa">
+</head>
+<body class="case-study dd-page">
+    <a class="skip-link" href="#main">Skip to content</a>
+    <div class="wallpaper" aria-hidden="true"><span class="blob blob--1"></span><span class="blob blob--2"></span><span class="blob blob--3"></span><span class="sun"></span><span class="moon"></span><canvas class="stars"></canvas></div>
+    <div class="scroll-progress" aria-hidden="true"><span></span></div>
+    <header class="nav-wrap">
+        <nav class="nav-pill" aria-label="Main">
+            <a href="../index.html" class="nav-mark" aria-label="Home">AJ</a>
+            <ul class="nav-links nav-links--always">
+                <li><a href="../index.html#projects">All projects</a></li>
+            </ul>
+            <button type="button" class="theme-toggle" aria-label="Switch to dark theme" hidden></button>
+        </nav>
+    </header>
+
+    <main id="main" class="cs">
+        <article class="dd" data-slug="transkrip-sidang" aria-labelledby="transkrip-sidang-title">
+        <header class="dd-head">
+            <a class="back-link" href="../index.html#projects">← All projects</a>
+            <div class="badges"><span class="badge badge--wip">In progress</span><span class="badge">Course project · Speech Recognition</span><span class="badge">Group</span></div>
+            <h1 id="transkrip-sidang-title">Transkrip Sidang</h1>
+            <p class="cs-tagline">Real-time transcription of Indonesian court hearings, using speech recognition trained from scratch, speaker labels and a draft of the hearing record.</p>
+            <p class="cs-meta">Nov 2026 – now</p>
+            
+            
+        </header>
+        
+
+        <div class="dd-grid">
+            <section class="dd-block" aria-labelledby="transkrip-sidang-prob-h">
+                <h2 id="transkrip-sidang-prob-h">The <em>problem</em></h2>
+                <p>Many Indonesian court hearing records are still typed by hand while people speak. We want a tool that writes a live transcript with speaker roles and a checkable summary, as a draft for the court clerk. The course rule: no external APIs and no pretrained models, so every model is trained from random weights.</p>
+            </section>
+            <section class="dd-block" aria-labelledby="transkrip-sidang-role-h">
+                <h2 id="transkrip-sidang-role-h">My <em>part</em></h2>
+                <p>Overall pipeline, model training so far, and results analysis.</p>
+                <p class="cs-team">Group · Course project · Speech Recognition</p>
+                <ul class="tech" aria-label="Tech used"><li>PyTorch</li><li>Conformer-CTC</li><li>FastAPI</li><li>WebSocket</li><li>SQLite</li><li class="tech--planned">BiLSTM punctuation tagger<span class="visually-hidden"> (planned)</span></li><li class="tech--planned">TDNN speaker-embedding model<span class="visually-hidden"> (planned)</span></li><li class="tech--planned">TF-IDF + logistic regression role classifier<span class="visually-hidden"> (planned)</span></li><li class="tech--planned">BiGRU summary sentence scorer<span class="visually-hidden"> (planned)</span></li></ul>
+            </section>
+        </div>
+
+        <section class="dd-block dd-pipeline" aria-labelledby="transkrip-sidang-pipe-h">
+            <div class="dd-block-head">
+                <h2 id="transkrip-sidang-pipe-h">How it <em>works</em></h2>
+                <button type="button" class="btn btn--ghost btn--sm pipe-run" hidden><span class="pipe-run-label">Run trace</span><span class="btn-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l10-6.5z"/></svg></span></button>
+            </div>
+            <p class="dd-hint">7 stages.<span class="pipe-hint-js" hidden> Pick a stage to see what goes in, what happens and what comes out. Arrow keys move between stages.</span></p>
+            <div class="pipe-wrap">
+                <div class="pipe" role="group" aria-label="Pipeline stages" style="--cols: repeat(6, minmax(0, 1fr) 1.75rem) minmax(0, 1fr)">
+                <div class="pipe-stage">
+                    <button type="button" class="pipe-node pipe-node--done" id="transkrip-sidang-st-data-btn" aria-controls="transkrip-sidang-st-data" aria-pressed="true" data-i="0">
+                        <span class="pn-num">01</span>
+                        <span class="pn-label">Prepare speech data</span>
+                        <span class="pn-tech">Python · torchaudio · ffmpeg</span>
+                        
+                    </button>
+                    <div class="pipe-detail" id="transkrip-sidang-st-data" role="region" aria-labelledby="transkrip-sidang-st-data-h">
+                        <div class="pd-head">
+                            <span class="pd-num">Stage 01 of 07</span>
+                            <h4 id="transkrip-sidang-st-data-h">Prepare speech data</h4>
+                            <span class="pd-status pd-status--done">Done</span>
+                        </div>
+                        <div class="pd-io">
+                            <div class="pd-card pd-card--in"><span class="pd-k">Input</span><p>Public Indonesian speech: Common Voice 17, FLEURS, LibriVox-Indonesia and YouTube clips from YODAS</p></div>
+                            <span class="pd-arrow" aria-hidden="true"></span>
+                            <div class="pd-card pd-card--op"><span class="pd-k">Operation</span><p>Convert to 16 kHz mono WAV, write the text the way the model must (lower case, numbers as words) and keep test sentences out of training</p></div>
+                            <span class="pd-arrow" aria-hidden="true"></span>
+                            <div class="pd-card pd-card--out"><span class="pd-k">Output</span><p>211 hours of training audio with manifests</p></div>
+                        </div>
+                        <ul class="pd-bullets"><li>YODAS captions are uploaded by video owners, so each clip is kept only if our own round-1 model roughly agrees with the caption (at most 35% character difference).</li><li>Old-spelling LibriVox books (&quot;djam poekoel doea&quot;) are converted to modern spelling.</li><li>A final check removes any training sentence that appears in a dev or test set.</li></ul>
+                        <p class="pd-flow"><span class="visually-hidden">Flow: </span><code>sidang.data.download &gt;&gt; sidang.data.prepare &gt;&gt; sidang.data.yodas &gt;&gt; manifests/*.jsonl</code></p>
+                    </div>
+                </div><span class="pipe-link" aria-hidden="true"><svg viewBox="0 0 40 14" preserveAspectRatio="none"><path class="pl-line" d="M1 7H33"/><path class="pl-head" d="M31 2.5 37.5 7 31 11.5"/></svg></span>
+                <div class="pipe-stage">
+                    <button type="button" class="pipe-node pipe-node--done" id="transkrip-sidang-st-acoustic-btn" aria-controls="transkrip-sidang-st-acoustic" aria-pressed="false" data-i="1">
+                        <span class="pn-num">02</span>
+                        <span class="pn-label">Train acoustic model</span>
+                        <span class="pn-tech">PyTorch · Conformer-CTC</span>
+                        
+                    </button>
+                    <div class="pipe-detail" id="transkrip-sidang-st-acoustic" role="region" aria-labelledby="transkrip-sidang-st-acoustic-h">
+                        <div class="pd-head">
+                            <span class="pd-num">Stage 02 of 07</span>
+                            <h4 id="transkrip-sidang-st-acoustic-h">Train acoustic model</h4>
+                            <span class="pd-status pd-status--done">Done</span>
+                        </div>
+                        <div class="pd-io">
+                            <div class="pd-card pd-card--in"><span class="pd-k">Input</span><p>Log-mel features with SpecAugment, speed changes and noise</p></div>
+                            <span class="pd-arrow" aria-hidden="true"></span>
+                            <div class="pd-card pd-card--op"><span class="pd-k">Operation</span><p>Train our own Conformer-CTC from random weights: 12 blocks, 6.39M parameters, letters as output</p></div>
+                            <span class="pd-arrow" aria-hidden="true"></span>
+                            <div class="pd-card pd-card--out"><span class="pd-k">Output</span><p>The round-2 model the app uses: 22.0% word error rate on Common Voice 17 test with plain greedy decoding</p></div>
+                        </div>
+                        <ul class="pd-bullets"><li>Round 1: 37.5 h of read speech, 100 epochs, about 3.6 GPU hours on an RTX 2060.</li><li>Round 2 added 173.4 h of YouTube speech: Common Voice 24.5% → 22.0%, FLEURS 27.7% → 24.3%.</li><li>A bigger 26.2M model did worse on every test set (27.2% on Common Voice) within the free Kaggle budget, so the app keeps the small one.</li></ul>
+                        <p class="pd-flow"><span class="visually-hidden">Flow: </span><code>train/asr.py --config asr_small.toml &gt;&gt; checkpoints/asr/best.pt</code></p>
+                    </div>
+                </div><span class="pipe-link" aria-hidden="true"><svg viewBox="0 0 40 14" preserveAspectRatio="none"><path class="pl-line" d="M1 7H33"/><path class="pl-head" d="M31 2.5 37.5 7 31 11.5"/></svg></span>
+                <div class="pipe-stage">
+                    <button type="button" class="pipe-node pipe-node--done" id="transkrip-sidang-st-decoder-btn" aria-controls="transkrip-sidang-st-decoder" aria-pressed="false" data-i="2">
+                        <span class="pn-num">03</span>
+                        <span class="pn-label">Decode with LM</span>
+                        <span class="pn-tech">CTC beam search · Kneser-Ney 3-gram</span>
+                        
+                    </button>
+                    <div class="pipe-detail" id="transkrip-sidang-st-decoder" role="region" aria-labelledby="transkrip-sidang-st-decoder-h">
+                        <div class="pd-head">
+                            <span class="pd-num">Stage 03 of 07</span>
+                            <h4 id="transkrip-sidang-st-decoder-h">Decode with LM</h4>
+                            <span class="pd-status pd-status--done">Done</span>
+                        </div>
+                        <div class="pd-io">
+                            <div class="pd-card pd-card--in"><span class="pd-k">Input</span><p>Letter probabilities from the acoustic model</p></div>
+                            <span class="pd-arrow" aria-hidden="true"></span>
+                            <div class="pd-card pd-card--op"><span class="pd-k">Operation</span><p>Search the best word sequence with our own CTC prefix beam search, scored by our own legal 3-gram language model plus a bonus for legal terms</p></div>
+                            <span class="pd-arrow" aria-hidden="true"></span>
+                            <div class="pd-card pd-card--out"><span class="pd-k">Output</span><p>Better word choice and spelling: Common Voice word errors 22.0% → 14.7%</p></div>
+                        </div>
+                        <ul class="pd-bullets"><li>The language model is trained on 203M tokens: Indonesian Wikipedia, 1,202 Constitutional Court (MK) hearing transcripts and our speech training text.</li><li>A first version made things worse (dev 26.9%) by joining two words into one unknown word; unknown words now get a fixed penalty, checked by a test.</li><li>Weights were tuned on the dev sets only; the MK test hearings were never used for tuning.</li></ul>
+                        <p class="pd-flow"><span class="visually-hidden">Flow: </span><code>CTCEngine.log_probs &gt;&gt; BeamDecoder.decode (beam 16, LM, Hotwords) &gt;&gt; words</code></p>
+                    </div>
+                </div><span class="pipe-link" aria-hidden="true"><svg viewBox="0 0 40 14" preserveAspectRatio="none"><path class="pl-line" d="M1 7H33"/><path class="pl-head" d="M31 2.5 37.5 7 31 11.5"/></svg></span>
+                <div class="pipe-stage">
+                    <button type="button" class="pipe-node pipe-node--done" id="transkrip-sidang-st-live-btn" aria-controls="transkrip-sidang-st-live" aria-pressed="false" data-i="3">
+                        <span class="pn-num">04</span>
+                        <span class="pn-label">Stream live text</span>
+                        <span class="pn-tech">Energy VAD · LocalAgreement-2</span>
+                        
+                    </button>
+                    <div class="pipe-detail" id="transkrip-sidang-st-live" role="region" aria-labelledby="transkrip-sidang-st-live-h">
+                        <div class="pd-head">
+                            <span class="pd-num">Stage 04 of 07</span>
+                            <h4 id="transkrip-sidang-st-live-h">Stream live text</h4>
+                            <span class="pd-status pd-status--done">Done</span>
+                        </div>
+                        <div class="pd-io">
+                            <div class="pd-card pd-card--in"><span class="pd-k">Input</span><p>Audio from the browser in 0.5 s chunks</p></div>
+                            <span class="pd-arrow" aria-hidden="true"></span>
+                            <div class="pd-card pd-card--op"><span class="pd-k">Operation</span><p>Detect speech, re-transcribe the growing buffer every second and commit only the words two passes agree on</p></div>
+                            <span class="pd-arrow" aria-hidden="true"></span>
+                            <div class="pd-card pd-card--out"><span class="pd-k">Output</span><p>Live transcript: committed words in black, tentative words in grey</p></div>
+                        </div>
+                        <ul class="pd-bullets"><li>An utterance ends after 0.8 s of silence, which is when text is finalised and the speaker is decided.</li><li>Real-time factor 0.044 with beam search and the language model: 30 s of hearing audio in 1.3 s on an RTX 2060.</li><li>Committed-text latency is not measured yet; the target is about 2 to 3 s behind speech.</li></ul>
+                        <p class="pd-flow"><span class="visually-hidden">Flow: </span><code>EnergyVAD &gt;&gt; UtteranceSegmenter &gt;&gt; StreamingTranscriber.process &gt;&gt; HypothesisBuffer</code></p>
+                    </div>
+                </div><span class="pipe-link" aria-hidden="true"><svg viewBox="0 0 40 14" preserveAspectRatio="none"><path class="pl-line" d="M1 7H33"/><path class="pl-head" d="M31 2.5 37.5 7 31 11.5"/></svg></span>
+                <div class="pipe-stage">
+                    <button type="button" class="pipe-node pipe-node--in-progress" id="transkrip-sidang-st-speakers-btn" aria-controls="transkrip-sidang-st-speakers" aria-pressed="false" data-i="4">
+                        <span class="pn-num">05</span>
+                        <span class="pn-label">Speakers &amp; roles</span>
+                        <span class="pn-tech">Online clustering · rules</span>
+                        <span class="pn-status">Ongoing</span>
+                    </button>
+                    <div class="pipe-detail" id="transkrip-sidang-st-speakers" role="region" aria-labelledby="transkrip-sidang-st-speakers-h">
+                        <div class="pd-head">
+                            <span class="pd-num">Stage 05 of 07</span>
+                            <h4 id="transkrip-sidang-st-speakers-h">Speakers &amp; roles</h4>
+                            <span class="pd-status pd-status--in-progress">Ongoing</span>
+                        </div>
+                        <div class="pd-io">
+                            <div class="pd-card pd-card--in"><span class="pd-k">Input</span><p>Each finished utterance: its audio and its text</p></div>
+                            <span class="pd-arrow" aria-hidden="true"></span>
+                            <div class="pd-card pd-card--op"><span class="pd-k">Operation</span><p>Match the voice to a known speaker or start a new one, then suggest a court role from typical phrases</p></div>
+                            <span class="pd-arrow" aria-hidden="true"></span>
+                            <div class="pd-card pd-card--out"><span class="pd-k">Output</span><p>Speaker labels with suggested roles (Hakim, Penuntut Umum, Saksi...), which the clerk confirms</p></div>
+                        </div>
+                        <ul class="pd-bullets"><li>Works now with a spectral baseline embedder and phrase rules (&quot;demi Allah saya bersumpah&quot; suggests a witness).</li><li>Planned: our own TDNN speaker-embedding model and a role classifier trained on MK transcript turns.</li><li>The clerk&#39;s choice always wins over the suggestion.</li></ul>
+                        <p class="pd-flow"><span class="visually-hidden">Flow: </span><code>SpectralEmbedder &gt;&gt; OnlineSpeakerClustering.assign &gt;&gt; RoleSuggester.suggest_all</code></p>
+                    </div>
+                </div><span class="pipe-link" aria-hidden="true"><svg viewBox="0 0 40 14" preserveAspectRatio="none"><path class="pl-line" d="M1 7H33"/><path class="pl-head" d="M31 2.5 37.5 7 31 11.5"/></svg></span>
+                <div class="pipe-stage">
+                    <button type="button" class="pipe-node pipe-node--done" id="transkrip-sidang-st-summary-btn" aria-controls="transkrip-sidang-st-summary" aria-pressed="false" data-i="5">
+                        <span class="pn-num">06</span>
+                        <span class="pn-label">Tidy &amp; summarise</span>
+                        <span class="pn-tech">Rules · TextRank</span>
+                        
+                    </button>
+                    <div class="pipe-detail" id="transkrip-sidang-st-summary" role="region" aria-labelledby="transkrip-sidang-st-summary-h">
+                        <div class="pd-head">
+                            <span class="pd-num">Stage 06 of 07</span>
+                            <h4 id="transkrip-sidang-st-summary-h">Tidy &amp; summarise</h4>
+                            <span class="pd-status pd-status--done">Done</span>
+                        </div>
+                        <div class="pd-io">
+                            <div class="pd-card pd-card--in"><span class="pd-k">Input</span><p>Final utterances with speaker roles</p></div>
+                            <span class="pd-arrow" aria-hidden="true"></span>
+                            <div class="pd-card pd-card--op"><span class="pd-k">Operation</span><p>Rewrite legal references in standard form, then build a structured summary and an extractive overview</p></div>
+                            <span class="pd-arrow" aria-hidden="true"></span>
+                            <div class="pd-card pd-card--out"><span class="pd-k">Output</span><p>A summary where every point links to the transcript lines it came from</p></div>
+                        </div>
+                        <ul class="pd-bullets"><li>&quot;pasal tiga ratus empat puluh ayat satu&quot; becomes &quot;Pasal 340 ayat (1)&quot;; money becomes &quot;Rp500.000.000&quot;.</li><li>The overview only copies real transcript sentences, so it cannot invent facts. The raw model text is kept too.</li><li>Planned: our own punctuation model and a trained sentence scorer in place of TextRank.</li></ul>
+                        <p class="pd-flow"><span class="visually-hidden">Flow: </span><code>normalize_text &gt;&gt; extract_legal_refs &gt;&gt; structured_summary &gt;&gt; textrank &gt;&gt; top_sentences</code></p>
+                    </div>
+                </div><span class="pipe-link" aria-hidden="true"><svg viewBox="0 0 40 14" preserveAspectRatio="none"><path class="pl-line" d="M1 7H33"/><path class="pl-head" d="M31 2.5 37.5 7 31 11.5"/></svg></span>
+                <div class="pipe-stage">
+                    <button type="button" class="pipe-node pipe-node--done" id="transkrip-sidang-st-app-btn" aria-controls="transkrip-sidang-st-app" aria-pressed="false" data-i="6">
+                        <span class="pn-num">07</span>
+                        <span class="pn-label">App &amp; export</span>
+                        <span class="pn-tech">FastAPI · WebSocket · SQLite · python-docx</span>
+                        
+                    </button>
+                    <div class="pipe-detail" id="transkrip-sidang-st-app" role="region" aria-labelledby="transkrip-sidang-st-app-h">
+                        <div class="pd-head">
+                            <span class="pd-num">Stage 07 of 07</span>
+                            <h4 id="transkrip-sidang-st-app-h">App &amp; export</h4>
+                            <span class="pd-status pd-status--done">Done</span>
+                        </div>
+                        <div class="pd-io">
+                            <div class="pd-card pd-card--in"><span class="pd-k">Input</span><p>The live session: transcript, speakers, edits and summary</p></div>
+                            <span class="pd-arrow" aria-hidden="true"></span>
+                            <div class="pd-card pd-card--op"><span class="pd-k">Operation</span><p>Serve a local web page, save everything to SQLite, and let the clerk edit and export</p></div>
+                            <span class="pd-arrow" aria-hidden="true"></span>
+                            <div class="pd-card pd-card--out"><span class="pd-k">Output</span><p>A .docx draft of the hearing record (BAS), plus .txt, .srt and .json</p></div>
+                        </div>
+                        <ul class="pd-bullets"><li>Everything runs on one machine; no audio or text leaves it.</li><li>A demo mode plays a short fictional hearing through the whole system without a trained model.</li><li>Tests run with a fake engine and tiny random-weight models, so no GPU or downloads are needed.</li></ul>
+                        <p class="pd-flow"><span class="visually-hidden">Flow: </span><code>WS /ws/sessions/{id}/live &gt;&gt; LivePipeline.feed &gt;&gt; SQLite &gt;&gt; to_docx</code></p>
+                    </div>
+                </div>
+                </div>
+            </div>
+            <p class="visually-hidden pipe-live" aria-live="polite"></p>
+        </section>
+        <section class="dd-block" aria-labelledby="transkrip-sidang-res-h">
+            <h2 id="transkrip-sidang-res-h">Results <em>so far</em></h2>
+            <p class="dd-note">No pretrained models are allowed, so there is no outside model to compare against; each score is compared with plain greedy decoding of our own model.</p>
+            <ul class="dd-stats"><li class="bezel"><div class="core">
+                    <span class="metric-value">14.7%</span>
+                    <span class="metric-label">word error rate, Common Voice 17 test</span>
+                    <span class="dd-base">Baseline: Same model, greedy decoding: 22.0%</span>
+                    <span class="dd-plain">About 1 word in 7 is wrong on read speech from unseen speakers.</span>
+                    <span class="metric-context">Own model + own beam search, language model and legal hotwords; trained from random weights on 211 h</span>
+                    <span class="dd-source">Source: <code>docs/RESULTS.md</code></span>
+                </div></li>
+<li class="bezel"><div class="core">
+                    <span class="metric-value">48.9%</span>
+                    <span class="metric-label">word error rate on real court hearings</span>
+                    <span class="dd-base">Baseline: Greedy decoding: 54.1%</span>
+                    <span class="dd-plain">Real hearings are much harder: about half the words are still wrong.</span>
+                    <span class="metric-context">5 Constitutional Court (MK) hearings, 6.2 h; far-field mics and edited reference transcripts</span>
+                    <span class="dd-source">Source: <code>docs/RESULTS.md</code></span>
+                </div></li>
+<li class="bezel"><div class="core">
+                    <span class="metric-value">40 / 161</span>
+                    <span class="metric-label">legal references written exactly right</span>
+                    <span class="dd-base">Baseline: Greedy decoding: 22 / 161 (13.7%)</span>
+                    <span class="dd-plain">Articles, law numbers and case numbers come out right about 1 time in 4, almost double before.</span>
+                    <span class="metric-context">Same 5 MK hearings; legal-entity recall 24.8%</span>
+                    <span class="dd-source">Source: <code>docs/RESULTS.md</code></span>
+                </div></li>
+<li class="bezel"><div class="core">
+                    <span class="metric-value">0.044</span>
+                    <span class="metric-label">real-time factor</span>
+                    
+                    <span class="dd-plain">30 seconds of hearing audio is transcribed in 1.3 seconds.</span>
+                    <span class="metric-context">RTX 2060 6 GB, beam 16 + LM + hotwords, one CPU core for the search</span>
+                    <span class="dd-source">Source: <code>docs/RESULTS.md</code></span>
+                </div></li></ul>
+            <figure class="dd-chart bezel"><div class="core">
+                <figcaption><span class="dt-title">Word error rate on real court hearings, by decoder</span><span class="dt-source">Source: <code>docs/RESULTS.md</code></span></figcaption>
+                <ul class="bars">
+                    <li class="bar bar--base"><span class="bar-label">Greedy <span class="bar-tag">baseline</span></span><span class="bar-track" aria-hidden="true"><span class="bar-fill" style="--w: 100.0%"></span></span><span class="bar-value">54.1%</span></li>
+                    <li class="bar"><span class="bar-label">Beam search</span><span class="bar-track" aria-hidden="true"><span class="bar-fill" style="--w: 98.5%"></span></span><span class="bar-value">53.3%</span></li>
+                    <li class="bar"><span class="bar-label">Beam + language model</span><span class="bar-track" aria-hidden="true"><span class="bar-fill" style="--w: 91.3%"></span></span><span class="bar-value">49.4%</span></li>
+                    <li class="bar bar--model"><span class="bar-label">Beam + LM + hotwords</span><span class="bar-track" aria-hidden="true"><span class="bar-fill" style="--w: 90.4%"></span></span><span class="bar-value">48.9%</span></li>
+                </ul>
+                <p class="dd-plain">Lower is better. Our own language model removes about 5 points of word errors on real hearings.</p>
+            </div></figure>
+            
+        </section>
+        
+        
+        
+        <div class="dd-grid">
+            <section class="dd-block" aria-labelledby="transkrip-sidang-learn-h"><h2 id="transkrip-sidang-learn-h">What I <em>learned</em></h2><ul class="cs-list"><li>More data helped more than a bigger model: adding 173 h of YouTube speech lowered word errors on both unseen-speaker test sets, while a 26M-parameter model trained on the same data did worse within the free GPU budget.</li><li>Very deep models can fail silently: the first 16-block run never learned (CER near 100%, then NaN loss). An extra CTC loss halfway through the network fixed it, and the config now stops early when that happens.</li><li>Read-speech scores hide how hard hearings are: the language model cut word errors by about a third on Common Voice and FLEURS, but real MK hearings are still near 49%, and letter errors there went up because the decoder writes fewer words on unclear audio.</li></ul></section>
+            <section class="dd-block" aria-labelledby="transkrip-sidang-next-h"><h2 id="transkrip-sidang-next-h">What's <em>next</em></h2><ul class="cs-list"><li>Train on aligned MK hearing audio (Phase 13), and tune the decoder on a legal dev set instead of read speech.</li><li>Train our own punctuation and capitalisation model (Phase 14).</li><li>Train our own speaker-embedding model, and measure speaker error (DER) against the spectral baseline (Phase 15).</li><li>Role classifier and trained summary sentence scorer (Phase 16), then full evaluation, report and demo (Phase 17).</li></ul></section>
+        </div>
+        <nav class="dd-pager" aria-label="More projects">
+            <a href="../projects/grand-treasure-raid.html" data-dd="grand-treasure-raid" rel="prev"><span class="dd-pager-k">← Previous</span><span class="dd-pager-t">The Grand Treasure Raid</span></a>
+            <a href="../projects/lq45-predictor.html" data-dd="lq45-predictor" rel="next"><span class="dd-pager-k">Next →</span><span class="dd-pager-t">LQ45 Stock Direction Predictor</span></a>
+        </nav>
+    </article>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-row">
+            <div class="footer-links">
+                <a href="../index.html#contact">Contact</a>
+                <a href="https://github.com/AudiJRahardja" target="_blank" rel="noopener noreferrer">GitHub</a>
+                <a href="https://www.linkedin.com/in/audijoelrahardja/" target="_blank" rel="noopener noreferrer">LinkedIn</a>            </div>
+            <div class="pixel-controls" data-pixel-controls hidden></div>
+            <p>&copy; 2026 Audi Joel Rahardja</p>
+        </div>
+    </footer>
+    <script src="../pixel.js?v=mwz9upwa" defer></script>
+    <script src="../script.js?v=mwz9upwa" defer></script>
+    <script src="../deepdive.js?v=mwz9upwa" defer></script>
+</body>
+</html>

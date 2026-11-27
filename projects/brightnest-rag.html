@@ -18,9 +18,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..600&family=Geist:wght@400;500;600&family=Silkscreen&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../style.css?v=mwz8ss0u">
+    <link rel="stylesheet" href="../style.css?v=mwz9upwa">
 </head>
-<body class="case-study">
+<body class="case-study dd-page">
     <a class="skip-link" href="#main">Skip to content</a>
     <div class="wallpaper" aria-hidden="true"><span class="blob blob--1"></span><span class="blob blob--2"></span><span class="blob blob--3"></span><span class="sun"></span><span class="moon"></span><canvas class="stars"></canvas></div>
     <div class="scroll-progress" aria-hidden="true"><span></span></div>
@@ -35,18 +35,254 @@
     </header>
 
     <main id="main" class="cs">
+        <article class="dd" data-slug="brightnest-rag" aria-labelledby="brightnest-rag-title">
+        <header class="dd-head">
+            <a class="back-link" href="../index.html#projects">← All projects</a>
+            <div class="badges"><span class="badge badge--live">Shipped</span><span class="badge">Personal project</span><span class="badge">Solo</span></div>
+            <h1 id="brightnest-rag-title">Brightnest Knowledge Assistants</h1>
+            <p class="cs-tagline">One retrieval engine behind two chatbots, for employees and for customers, that answers in English or Indonesian with citations and never leaks internal data.</p>
+            <p class="cs-meta">Nov 2026</p>
+            <div class="dd-actions"><a class="btn btn--solid btn--sm" href="https://github.com/AudiJRahardja/Company-Knowledge-Assistant-with-RAG" target="_blank" rel="noopener noreferrer">Code<span class="visually-hidden"> (opens in a new tab)</span><span class="btn-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></span></a></div>
+            
+        </header>
         
-        <article>
-            <header class="cs-head">
-                <a class="back-link" href="../index.html#projects">← All projects</a>
-                <div class="badges"><span class="badge badge--live">Shipped</span><span class="badge">Personal project</span><span class="badge">Solo</span></div>
-                <h1>Brightnest Knowledge Assistants</h1>
-                <p class="cs-tagline">One retrieval engine behind two chatbots, for employees and for customers, that answers in English or Indonesian with citations and never leaks internal data.</p>
-                <p class="cs-meta">Nov 2026</p>
-                <div class="card-links"><a class="text-link" href="https://github.com/AudiJRahardja/Company-Knowledge-Assistant-with-RAG" target="_blank" rel="noopener noreferrer">Code<span class="visually-hidden"> for Brightnest Knowledge Assistants (opens in a new tab)</span></a></div>
-            </header>
 
-            <section class="cs-tables" aria-label="Results tables"><div class="bezel"><div class="core"><figure class="data-table">
+        <div class="dd-grid">
+            <section class="dd-block" aria-labelledby="brightnest-rag-prob-h">
+                <h2 id="brightnest-rag-prob-h">The <em>problem</em></h2>
+                <p>Company chatbots have to give grounded answers from internal documents, and must never show HR-only or internal information to someone who isn&#39;t allowed to see it.</p>
+            </section>
+            <section class="dd-block" aria-labelledby="brightnest-rag-role-h">
+                <h2 id="brightnest-rag-role-h">My <em>part</em></h2>
+                <p>Everything: retrieval design, security model, tools, evaluation and deployment config.</p>
+                <p class="cs-team">Solo · Personal project</p>
+                <ul class="tech" aria-label="Tech used"><li>Python</li><li>FastAPI</li><li>Qdrant</li><li>BGE-M3</li><li>BM25</li><li>Gemini / Ollama</li><li>Streamlit</li><li>Docker</li></ul>
+            </section>
+        </div>
+
+        <section class="dd-block dd-pipeline" aria-labelledby="brightnest-rag-pipe-h">
+            <div class="dd-block-head">
+                <h2 id="brightnest-rag-pipe-h">How it <em>works</em></h2>
+                <button type="button" class="btn btn--ghost btn--sm pipe-run" hidden><span class="pipe-run-label">Run trace</span><span class="btn-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l10-6.5z"/></svg></span></button>
+            </div>
+            <p class="dd-hint">7 stages.<span class="pipe-hint-js" hidden> Pick a stage to see what goes in, what happens and what comes out. Arrow keys move between stages.</span></p>
+            <div class="pipe-wrap">
+                <div class="pipe" role="group" aria-label="Pipeline stages" style="--cols: repeat(6, minmax(0, 1fr) 1.75rem) minmax(0, 1fr)">
+                <div class="pipe-stage">
+                    <button type="button" class="pipe-node pipe-node--done" id="brightnest-rag-st-documents-btn" aria-controls="brightnest-rag-st-documents" aria-pressed="true" data-i="0">
+                        <span class="pn-num">01</span>
+                        <span class="pn-label">Company documents</span>
+                        <span class="pn-tech">Markdown · YAML front matter</span>
+                        
+                    </button>
+                    <div class="pipe-detail" id="brightnest-rag-st-documents" role="region" aria-labelledby="brightnest-rag-st-documents-h">
+                        <div class="pd-head">
+                            <span class="pd-num">Stage 01 of 07</span>
+                            <h4 id="brightnest-rag-st-documents-h">Company documents</h4>
+                            <span class="pd-status pd-status--done">Done</span>
+                        </div>
+                        <div class="pd-io">
+                            <div class="pd-card pd-card--in"><span class="pd-k">Input</span><p>A knowledge base for a fictional Indonesian home-goods retailer, written in English and Indonesian</p></div>
+                            <span class="pd-arrow" aria-hidden="true"></span>
+                            <div class="pd-card pd-card--op"><span class="pd-k">Operation</span><p>Each file is loaded and its header is checked: visibility, allowed roles, language, version and status</p></div>
+                            <span class="pd-arrow" aria-hidden="true"></span>
+                            <div class="pd-card pd-card--out"><span class="pd-k">Output</span><p>56 validated documents: 28 topics, each in English and Indonesian</p></div>
+                        </div>
+                        <ul class="pd-bullets"><li>Public: 12 topics (about us, store hours, refunds, shipping, warranty, FAQ). Internal: 13 topics plus 1 old version. Restricted: 2 (salary bands for HR, manager guidelines for managers and HR).</li><li>Tricky cases on purpose: an outdated and a current remote-work policy, and look-alike topics such as customer refunds vs employee reimbursements.</li></ul>
+                        <p class="pd-flow"><span class="visually-hidden">Flow: </span><code>data/docs/{public,internal,restricted}/{en,id}/*.md &gt;&gt; load_documents &gt;&gt; parse_document</code></p>
+                    </div>
+                </div><span class="pipe-link" aria-hidden="true"><svg viewBox="0 0 40 14" preserveAspectRatio="none"><path class="pl-line" d="M1 7H33"/><path class="pl-head" d="M31 2.5 37.5 7 31 11.5"/></svg></span>
+                <div class="pipe-stage">
+                    <button type="button" class="pipe-node pipe-node--done" id="brightnest-rag-st-chunk-btn" aria-controls="brightnest-rag-st-chunk" aria-pressed="false" data-i="1">
+                        <span class="pn-num">02</span>
+                        <span class="pn-label">Chunk by section</span>
+                        <span class="pn-tech">Python · regex</span>
+                        
+                    </button>
+                    <div class="pipe-detail" id="brightnest-rag-st-chunk" role="region" aria-labelledby="brightnest-rag-st-chunk-h">
+                        <div class="pd-head">
+                            <span class="pd-num">Stage 02 of 07</span>
+                            <h4 id="brightnest-rag-st-chunk-h">Chunk by section</h4>
+                            <span class="pd-status pd-status--done">Done</span>
+                        </div>
+                        <div class="pd-io">
+                            <div class="pd-card pd-card--in"><span class="pd-k">Input</span><p>Validated Markdown documents</p></div>
+                            <span class="pd-arrow" aria-hidden="true"></span>
+                            <div class="pd-card pd-card--op"><span class="pd-k">Operation</span><p>Cut each document at its &quot;##&quot; headings, so one section becomes one chunk</p></div>
+                            <span class="pd-arrow" aria-hidden="true"></span>
+                            <div class="pd-card pd-card--out"><span class="pd-k">Output</span><p>Chunks whose search text starts with &quot;Document title &gt; Section heading&quot;</p></div>
+                        </div>
+                        <ul class="pd-bullets"><li>The first version used fixed 220-word windows that ignored headings. Section chunks raised external MRR from 0.93 to 1.00.</li><li>A section longer than 220 words would be split again into overlapping windows; none are that long today.</li><li>English and Indonesian copies have the same sections in the same order, so search can keep just one copy of each.</li></ul>
+                        <p class="pd-flow"><span class="visually-hidden">Flow: </span><code>split_sections &gt;&gt; chunk_document &gt;&gt; chunk_documents</code></p>
+                    </div>
+                </div><span class="pipe-link" aria-hidden="true"><svg viewBox="0 0 40 14" preserveAspectRatio="none"><path class="pl-line" d="M1 7H33"/><path class="pl-head" d="M31 2.5 37.5 7 31 11.5"/></svg></span>
+                <div class="pipe-stage">
+                    <button type="button" class="pipe-node pipe-node--done" id="brightnest-rag-st-embed-btn" aria-controls="brightnest-rag-st-embed" aria-pressed="false" data-i="2">
+                        <span class="pn-num">03</span>
+                        <span class="pn-label">Embed</span>
+                        <span class="pn-tech">BGE-M3 · sentence-transformers</span>
+                        
+                    </button>
+                    <div class="pipe-detail" id="brightnest-rag-st-embed" role="region" aria-labelledby="brightnest-rag-st-embed-h">
+                        <div class="pd-head">
+                            <span class="pd-num">Stage 03 of 07</span>
+                            <h4 id="brightnest-rag-st-embed-h">Embed</h4>
+                            <span class="pd-status pd-status--done">Done</span>
+                        </div>
+                        <div class="pd-io">
+                            <div class="pd-card pd-card--in"><span class="pd-k">Input</span><p>Chunk texts</p></div>
+                            <span class="pd-arrow" aria-hidden="true"></span>
+                            <div class="pd-card pd-card--op"><span class="pd-k">Operation</span><p>Turn each chunk into a vector with a local multilingual model</p></div>
+                            <span class="pd-arrow" aria-hidden="true"></span>
+                            <div class="pd-card pd-card--out"><span class="pd-k">Output</span><p>One vector per chunk, plus hashed leak fingerprints of every collection</p></div>
+                        </div>
+                        <ul class="pd-bullets"><li>BGE-M3 puts English and Indonesian in the same vector space, so an Indonesian question can find an English section.</li><li>It runs locally, so no document text is sent to an outside service for search.</li><li>Re-indexing only re-embeds files whose hash changed.</li></ul>
+                        <p class="pd-flow"><span class="visually-hidden">Flow: </span><code>rag.ingest &gt;&gt; plan &gt;&gt; Embedder.embed_documents &gt;&gt; build_fingerprints</code></p>
+                    </div>
+                </div><span class="pipe-link" aria-hidden="true"><svg viewBox="0 0 40 14" preserveAspectRatio="none"><path class="pl-line" d="M1 7H33"/><path class="pl-head" d="M31 2.5 37.5 7 31 11.5"/></svg></span>
+                <div class="pipe-stage">
+                    <button type="button" class="pipe-node pipe-node--done" id="brightnest-rag-st-store-btn" aria-controls="brightnest-rag-st-store" aria-pressed="false" data-i="3">
+                        <span class="pn-num">04</span>
+                        <span class="pn-label">Separate stores</span>
+                        <span class="pn-tech">Qdrant · BM25</span>
+                        
+                    </button>
+                    <div class="pipe-detail" id="brightnest-rag-st-store" role="region" aria-labelledby="brightnest-rag-st-store-h">
+                        <div class="pd-head">
+                            <span class="pd-num">Stage 04 of 07</span>
+                            <h4 id="brightnest-rag-st-store-h">Separate stores</h4>
+                            <span class="pd-status pd-status--done">Done</span>
+                        </div>
+                        <div class="pd-io">
+                            <div class="pd-card pd-card--in"><span class="pd-k">Input</span><p>Vectors and chunk texts, grouped by visibility</p></div>
+                            <span class="pd-arrow" aria-hidden="true"></span>
+                            <div class="pd-card pd-card--op"><span class="pd-k">Operation</span><p>Write each visibility level into its own Qdrant database folder, each with its own BM25 keyword index</p></div>
+                            <span class="pd-arrow" aria-hidden="true"></span>
+                            <div class="pd-card pd-card--out"><span class="pd-k">Output</span><p>storage/qdrant/public, internal and restricted, opened only for the roles allowed to read them</p></div>
+                        </div>
+                        <ul class="pd-bullets"><li>The customer assistant only ever opens the public database. A database that was never opened cannot return anything.</li><li>A stricter customer-only server can be built from the public documents alone, so internal data is not in its index at all.</li></ul>
+                        <p class="pd-flow"><span class="visually-hidden">Flow: </span><code>IndexWriter.rebuild &gt;&gt; storage/qdrant/&lt;collection&gt; &gt;&gt; KnowledgeStore(allowed)</code></p>
+                    </div>
+                </div><span class="pipe-link" aria-hidden="true"><svg viewBox="0 0 40 14" preserveAspectRatio="none"><path class="pl-line" d="M1 7H33"/><path class="pl-head" d="M31 2.5 37.5 7 31 11.5"/></svg></span>
+                <div class="pipe-stage">
+                    <button type="button" class="pipe-node pipe-node--done" id="brightnest-rag-st-retrieve-btn" aria-controls="brightnest-rag-st-retrieve" aria-pressed="false" data-i="4">
+                        <span class="pn-num">05</span>
+                        <span class="pn-label">Retrieve by role</span>
+                        <span class="pn-tech">Qdrant · BM25 · bge-reranker-v2-m3</span>
+                        
+                    </button>
+                    <div class="pipe-detail" id="brightnest-rag-st-retrieve" role="region" aria-labelledby="brightnest-rag-st-retrieve-h">
+                        <div class="pd-head">
+                            <span class="pd-num">Stage 05 of 07</span>
+                            <h4 id="brightnest-rag-st-retrieve-h">Retrieve by role</h4>
+                            <span class="pd-status pd-status--done">Done</span>
+                        </div>
+                        <div class="pd-io">
+                            <div class="pd-card pd-card--in"><span class="pd-k">Input</span><p>A question, the assistant (internal or external) and the user&#39;s role from a signed login token</p></div>
+                            <span class="pd-arrow" aria-hidden="true"></span>
+                            <div class="pd-card pd-card--op"><span class="pd-k">Operation</span><p>Rewrite follow-ups, split two-part questions, then run vector and keyword search over the allowed databases only and rerank</p></div>
+                            <span class="pd-arrow" aria-hidden="true"></span>
+                            <div class="pd-card pd-card--out"><span class="pd-k">Output</span><p>The best 5 sections (6 for a two-part question)</p></div>
+                        </div>
+                        <ul class="pd-bullets"><li>Vector and BM25 results are merged by rank fusion; the reranker re-scores about 20 candidates.</li><li>Only one language copy of each section is kept, and outdated policy versions are left out unless the question asks about the old rules.</li><li>Each step can be switched off in .env, which is how the ablation table measures what each one adds.</li></ul>
+                        <p class="pd-flow"><span class="visually-hidden">Flow: </span><code>rewrite_question &gt;&gt; split_question &gt;&gt; _search(vector + keyword_search) &gt;&gt; rrf &gt;&gt; merge_twins &gt;&gt; rerank</code></p>
+                    </div>
+                </div><span class="pipe-link" aria-hidden="true"><svg viewBox="0 0 40 14" preserveAspectRatio="none"><path class="pl-line" d="M1 7H33"/><path class="pl-head" d="M31 2.5 37.5 7 31 11.5"/></svg></span>
+                <div class="pipe-stage">
+                    <button type="button" class="pipe-node pipe-node--done" id="brightnest-rag-st-answer-btn" aria-controls="brightnest-rag-st-answer" aria-pressed="false" data-i="5">
+                        <span class="pn-num">06</span>
+                        <span class="pn-label">Answer &amp; check</span>
+                        <span class="pn-tech">Gemini / Ollama · FastAPI</span>
+                        
+                    </button>
+                    <div class="pipe-detail" id="brightnest-rag-st-answer" role="region" aria-labelledby="brightnest-rag-st-answer-h">
+                        <div class="pd-head">
+                            <span class="pd-num">Stage 06 of 07</span>
+                            <h4 id="brightnest-rag-st-answer-h">Answer &amp; check</h4>
+                            <span class="pd-status pd-status--done">Done</span>
+                        </div>
+                        <div class="pd-io">
+                            <div class="pd-card pd-card--in"><span class="pd-k">Input</span><p>The question and the numbered sources</p></div>
+                            <span class="pd-arrow" aria-hidden="true"></span>
+                            <div class="pd-card pd-card--op"><span class="pd-k">Operation</span><p>Screen the input for prompt injection, let the LLM answer with [1] [2] citations (or call a tool), then scan the answer before showing it</p></div>
+                            <span class="pd-arrow" aria-hidden="true"></span>
+                            <div class="pd-card pd-card--out"><span class="pd-k">Output</span><p>A cited answer in the user&#39;s language, or &quot;I don&#39;t know&quot; with the right contact, or a withheld answer</p></div>
+                        </div>
+                        <ul class="pd-bullets"><li>Tools: leave balance, my manager and tickets for employees; order status, store hours, support hand-off and sales leads for customers.</li><li>The output check looks for pieces of the system prompt and for hashed fingerprints (e-mails, phone numbers, amounts, names) of documents the user may not read.</li><li>Every answer is logged with emails and phone numbers blanked, and gets thumbs up / down for the analytics page.</li></ul>
+                        <p class="pd-flow"><span class="visually-hidden">Flow: </span><code>check_question &gt;&gt; looks_like_injection &gt;&gt; retrieve &gt;&gt; llm.generate &gt;&gt; parse_tool_call &gt;&gt; output_problems</code></p>
+                    </div>
+                </div><span class="pipe-link" aria-hidden="true"><svg viewBox="0 0 40 14" preserveAspectRatio="none"><path class="pl-line" d="M1 7H33"/><path class="pl-head" d="M31 2.5 37.5 7 31 11.5"/></svg></span>
+                <div class="pipe-stage">
+                    <button type="button" class="pipe-node pipe-node--done" id="brightnest-rag-st-eval-btn" aria-controls="brightnest-rag-st-eval" aria-pressed="false" data-i="6">
+                        <span class="pn-num">07</span>
+                        <span class="pn-label">Eval &amp; leak tests</span>
+                        <span class="pn-tech">Python · LLM judge · pytest</span>
+                        
+                    </button>
+                    <div class="pipe-detail" id="brightnest-rag-st-eval" role="region" aria-labelledby="brightnest-rag-st-eval-h">
+                        <div class="pd-head">
+                            <span class="pd-num">Stage 07 of 07</span>
+                            <h4 id="brightnest-rag-st-eval-h">Eval &amp; leak tests</h4>
+                            <span class="pd-status pd-status--done">Done</span>
+                        </div>
+                        <div class="pd-io">
+                            <div class="pd-card pd-card--in"><span class="pd-k">Input</span><p>86 internal, 82 external and 38 leak-attack questions, each in English and Indonesian</p></div>
+                            <span class="pd-arrow" aria-hidden="true"></span>
+                            <div class="pd-card pd-card--op"><span class="pd-k">Operation</span><p>Score search, answers and leaks after every change, and save one line per run to the results history</p></div>
+                            <span class="pd-arrow" aria-hidden="true"></span>
+                            <div class="pd-card pd-card--out"><span class="pd-k">Output</span><p>eval/results.csv: the before / after history behind the tables on this page</p></div>
+                        </div>
+                        <ul class="pd-bullets"><li>Search and leak checks are plain code, so those numbers are exact. Answer quality is graded by a second LLM call and read as a trend.</li><li>A test counts as leaked if a forbidden document reaches the LLM, or a forbidden fact (salary figures, internal names, extensions) appears in the answer.</li><li>Attacks include prompt injection, role escalation, a manager asking for salary bands and order lookups with the wrong e-mail.</li></ul>
+                        <p class="pd-flow"><span class="visually-hidden">Flow: </span><code>eval.run --profile internal|external|leak &gt;&gt; retrieval_scores + judge &gt;&gt; results.csv</code></p>
+                    </div>
+                </div>
+                </div>
+            </div>
+            <p class="visually-hidden pipe-live" aria-live="polite"></p>
+        </section>
+        <section class="dd-block" aria-labelledby="brightnest-rag-res-h">
+            <h2 id="brightnest-rag-res-h">Results <em>so far</em></h2>
+            
+            <ul class="dd-stats"><li class="bezel"><div class="core">
+                    <span class="metric-value">0 / 38</span>
+                    <span class="metric-label">attacks that leaked internal or HR-only data</span>
+                    
+                    <span class="dd-plain">None of the 38 attempts to get secret data out of the bots worked.</span>
+                    <span class="metric-context">Leak-attack set, Phase 5 run; checked by code, not by the LLM judge. The bot also refused 97% of the attacks outright.</span>
+                    <span class="dd-source">Source: <code>eval/results.csv</code></span>
+                </div></li>
+<li class="bezel"><div class="core">
+                    <span class="metric-value">33% → 100%</span>
+                    <span class="metric-label">multi-document retrieval for the customer bot</span>
+                    <span class="dd-base">Baseline: First version: vector search only, fixed 220-word chunks (33%)</span>
+                    <span class="dd-plain">Questions that need two or more documents now always find all of them.</span>
+                    <span class="metric-context">Customer questions that need 2+ documents, first version vs now</span>
+                    <span class="dd-source">Source: <code>README.md</code></span>
+                </div></li>
+<li class="bezel"><div class="core">
+                    <span class="metric-value">0.93 → 1.00</span>
+                    <span class="metric-label">retrieval MRR, internal bot</span>
+                    <span class="dd-base">Baseline: First version: vector search only, fixed 220-word chunks (MRR 0.93)</span>
+                    <span class="dd-plain">The right document is now ranked first for every employee question in the test set.</span>
+                    <span class="metric-context">Internal set; the external bot went from 0.93 to 0.98</span>
+                    <span class="dd-source">Source: <code>eval/results.csv</code></span>
+                </div></li></ul>
+            <figure class="dd-chart bezel"><div class="core">
+                <figcaption><span class="dt-title">Customer bot: questions where every needed document was found</span><span class="dt-source">Source: <code>README.md · eval/results.csv (external set)</code></span></figcaption>
+                <ul class="bars">
+                    <li class="bar bar--base"><span class="bar-label">Baseline: vectors, 220-word chunks <span class="bar-tag">baseline</span></span><span class="bar-track" aria-hidden="true"><span class="bar-fill" style="--w: 87.0%"></span></span><span class="bar-value">87%</span></li>
+                    <li class="bar bar--model"><span class="bar-label">A. One chunk per section</span><span class="bar-track" aria-hidden="true"><span class="bar-fill" style="--w: 95.0%"></span></span><span class="bar-value">95%</span></li>
+                    <li class="bar bar--model"><span class="bar-label">B. One language copy</span><span class="bar-track" aria-hidden="true"><span class="bar-fill" style="--w: 97.0%"></span></span><span class="bar-value">97%</span></li>
+                    <li class="bar bar--model"><span class="bar-label">C. Add BM25</span><span class="bar-track" aria-hidden="true"><span class="bar-fill" style="--w: 97.0%"></span></span><span class="bar-value">97%</span></li>
+                    <li class="bar bar--model"><span class="bar-label">D. Add reranker</span><span class="bar-track" aria-hidden="true"><span class="bar-fill" style="--w: 98.0%"></span></span><span class="bar-value">98%</span></li>
+                    <li class="bar bar--model"><span class="bar-label">E. Rewrite follow-ups</span><span class="bar-track" aria-hidden="true"><span class="bar-fill" style="--w: 98.0%"></span></span><span class="bar-value">98%</span></li>
+                    <li class="bar bar--model"><span class="bar-label">F. Split two-part questions</span><span class="bar-track" aria-hidden="true"><span class="bar-fill" style="--w: 100.0%"></span></span><span class="bar-value">100%</span></li>
+                </ul>
+                <p class="dd-plain">Each search change was measured on its own. Splitting two-part questions took the customer bot from 87% to 100%.</p>
+            </div></figure>
+            
+        </section>
+        <div class="cs-tables dd-tables"><div class="bezel"><div class="core"><figure class="data-table">
     <figcaption><span class="dt-title">First version vs now</span><span class="dt-source">Source: Project README · my own eval sets (86 internal, 82 external, 38 leak attacks)</span></figcaption>
     <div class="dt-scroll" tabindex="0" role="region" aria-label="First version vs now">
         <table>
@@ -57,7 +293,7 @@
                 <tr><th scope="row">Key facts in answer (internal / external)</th><td>97% / 100%</td><td class="hi">100% / 100%</td></tr>
                 <tr><th scope="row">Answers using an outdated policy</th><td>1–3%</td><td class="hi">0%</td></tr>
                 <tr><th scope="row">Tool questions handled correctly</th><td>–</td><td class="hi">100%</td></tr>
-                <tr><th scope="row">Leak rate (38 attacks)</th><td>0%</td><td class="hi">0%</td></tr>
+                <tr><th scope="row">Leak rate (30 → 38 attacks)</th><td>0%</td><td class="hi">0%</td></tr>
             </tbody>
         </table>
     </div>
@@ -78,44 +314,18 @@
             </tbody>
         </table>
     </div>
-</figure></div></div></section>
-
-            <div class="cs-grid">
-                <section class="cs-block" aria-labelledby="problem-h">
-                    <h2 id="problem-h">Problem</h2>
-                    <p>Company chatbots have to give grounded answers from internal documents, and must never show HR-only or internal information to someone who isn&#39;t allowed to see it.</p>
-                </section>
-                <section class="cs-block" aria-labelledby="approach-h">
-                    <h2 id="approach-h">Approach</h2>
-                    <ul class="cs-list">
-                        <li>Hybrid retrieval: vectors plus BM25 with rank fusion, then a cross-encoder reranker. Follow-up questions are rewritten, two-part questions are split, and outdated policies are filtered out.</li>
-                        <li>Separate public, internal and restricted collections with JWT roles (employee, manager, HR). Inputs are checked for prompt injection, and outputs are checked for leaks using hashed fingerprints.</li>
-                        <li>LLM tools for leave balance, tickets, order status and store hours. An embeddable chat widget, plus an analytics page for feedback.</li>
-                        <li>Eval harness of 86 internal, 82 external and 38 leak-attack questions, with an ablation table.</li>
-                    </ul>
-                </section>
-                <section class="cs-block" aria-labelledby="role-h">
-                    <h2 id="role-h">My role</h2>
-                    <p>Everything: retrieval design, security model, tools, evaluation and deployment config.</p>
-                    <p class="cs-team">Solo · Personal project</p>
-                </section>
-                <section class="cs-block" aria-labelledby="tech-h">
-                    <h2 id="tech-h">Tech</h2>
-                    <ul class="tech" aria-label="Tech used"><li>Python</li><li>FastAPI</li><li>Qdrant</li><li>BGE-M3</li><li>BM25</li><li>Gemini / Ollama</li><li>Streamlit</li><li>Docker</li></ul>
-                </section>
-            </div>
-            <section class="cs-block" aria-labelledby="results-h">
-                <h2 id="results-h">Results</h2>
-                <ul class="results">
-                    <li class="bezel"><div class="core"><span class="metric-value">0 / 38</span><span class="metric-label">attacks that leaked restricted data</span><span class="metric-context">Leak-attack eval set</span></div></li>
-                    <li class="bezel"><div class="core"><span class="metric-value">33% → 100%</span><span class="metric-label">multi-document retrieval for the customer bot</span><span class="metric-context">Before vs after the ablation changes</span></div></li>
-                    <li class="bezel"><div class="core"><span class="metric-value">0.93 → 1.00</span><span class="metric-label">retrieval MRR, internal bot</span><span class="metric-context">0.93 → 0.98 for the external bot</span></div></li>
-                </ul>
-                
-            </section>
-            
-        </article>
-
+</figure></div></div></div>
+        
+        
+        <div class="dd-grid">
+            <section class="dd-block" aria-labelledby="brightnest-rag-learn-h"><h2 id="brightnest-rag-learn-h">What I <em>learned</em></h2><ul class="cs-list"><li>Keyword search on its own made the ranking slightly worse, but it found extra candidates that the reranker then put in the right order. Measuring each step separately is what showed this.</li><li>A reranker only judges how well text matches, not which version is current: it ranked the 2024 remote-work policy above the 2026 one. Leaving outdated versions out took outdated-policy answers from 3% to 0%.</li><li>Safety rules need testing against normal questions too. The injection filter caught the jailbreak word &quot;DAN&quot; matching the Indonesian &quot;dan&quot; (&quot;and&quot;), and the first system-prompt check withheld 4 harmless refusals.</li></ul></section>
+            <section class="dd-block" aria-labelledby="brightnest-rag-next-h"><h2 id="brightnest-rag-next-h">What's <em>next</em></h2><ul class="cs-list"><li>Record the demo GIF (the shop widget answering an order question, then the internal page).</li><li>For a real customer-only deployment, build a separate image without the internal document files (the README notes the current image still contains them).</li></ul></section>
+        </div>
+        <nav class="dd-pager" aria-label="More projects">
+            <a href="../projects/pdr-paper.html" data-dd="pdr-paper" rel="prev"><span class="dd-pager-k">← Previous</span><span class="dd-pager-t">Performance Decay Rate (PDR): IEEE paper</span></a>
+            <a href="../projects/medsnap.html" data-dd="medsnap" rel="next"><span class="dd-pager-k">Next →</span><span class="dd-pager-t">MedSnap</span></a>
+        </nav>
+    </article>
     </main>
 
     <footer class="footer">
@@ -128,8 +338,8 @@
             <p>&copy; 2026 Audi Joel Rahardja</p>
         </div>
     </footer>
-    <script src="../pixel.js?v=mwz8ss0u" defer></script>
-    <script src="../script.js?v=mwz8ss0u" defer></script>
-    
+    <script src="../pixel.js?v=mwz9upwa" defer></script>
+    <script src="../script.js?v=mwz9upwa" defer></script>
+    <script src="../deepdive.js?v=mwz9upwa" defer></script>
 </body>
 </html>

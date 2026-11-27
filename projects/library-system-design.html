@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library Booking System: design &amp; docs | Audi Joel Rahardja</title>
+    <meta name="description" content="System design for a library reservation and loan system: use-case, class, activity and sequence diagrams, plus architecture and user-flow documentation.">
+    <link rel="canonical" href="https://audijrahardja.github.io/portfolio/projects/library-system-design.html">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Library Booking System: design &amp; docs">
+    <meta property="og:description" content="System design for a library reservation and loan system: use-case, class, activity and sequence diagrams, plus architecture and user-flow documentation.">
+    <meta property="og:url" content="https://audijrahardja.github.io/portfolio/projects/library-system-design.html">
+    <meta property="og:image" content="https://audijrahardja.github.io/portfolio/images/og.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="color-scheme" content="light dark">
+    <script>/*theme*/(function(){var r=document.documentElement,t=null;r.classList.add('js');try{t=localStorage.getItem('theme')}catch(e){}if(t)r.dataset.theme=t;if((t||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'))==='dark')r.classList.add('is-night')})()</script>
+    <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..600&family=Geist:wght@400;500;600&family=Silkscreen&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css?v=mwz9upwa">
+</head>
+<body class="case-study dd-page">
+    <a class="skip-link" href="#main">Skip to content</a>
+    <div class="wallpaper" aria-hidden="true"><span class="blob blob--1"></span><span class="blob blob--2"></span><span class="blob blob--3"></span><span class="sun"></span><span class="moon"></span><canvas class="stars"></canvas></div>
+    <div class="scroll-progress" aria-hidden="true"><span></span></div>
+    <header class="nav-wrap">
+        <nav class="nav-pill" aria-label="Main">
+            <a href="../index.html" class="nav-mark" aria-label="Home">AJ</a>
+            <ul class="nav-links nav-links--always">
+                <li><a href="../index.html#projects">All projects</a></li>
+            </ul>
+            <button type="button" class="theme-toggle" aria-label="Switch to dark theme" hidden></button>
+        </nav>
+    </header>
+
+    <main id="main" class="cs">
+        <article class="dd" data-slug="library-system-design" aria-labelledby="library-system-design-title">
+        <header class="dd-head">
+            <a class="back-link" href="../index.html#projects">← All projects</a>
+            <div class="badges"><span class="badge badge--live">Shipped</span><span class="badge">Course project · Software Engineering</span><span class="badge">Group</span></div>
+            <h1 id="library-system-design-title">Library Booking System: design &amp; docs</h1>
+            <p class="cs-tagline">System design for a library reservation and loan system: use-case, class, activity and sequence diagrams, plus architecture and user-flow documentation.</p>
+            <p class="cs-meta">Apr 2026</p>
+            
+            
+        </header>
+        
+
+        <div class="dd-grid">
+            <section class="dd-block" aria-labelledby="library-system-design-prob-h">
+                <h2 id="library-system-design-prob-h">The <em>problem</em></h2>
+                <p>A library needs members to find and reserve books, see when a loan is late and pay the fine, while an admin keeps the catalogue and member list up to date. Our group had to design this system before building it. My part was turning those requirements into diagrams the build could follow.</p>
+            </section>
+            <section class="dd-block" aria-labelledby="library-system-design-role-h">
+                <h2 id="library-system-design-role-h">My <em>part</em></h2>
+                <p>Made all the UML, activity and sequence diagrams, and co-wrote the architecture and user-flow documentation with a teammate.</p>
+                <p class="cs-team">Group · Course project · Software Engineering</p>
+                <ul class="tech" aria-label="Tech used"><li>UML</li><li>Use-case / class / activity / sequence diagrams</li><li>SDLC</li><li>GitHub workflow</li></ul>
+            </section>
+        </div>
+
+        <section class="dd-block dd-pipeline" aria-labelledby="library-system-design-pipe-h">
+            <div class="dd-block-head">
+                <h2 id="library-system-design-pipe-h">How it <em>works</em></h2>
+                <button type="button" class="btn btn--ghost btn--sm pipe-run" hidden><span class="pipe-run-label">Run trace</span><span class="btn-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l10-6.5z"/></svg></span></button>
+            </div>
+            <p class="dd-hint">6 stages.<span class="pipe-hint-js" hidden> Pick a stage to see what goes in, what happens and what comes out. Arrow keys move between stages.</span></p>
+            <div class="pipe-wrap">
+                <div class="pipe" role="group" aria-label="Pipeline stages" style="--cols: repeat(5, minmax(0, 1fr) 1.75rem) minmax(0, 1fr)">
+                <div class="pipe-stage">
+                    <button type="button" class="pipe-node pipe-node--done" id="library-system-design-st-account-btn" aria-controls="library-system-design-st-account" aria-pressed="true" data-i="0">
+                        <span class="pn-num">01</span>
+                        <span class="pn-label">Register &amp; log in</span>
+                        <span class="pn-tech">Use case · Activity · Sequence</span>
+                        
+                    </button>
+                    <div class="pipe-detail" id="library-system-design-st-account" role="region" aria-labelledby="library-system-design-st-account-h">
+                        <div class="pd-head">
+                            <span class="pd-num">Stage 01 of 06</span>
+                            <h4 id="library-system-design-st-account-h">Register &amp; log in</h4>
+                            <span class="pd-status pd-status--done">Done</span>
+                        </div>
+                        <div class="pd-io">
+                            <div class="pd-card pd-card--in"><span class="pd-k">Input</span><p>A visitor opens the site and types their details or their username and password</p></div>
+                            <span class="pd-arrow" aria-hidden="true"></span>
+                            <div class="pd-card pd-card--op"><span class="pd-k">Operation</span><p>The system checks the data (ID on sign-up, password on log-in) and shows an error if it is not valid</p></div>
+                            <span class="pd-arrow" aria-hidden="true"></span>
+                            <div class="pd-card pd-card--out"><span class="pd-k">Output</span><p>A saved account, or the member or admin dashboard after log-in</p></div>
+                        </div>
+                        <ul class="pd-bullets"><li>Use case: Register includes &quot;Verify ID&quot;; Login includes &quot;Verify Password&quot; and is extended by &quot;Display Login Error&quot;.</li><li>Both activity flows loop back to the form on a &quot;Valid? no&quot; branch.</li><li>One log-in serves both roles: the User class is the parent of Customer and Admin.</li></ul>
+                        <p class="pd-flow"><span class="visually-hidden">Flow: </span><code>register() &gt;&gt; verify ID &gt;&gt; save account &gt;&gt; login() &gt;&gt; verify password &gt;&gt; dashboard</code></p>
+                    </div>
+                </div><span class="pipe-link" aria-hidden="true"><svg viewBox="0 0 40 14" preserveAspectRatio="none"><path class="pl-line" d="M1 7H33"/><path class="pl-head" d="M31 2.5 37.5 7 31 11.5"/></svg></span>
+                <div class="pipe-stage">
+                    <button type="button" class="pipe-node pipe-node--done" id="library-system-design-st-search-btn" aria-controls="library-system-design-st-search" aria-pressed="false" data-i="1">
+                        <span class="pn-num">02</span>
+                        <span class="pn-label">Search books</span>
+                        <span class="pn-tech">Activity · Sequence</span>
+                        
+                    </button>
+                    <div class="pipe-detail" id="library-system-design-st-search" role="region" aria-labelledby="library-system-design-st-search-h">
+                        <div class="pd-head">
+                            <span class="pd-num">Stage 02 of 06</span>
+                            <h4 id="library-system-design-st-search-h">Search books</h4>
+                            <span class="pd-status pd-status--done">Done</span>
+                        </div>
+                        <div class="pd-io">
+                            <div class="pd-card pd-card--in"><span class="pd-k">Input</span><p>Keywords typed into the search page</p></div>
+                            <span class="pd-arrow" aria-hidden="true"></span>
+                            <div class="pd-card pd-card--op"><span class="pd-k">Operation</span><p>The system searches the book table by keyword</p></div>
+                            <span class="pd-arrow" aria-hidden="true"></span>
+                            <div class="pd-card pd-card--out"><span class="pd-k">Output</span><p>A list of matching books, or a &quot;Sorry, no books found.&quot; message</p></div>
+                        </div>
+                        <ul class="pd-bullets"><li>The sequence diagram splits the work across App, System and Database.</li><li>An alt block covers both outcomes: results found and not found.</li></ul>
+                        <p class="pd-flow"><span class="visually-hidden">Flow: </span><code>open search &gt;&gt; send keywords &gt;&gt; search_books() &gt;&gt; list or &quot;not found&quot;</code></p>
+                    </div>
+                </div><span class="pipe-link" aria-hidden="true"><svg viewBox="0 0 40 14" preserveAspectRatio="none"><path class="pl-line" d="M1 7H33"/><path class="pl-head" d="M31 2.5 37.5 7 31 11.5"/></svg></span>
+                <div class="pipe-stage">
+                    <button type="button" class="pipe-node pipe-node--done" id="library-system-design-st-reserve-btn" aria-controls="library-system-design-st-reserve" aria-pressed="false" data-i="2">
+                        <span class="pn-num">03</span>
+                        <span class="pn-label">Reserve a book</span>
+                        <span class="pn-tech">Activity · Sequence · Class</span>
+                        
+                    </button>
+                    <div class="pipe-detail" id="library-system-design-st-reserve" role="region" aria-labelledby="library-system-design-st-reserve-h">
+                        <div class="pd-head">
+                            <span class="pd-num">Stage 03 of 06</span>
+                            <h4 id="library-system-design-st-reserve-h">Reserve a book</h4>
+                            <span class="pd-status pd-status--done">Done</span>
+                        </div>
+                        <div class="pd-io">
+                            <div class="pd-card pd-card--in"><span class="pd-k">Input</span><p>A member clicks &quot;Reserve&quot; on a book</p></div>
+                            <span class="pd-arrow" aria-hidden="true"></span>
+                            <div class="pd-card pd-card--op"><span class="pd-k">Operation</span><p>The system checks the book&#39;s status; if it is available it marks it &quot;Reserved&quot; and saves a reservation record</p></div>
+                            <span class="pd-arrow" aria-hidden="true"></span>
+                            <div class="pd-card pd-card--out"><span class="pd-k">Output</span><p>&quot;Book Reserved Successfully!&quot; or &quot;Sorry, this book is unavailable.&quot;</p></div>
+                        </div>
+                        <ul class="pd-bullets"><li>Book status is one of &quot;Available&quot;, &quot;Reserved&quot; or &quot;On Loan&quot; (class diagram).</li><li>Use case: Book/Reserve includes &quot;Verify Book Availability&quot; and is extended by &quot;Display Error Booking&quot;.</li><li>Each reservation is a Transaction with an id, a type and a date.</li></ul>
+                        <p class="pd-flow"><span class="visually-hidden">Flow: </span><code>reserve_books() &gt;&gt; query book status &gt;&gt; update_status(&quot;Reserved&quot;) &gt;&gt; save reservation</code></p>
+                    </div>
+                </div><span class="pipe-link" aria-hidden="true"><svg viewBox="0 0 40 14" preserveAspectRatio="none"><path class="pl-line" d="M1 7H33"/><path class="pl-head" d="M31 2.5 37.5 7 31 11.5"/></svg></span>
+                <div class="pipe-stage">
+                    <button type="button" class="pipe-node pipe-node--done" id="library-system-design-st-late-btn" aria-controls="library-system-design-st-late" aria-pressed="false" data-i="3">
+                        <span class="pn-num">04</span>
+                        <span class="pn-label">Check late status</span>
+                        <span class="pn-tech">Activity · Sequence</span>
+                        
+                    </button>
+                    <div class="pipe-detail" id="library-system-design-st-late" role="region" aria-labelledby="library-system-design-st-late-h">
+                        <div class="pd-head">
+                            <span class="pd-num">Stage 04 of 06</span>
+                            <h4 id="library-system-design-st-late-h">Check late status</h4>
+                            <span class="pd-status pd-status--done">Done</span>
+                        </div>
+                        <div class="pd-io">
+                            <div class="pd-card pd-card--in"><span class="pd-k">Input</span><p>A member opens the &quot;Borrowing Status&quot; menu</p></div>
+                            <span class="pd-arrow" aria-hidden="true"></span>
+                            <div class="pd-card pd-card--op"><span class="pd-k">Operation</span><p>The system fetches the member&#39;s loans and due dates and works out how late each one is</p></div>
+                            <span class="pd-arrow" aria-hidden="true"></span>
+                            <div class="pd-card pd-card--out"><span class="pd-k">Output</span><p>The late status shown to the member</p></div>
+                        </div>
+                        <ul class="pd-bullets"><li>Rule written in the diagram notes: late duration = current date minus due date.</li><li>The Member class keeps a late_status and an account balance.</li></ul>
+                        <p class="pd-flow"><span class="visually-hidden">Flow: </span><code>cek_late_status() &gt;&gt; fetch borrowing data &gt;&gt; calculate late duration &gt;&gt; show status</code></p>
+                    </div>
+                </div><span class="pipe-link" aria-hidden="true"><svg viewBox="0 0 40 14" preserveAspectRatio="none"><path class="pl-line" d="M1 7H33"/><path class="pl-head" d="M31 2.5 37.5 7 31 11.5"/></svg></span>
+                <div class="pipe-stage">
+                    <button type="button" class="pipe-node pipe-node--done" id="library-system-design-st-pay-btn" aria-controls="library-system-design-st-pay" aria-pressed="false" data-i="4">
+                        <span class="pn-num">05</span>
+                        <span class="pn-label">Pay late fees</span>
+                        <span class="pn-tech">Activity · Sequence · Class</span>
+                        
+                    </button>
+                    <div class="pipe-detail" id="library-system-design-st-pay" role="region" aria-labelledby="library-system-design-st-pay-h">
+                        <div class="pd-head">
+                            <span class="pd-num">Stage 05 of 06</span>
+                            <h4 id="library-system-design-st-pay-h">Pay late fees</h4>
+                            <span class="pd-status pd-status--done">Done</span>
+                        </div>
+                        <div class="pd-io">
+                            <div class="pd-card pd-card--in"><span class="pd-k">Input</span><p>A member clicks &quot;Pay Late Fees&quot;</p></div>
+                            <span class="pd-arrow" aria-hidden="true"></span>
+                            <div class="pd-card pd-card--op"><span class="pd-k">Operation</span><p>The system calculates the fee, the member confirms, and the transaction is processed and marked &quot;Paid&quot;</p></div>
+                            <span class="pd-arrow" aria-hidden="true"></span>
+                            <div class="pd-card pd-card--out"><span class="pd-k">Output</span><p>A receipt for the payment</p></div>
+                        </div>
+                        <ul class="pd-bullets"><li>Fee rule in the diagram notes: late duration times a daily fee rate.</li><li>Use case: Pay Late Fees includes Check Late Status, so the fee is always worked out first.</li><li>Penalty.calculate_fine() and Transaction.print_receipt() carry this in the class diagram.</li></ul>
+                        <p class="pd-flow"><span class="visually-hidden">Flow: </span><code>pay_late_fees() &gt;&gt; calculate_fine() &gt;&gt; confirm payment &gt;&gt; process() &gt;&gt; print_receipt()</code></p>
+                    </div>
+                </div><span class="pipe-link" aria-hidden="true"><svg viewBox="0 0 40 14" preserveAspectRatio="none"><path class="pl-line" d="M1 7H33"/><path class="pl-head" d="M31 2.5 37.5 7 31 11.5"/></svg></span>
+                <div class="pipe-stage">
+                    <button type="button" class="pipe-node pipe-node--done" id="library-system-design-st-admin-btn" aria-controls="library-system-design-st-admin" aria-pressed="false" data-i="5">
+                        <span class="pn-num">06</span>
+                        <span class="pn-label">Admin tools</span>
+                        <span class="pn-tech">Use case · Activity · Sequence</span>
+                        
+                    </button>
+                    <div class="pipe-detail" id="library-system-design-st-admin" role="region" aria-labelledby="library-system-design-st-admin-h">
+                        <div class="pd-head">
+                            <span class="pd-num">Stage 06 of 06</span>
+                            <h4 id="library-system-design-st-admin-h">Admin tools</h4>
+                            <span class="pd-status pd-status--done">Done</span>
+                        </div>
+                        <div class="pd-io">
+                            <div class="pd-card pd-card--in"><span class="pd-k">Input</span><p>An admin opens Manage Books or Manage Members</p></div>
+                            <span class="pd-arrow" aria-hidden="true"></span>
+                            <div class="pd-card pd-card--op"><span class="pd-k">Operation</span><p>Add, edit, view or delete a book after the data is checked; or open a member&#39;s history</p></div>
+                            <span class="pd-arrow" aria-hidden="true"></span>
+                            <div class="pd-card pd-card--out"><span class="pd-k">Output</span><p>An updated catalogue with a confirmation, or a member&#39;s borrowing history and status</p></div>
+                        </div>
+                        <ul class="pd-bullets"><li>Manage Books is extended by Add, Edit, View and Delete Books.</li><li>Manage Members is extended by View Member History.</li></ul>
+                        <p class="pd-flow"><span class="visually-hidden">Flow: </span><code>add_book() / edit_book() / delete_book() &gt;&gt; verify data &gt;&gt; update database | manage_member() &gt;&gt; view_member_history()</code></p>
+                    </div>
+                </div>
+                </div>
+            </div>
+            <p class="visually-hidden pipe-live" aria-live="polite"></p>
+        </section>
+        <section class="dd-block" aria-labelledby="library-system-design-res-h">
+            <h2 id="library-system-design-res-h">Results <em>so far</em></h2>
+            <p class="dd-note">This is design work, so there are no performance numbers. The counts above describe the diagrams.</p>
+            <ul class="dd-stats"><li class="bezel"><div class="core">
+                    <span class="metric-value">11</span>
+                    <span class="metric-label">diagrams drawn</span>
+                    
+                    <span class="dd-plain">Every part of the design is drawn out, from the big picture to each step.</span>
+                    <span class="metric-context">1 use-case, 1 class, 1 activity sheet and 8 sequence diagrams, made in Visual Paradigm</span>
+                    <span class="dd-source">Source: <code>Software Engineering/ (diagram image files)</code></span>
+                </div></li>
+<li class="bezel"><div class="core">
+                    <span class="metric-value">8</span>
+                    <span class="metric-label">use cases for 2 roles</span>
+                    
+                    <span class="dd-plain">Six things a member can do and two things an admin can do.</span>
+                    <span class="metric-context">Member: register, log in, search, reserve, check late status, pay late fees. Admin: manage books, manage members</span>
+                    <span class="dd-source">Source: <code>Use Case Diagram Kel14.jpeg</code></span>
+                </div></li>
+<li class="bezel"><div class="core">
+                    <span class="metric-value">7</span>
+                    <span class="metric-label">classes in the data model</span>
+                    
+                    <span class="dd-plain">The data the system keeps: users, books, members, loans and fines.</span>
+                    <span class="metric-context">User, Customer, Admin, Book, Member, Transaction, Penalty</span>
+                    <span class="dd-source">Source: <code>Class Diagram 14.png</code></span>
+                </div></li>
+<li class="bezel"><div class="core">
+                    <span class="metric-value">8</span>
+                    <span class="metric-label">activity flows</span>
+                    
+                    <span class="dd-plain">Each main task is drawn step by step, including what happens when something goes wrong.</span>
+                    <span class="metric-context">Customer / Admin and System swimlanes on one sheet</span>
+                    <span class="dd-source">Source: <code>AD Kel 14 Activity Diagram.png</code></span>
+                </div></li></ul>
+            
+            
+        </section>
+        
+        
+        
+        <div class="dd-grid">
+            <section class="dd-block" aria-labelledby="library-system-design-learn-h"><h2 id="library-system-design-learn-h">What I <em>learned</em></h2><ul class="cs-list"><li>Each flow is drawn twice: the activity diagram shows the decisions (Valid?, Find?, Available?), and the sequence diagram shows which part (App, System or Database) does each step.</li><li>The late-fee rule had to agree in three places: the use-case link (Pay Late Fees includes Check Late Status), Penalty.calculate_fine() in the class diagram, and the notes in two sequence diagrams.</li><li>The course used the project to walk through the SDLC and a GitHub workflow.</li></ul></section>
+            
+        </div>
+        <nav class="dd-pager" aria-label="More projects">
+            <a href="../projects/formata.html" data-dd="formata" rel="prev"><span class="dd-pager-k">← Previous</span><span class="dd-pager-t">Formata</span></a>
+            <a href="../projects/spam-filter.html" data-dd="spam-filter" rel="next"><span class="dd-pager-k">Next →</span><span class="dd-pager-t">Spam &amp; Scam-Type Classifier</span></a>
+        </nav>
+    </article>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-row">
+            <div class="footer-links">
+                <a href="../index.html#contact">Contact</a>
+                <a href="https://github.com/AudiJRahardja" target="_blank" rel="noopener noreferrer">GitHub</a>
+                <a href="https://www.linkedin.com/in/audijoelrahardja/" target="_blank" rel="noopener noreferrer">LinkedIn</a>            </div>
+            <div class="pixel-controls" data-pixel-controls hidden></div>
+            <p>&copy; 2026 Audi Joel Rahardja</p>
+        </div>
+    </footer>
+    <script src="../pixel.js?v=mwz9upwa" defer></script>
+    <script src="../script.js?v=mwz9upwa" defer></script>
+    <script src="../deepdive.js?v=mwz9upwa" defer></script>
+</body>
+</html>

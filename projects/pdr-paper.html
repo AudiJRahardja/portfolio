@@ -18,9 +18,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..600&family=Geist:wght@400;500;600&family=Silkscreen&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../style.css?v=mwz8ss0u">
+    <link rel="stylesheet" href="../style.css?v=mwz9upwa">
 </head>
-<body class="case-study">
+<body class="case-study dd-page">
     <a class="skip-link" href="#main">Skip to content</a>
     <div class="wallpaper" aria-hidden="true"><span class="blob blob--1"></span><span class="blob blob--2"></span><span class="blob blob--3"></span><span class="sun"></span><span class="moon"></span><canvas class="stars"></canvas></div>
     <div class="scroll-progress" aria-hidden="true"><span></span></div>
@@ -35,54 +35,246 @@
     </header>
 
     <main id="main" class="cs">
-        
-        <article>
-            <header class="cs-head">
-                <a class="back-link" href="../index.html#projects">← All projects</a>
-                <div class="badges"><span class="badge badge--live">Shipped</span><span class="badge badge--pub">Published · IEEE</span><span class="badge">Research · ICORIS 2026</span><span class="badge">Group of 4 · First author</span></div>
-                <h1>Performance Decay Rate (PDR): IEEE paper</h1>
-                <p class="cs-tagline">How badly do ML models break when tabular data gets noisy? A new metric that separates a model&#39;s structural fragility from its baseline accuracy.</p>
-                <p class="cs-meta">May – Sep 2026</p>
-                <div class="card-links"><a class="text-link" href="https://ieeexplore.ieee.org/document/11768607" target="_blank" rel="noopener noreferrer">Paper (IEEE Xplore)<span class="visually-hidden"> for Performance Decay Rate (PDR): IEEE paper (opens in a new tab)</span></a><a class="text-link" href="https://github.com/AudiJRahardja/Evaluating-Models-against-Data-Degradation" target="_blank" rel="noopener noreferrer">Code<span class="visually-hidden"> for Performance Decay Rate (PDR): IEEE paper (opens in a new tab)</span></a></div>
-            </header>
+        <article class="dd" data-slug="pdr-paper" aria-labelledby="pdr-paper-title">
+        <header class="dd-head">
+            <a class="back-link" href="../index.html#projects">← All projects</a>
+            <div class="badges"><span class="badge badge--live">Shipped</span><span class="badge badge--pub">Published · IEEE</span><span class="badge">Research · ICORIS 2026</span><span class="badge">Group of 4 · First author</span></div>
+            <h1 id="pdr-paper-title">Performance Decay Rate (PDR): IEEE paper</h1>
+            <p class="cs-tagline">How badly do ML models break when tabular data gets noisy? A new metric that separates a model&#39;s structural fragility from its baseline accuracy.</p>
+            <p class="cs-meta">May – Sep 2026</p>
+            <div class="dd-actions"><a class="btn btn--solid btn--sm" href="https://ieeexplore.ieee.org/document/11768607" target="_blank" rel="noopener noreferrer">Paper (IEEE Xplore)<span class="visually-hidden"> (opens in a new tab)</span><span class="btn-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></span></a><a class="btn btn--ghost btn--sm" href="https://github.com/AudiJRahardja/Evaluating-Models-against-Data-Degradation" target="_blank" rel="noopener noreferrer">Code<span class="visually-hidden"> (opens in a new tab)</span><span class="btn-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></span></a><a class="btn btn--ghost btn--sm" href="https://youtu.be/tEsLpkmgfrI" target="_blank" rel="noopener noreferrer">Video<span class="visually-hidden"> (opens in a new tab)</span><span class="btn-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></span></a></div>
+            
+        </header>
+        <figure class="cs-visual bezel"><div class="core"><img src="../images/projects/pdr-paper.webp" alt="Line chart from the paper: F1, MCC and AUC-ROC of MLP, Random Forest, SVM and XGBoost as AWGN noise rises from 0 to 50%. XGBoost MCC falls the most." width="1280" height="800" loading="lazy" decoding="async" sizes="(max-width: 1180px) 100vw, 1000px"></div></figure>
 
-            <figure class="cs-visual bezel"><div class="core"><img src="../images/projects/pdr-paper.webp" alt="Line chart from the paper: F1, MCC and AUC-ROC of MLP, Random Forest, SVM and XGBoost as AWGN noise rises from 0 to 50%. XGBoost MCC falls the most." width="1280" height="800" fetchpriority="high" decoding="async" sizes="(max-width: 1180px) 100vw, 1100px"></div></figure>
-
-            <div class="cs-grid">
-                <section class="cs-block" aria-labelledby="problem-h">
-                    <h2 id="problem-h">Problem</h2>
-                    <p>Models are usually evaluated only on clean data. Real-world inputs come from imperfect sensors and messy databases, so we rarely know how fragile a model really is.</p>
-                </section>
-                <section class="cs-block" aria-labelledby="approach-h">
-                    <h2 id="approach-h">Approach</h2>
-                    <ul class="cs-list">
-                        <li>Added increasing additive white Gaussian noise (AWGN) to the numeric features of the UCI Heart Disease dataset.</li>
-                        <li>Compared MLP, Random Forest, XGBoost and SVM in two settings: noisy data only at test time, and noisy data in both training and testing.</li>
-                        <li>Measured F1, MCC and AUC-ROC, plus the proposed Performance Decay Rate (PDR), which isolates how much a model degrades independently of how good it was to begin with.</li>
-                    </ul>
-                </section>
-                <section class="cs-block" aria-labelledby="role-h">
-                    <h2 id="role-h">My role</h2>
-                    <p>First author: main researcher and lead writer. Designed the method and degradation framework, implemented all four models, ran the evaluations, and wrote the analysis, conclusion, slides and video.</p>
-                    <p class="cs-team">Group of 4 · First author · Research · ICORIS 2026</p>
-                </section>
-                <section class="cs-block" aria-labelledby="tech-h">
-                    <h2 id="tech-h">Tech</h2>
-                    <ul class="tech" aria-label="Tech used"><li>Python</li><li>scikit-learn</li><li>XGBoost</li><li>pandas</li><li>matplotlib</li></ul>
-                </section>
-            </div>
-            <section class="cs-block" aria-labelledby="results-h">
-                <h2 id="results-h">Results</h2>
-                <ul class="results">
-                    <li class="bezel"><div class="core"><span class="metric-value">−17.03% MCC</span><span class="metric-label">XGBoost: the steepest decline</span><span class="metric-context">Paper abstract</span></div></li>
-                    <li class="bezel"><div class="core"><span class="metric-value">−12.12% MCC</span><span class="metric-label">Random Forest: the most balanced, with the lowest PDR</span><span class="metric-context">Paper abstract</span></div></li>
-                    <li class="bezel"><div class="core"><span class="metric-value">0.989 → 0.927</span><span class="metric-label">Random Forest F1, at 0% vs 50% noise</span><span class="metric-context">Trained on noisy data, tested on clean data</span></div></li>
-                </ul>
-                
+        <div class="dd-grid">
+            <section class="dd-block" aria-labelledby="pdr-paper-prob-h">
+                <h2 id="pdr-paper-prob-h">The <em>problem</em></h2>
+                <p>Models are usually evaluated only on clean data. Real-world inputs come from imperfect sensors and messy databases, so we rarely know how fragile a model really is.</p>
             </section>
-            <section class="cs-block" aria-labelledby="cite-h"><h2 id="cite-h">Citation</h2><p class="citation">A. J. Rahardja, A. Praditha Efendi, Diana, and S. Pricillia, &quot;Evaluating and Analyzing Performance Degradation of Intelligent Systems Models Against AWGN in Tabular Data using Performance Decay Rate (PDR),&quot; in 2026 8th International Conference on Cybernetics and Intelligent Systems (ICORIS), 2026, pp. 1–6, doi: 10.1109/ICORIS71889.2026.11768607.</p></section>
-        </article>
+            <section class="dd-block" aria-labelledby="pdr-paper-role-h">
+                <h2 id="pdr-paper-role-h">My <em>part</em></h2>
+                <p>First author: main researcher and lead writer. Designed the method and degradation framework, implemented all four models, ran the evaluations, and wrote the analysis, conclusion, slides and video.</p>
+                <p class="cs-team">Group of 4 · First author · Research · ICORIS 2026</p>
+                <ul class="tech" aria-label="Tech used"><li>Python</li><li>scikit-learn</li><li>XGBoost</li><li>pandas</li><li>matplotlib</li></ul>
+            </section>
+        </div>
 
+        <section class="dd-block dd-pipeline" aria-labelledby="pdr-paper-pipe-h">
+            <div class="dd-block-head">
+                <h2 id="pdr-paper-pipe-h">How it <em>works</em></h2>
+                <button type="button" class="btn btn--ghost btn--sm pipe-run" hidden><span class="pipe-run-label">Run trace</span><span class="btn-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l10-6.5z"/></svg></span></button>
+            </div>
+            <p class="dd-hint">6 stages.<span class="pipe-hint-js" hidden> Pick a stage to see what goes in, what happens and what comes out. Arrow keys move between stages.</span></p>
+            <div class="pipe-wrap">
+                <div class="pipe" role="group" aria-label="Pipeline stages" style="--cols: repeat(5, minmax(0, 1fr) 1.75rem) minmax(0, 1fr)">
+                <div class="pipe-stage">
+                    <button type="button" class="pipe-node pipe-node--done" id="pdr-paper-st-data-btn" aria-controls="pdr-paper-st-data" aria-pressed="true" data-i="0">
+                        <span class="pn-num">01</span>
+                        <span class="pn-label">Load dataset</span>
+                        <span class="pn-tech">pandas · seaborn</span>
+                        
+                    </button>
+                    <div class="pipe-detail" id="pdr-paper-st-data" role="region" aria-labelledby="pdr-paper-st-data-h">
+                        <div class="pd-head">
+                            <span class="pd-num">Stage 01 of 06</span>
+                            <h4 id="pdr-paper-st-data-h">Load dataset</h4>
+                            <span class="pd-status pd-status--done">Done</span>
+                        </div>
+                        <div class="pd-io">
+                            <div class="pd-card pd-card--in"><span class="pd-k">Input</span><p>The UCI Heart Disease dataset (Kaggle copy, heart_disease.csv)</p></div>
+                            <span class="pd-arrow" aria-hidden="true"></span>
+                            <div class="pd-card pd-card--op"><span class="pd-k">Operation</span><p>Load the 13 patient features and the heart-disease label, and check missing values and class balance</p></div>
+                            <span class="pd-arrow" aria-hidden="true"></span>
+                            <div class="pd-card pd-card--out"><span class="pd-k">Output</span><p>1,025 rows: 526 with heart disease, 499 without, no missing values</p></div>
+                        </div>
+                        <ul class="pd-bullets"><li>Five continuous features get the noise later: age, resting blood pressure, cholesterol, maximum heart rate and ST depression.</li><li>Chosen because medical data is prone to faulty sensors and data-entry errors.</li></ul>
+                        <p class="pd-flow"><span class="visually-hidden">Flow: </span><code>read_csv(heart_disease.csv) &gt;&gt; describe &gt;&gt; class balance</code></p>
+                    </div>
+                </div><span class="pipe-link" aria-hidden="true"><svg viewBox="0 0 40 14" preserveAspectRatio="none"><path class="pl-line" d="M1 7H33"/><path class="pl-head" d="M31 2.5 37.5 7 31 11.5"/></svg></span>
+                <div class="pipe-stage">
+                    <button type="button" class="pipe-node pipe-node--done" id="pdr-paper-st-split-btn" aria-controls="pdr-paper-st-split" aria-pressed="false" data-i="1">
+                        <span class="pn-num">02</span>
+                        <span class="pn-label">Split &amp; scale</span>
+                        <span class="pn-tech">scikit-learn</span>
+                        
+                    </button>
+                    <div class="pipe-detail" id="pdr-paper-st-split" role="region" aria-labelledby="pdr-paper-st-split-h">
+                        <div class="pd-head">
+                            <span class="pd-num">Stage 02 of 06</span>
+                            <h4 id="pdr-paper-st-split-h">Split &amp; scale</h4>
+                            <span class="pd-status pd-status--done">Done</span>
+                        </div>
+                        <div class="pd-io">
+                            <div class="pd-card pd-card--in"><span class="pd-k">Input</span><p>The full table</p></div>
+                            <span class="pd-arrow" aria-hidden="true"></span>
+                            <div class="pd-card pd-card--op"><span class="pd-k">Operation</span><p>Make a 70 / 30 train / test split and standardise the continuous features with a scaler fitted on the training part only</p></div>
+                            <span class="pd-arrow" aria-hidden="true"></span>
+                            <div class="pd-card pd-card--out"><span class="pd-k">Output</span><p>One train and one test set per run, repeated 25 times with a new split each time</p></div>
+                        </div>
+                        <ul class="pd-bullets"><li>25 runs (split seeds 42 to 66), and every score is the mean over the runs, so one lucky split cannot decide the result.</li><li>A fixed 70 / 30 split instead of k-fold, so fold differences do not mix with the effect of the noise.</li></ul>
+                        <p class="pd-flow"><span class="visually-hidden">Flow: </span><code>train_test_split(test_size=0.3, seed=42+i) &gt;&gt; StandardScaler.fit(train)</code></p>
+                    </div>
+                </div><span class="pipe-link" aria-hidden="true"><svg viewBox="0 0 40 14" preserveAspectRatio="none"><path class="pl-line" d="M1 7H33"/><path class="pl-head" d="M31 2.5 37.5 7 31 11.5"/></svg></span>
+                <div class="pipe-stage">
+                    <button type="button" class="pipe-node pipe-node--done" id="pdr-paper-st-noise-btn" aria-controls="pdr-paper-st-noise" aria-pressed="false" data-i="2">
+                        <span class="pn-num">03</span>
+                        <span class="pn-label">Inject AWGN</span>
+                        <span class="pn-tech">NumPy</span>
+                        
+                    </button>
+                    <div class="pipe-detail" id="pdr-paper-st-noise" role="region" aria-labelledby="pdr-paper-st-noise-h">
+                        <div class="pd-head">
+                            <span class="pd-num">Stage 03 of 06</span>
+                            <h4 id="pdr-paper-st-noise-h">Inject AWGN</h4>
+                            <span class="pd-status pd-status--done">Done</span>
+                        </div>
+                        <div class="pd-io">
+                            <div class="pd-card pd-card--in"><span class="pd-k">Input</span><p>The scaled train and test sets</p></div>
+                            <span class="pd-arrow" aria-hidden="true"></span>
+                            <div class="pd-card pd-card--op"><span class="pd-k">Operation</span><p>Add Gaussian noise to each continuous feature, with a standard deviation of 0% to 50% of that feature&#39;s own spread, in 10% steps</p></div>
+                            <span class="pd-arrow" aria-hidden="true"></span>
+                            <div class="pd-card pd-card--out"><span class="pd-k">Output</span><p>Six versions of the data per run: clean, then 10, 20, 30, 40 and 50% noise</p></div>
+                        </div>
+                        <ul class="pd-bullets"><li>Additive white Gaussian noise imitates a faulty sensor that gives slightly wrong readings.</li><li>The same noise function is used for training data and for test data, depending on the scenario.</li></ul>
+                        <p class="pd-flow"><span class="visually-hidden">Flow: </span><code>add_awgn_noise(data, level, continuous_cols) for level in 0.0 … 0.5</code></p>
+                    </div>
+                </div><span class="pipe-link" aria-hidden="true"><svg viewBox="0 0 40 14" preserveAspectRatio="none"><path class="pl-line" d="M1 7H33"/><path class="pl-head" d="M31 2.5 37.5 7 31 11.5"/></svg></span>
+                <div class="pipe-stage">
+                    <button type="button" class="pipe-node pipe-node--done" id="pdr-paper-st-train-btn" aria-controls="pdr-paper-st-train" aria-pressed="false" data-i="3">
+                        <span class="pn-num">04</span>
+                        <span class="pn-label">Train two ways</span>
+                        <span class="pn-tech">scikit-learn · XGBoost</span>
+                        
+                    </button>
+                    <div class="pipe-detail" id="pdr-paper-st-train" role="region" aria-labelledby="pdr-paper-st-train-h">
+                        <div class="pd-head">
+                            <span class="pd-num">Stage 04 of 06</span>
+                            <h4 id="pdr-paper-st-train-h">Train two ways</h4>
+                            <span class="pd-status pd-status--done">Done</span>
+                        </div>
+                        <div class="pd-io">
+                            <div class="pd-card pd-card--in"><span class="pd-k">Input</span><p>Clean and noisy versions of each split</p></div>
+                            <span class="pd-arrow" aria-hidden="true"></span>
+                            <div class="pd-card pd-card--op"><span class="pd-k">Operation</span><p>Fit MLP, Random Forest, XGBoost and SVM twice per noise level: trained on noisy data and tested on clean, then trained on clean and tested on noisy</p></div>
+                            <span class="pd-arrow" aria-hidden="true"></span>
+                            <div class="pd-card pd-card--out"><span class="pd-k">Output</span><p>Predictions and probabilities for 4 models × 2 scenarios × 6 noise levels × 25 runs</p></div>
+                        </div>
+                        <ul class="pd-bullets"><li>&quot;Train clean, test noisy&quot; imitates a model built in the lab and deployed on messy real data.</li><li>&quot;Train noisy, test clean&quot; checks whether noise during training hurts the model or helps it.</li><li>Models: Random Forest, XGBoost, SVM (RBF, with probabilities) and an MLP (up to 500 iterations).</li></ul>
+                        <p class="pd-flow"><span class="visually-hidden">Flow: </span><code>for model in (RF, XGB, SVM, MLP): fit(noisy) &gt;&gt; predict(clean) ; fit(clean) &gt;&gt; predict(noisy)</code></p>
+                    </div>
+                </div><span class="pipe-link" aria-hidden="true"><svg viewBox="0 0 40 14" preserveAspectRatio="none"><path class="pl-line" d="M1 7H33"/><path class="pl-head" d="M31 2.5 37.5 7 31 11.5"/></svg></span>
+                <div class="pipe-stage">
+                    <button type="button" class="pipe-node pipe-node--done" id="pdr-paper-st-metrics-btn" aria-controls="pdr-paper-st-metrics" aria-pressed="false" data-i="4">
+                        <span class="pn-num">05</span>
+                        <span class="pn-label">Score &amp; PDR</span>
+                        <span class="pn-tech">scikit-learn metrics · pandas</span>
+                        
+                    </button>
+                    <div class="pipe-detail" id="pdr-paper-st-metrics" role="region" aria-labelledby="pdr-paper-st-metrics-h">
+                        <div class="pd-head">
+                            <span class="pd-num">Stage 05 of 06</span>
+                            <h4 id="pdr-paper-st-metrics-h">Score &amp; PDR</h4>
+                            <span class="pd-status pd-status--done">Done</span>
+                        </div>
+                        <div class="pd-io">
+                            <div class="pd-card pd-card--in"><span class="pd-k">Input</span><p>Predictions at every noise level</p></div>
+                            <span class="pd-arrow" aria-hidden="true"></span>
+                            <div class="pd-card pd-card--op"><span class="pd-k">Operation</span><p>Compute accuracy, precision, recall, F1, MCC and AUC-ROC, then the Performance Decay Rate: the drop from the model&#39;s own clean score, as a percentage of that score</p></div>
+                            <span class="pd-arrow" aria-hidden="true"></span>
+                            <div class="pd-card pd-card--out"><span class="pd-k">Output</span><p>A table of every metric and its decay rate per model, scenario and noise level</p></div>
+                        </div>
+                        <ul class="pd-bullets"><li>PDR = (clean score − noisy score) / clean score × 100%.</li><li>Because it divides by the model&#39;s own starting score, a strong model and a weak model can be compared on how much they lose, not only on where they end up.</li></ul>
+                        <p class="pd-flow"><span class="visually-hidden">Flow: </span><code>get_metrics &gt;&gt; groupby(model, scenario, level).mean() &gt;&gt; calculate_decay &gt;&gt; robustness_metrics_full.csv</code></p>
+                    </div>
+                </div><span class="pipe-link" aria-hidden="true"><svg viewBox="0 0 40 14" preserveAspectRatio="none"><path class="pl-line" d="M1 7H33"/><path class="pl-head" d="M31 2.5 37.5 7 31 11.5"/></svg></span>
+                <div class="pipe-stage">
+                    <button type="button" class="pipe-node pipe-node--done" id="pdr-paper-st-compare-btn" aria-controls="pdr-paper-st-compare" aria-pressed="false" data-i="5">
+                        <span class="pn-num">06</span>
+                        <span class="pn-label">Compare &amp; publish</span>
+                        <span class="pn-tech">matplotlib · seaborn</span>
+                        
+                    </button>
+                    <div class="pipe-detail" id="pdr-paper-st-compare" role="region" aria-labelledby="pdr-paper-st-compare-h">
+                        <div class="pd-head">
+                            <span class="pd-num">Stage 06 of 06</span>
+                            <h4 id="pdr-paper-st-compare-h">Compare &amp; publish</h4>
+                            <span class="pd-status pd-status--done">Done</span>
+                        </div>
+                        <div class="pd-io">
+                            <div class="pd-card pd-card--in"><span class="pd-k">Input</span><p>The averaged metrics and decay rates</p></div>
+                            <span class="pd-arrow" aria-hidden="true"></span>
+                            <div class="pd-card pd-card--op"><span class="pd-k">Operation</span><p>Plot degradation curves and decay bars, pick out the 0%, 20% and 50% points, and write up which models break and why</p></div>
+                            <span class="pd-arrow" aria-hidden="true"></span>
+                            <div class="pd-card pd-card--out"><span class="pd-k">Output</span><p>The ICORIS 2026 paper (IEEE Xplore), slides and a presentation video</p></div>
+                        </div>
+                        <ul class="pd-bullets"><li>XGBoost lost the most (17.03% MCC); Random Forest held up best of the strong models (12.12%).</li><li>SVM lost under 2%, but only because it started much lower (MCC 0.766).</li></ul>
+                        <p class="pd-flow"><span class="visually-hidden">Flow: </span><code>plot_combined_degradation &gt;&gt; plot_decay_comparison &gt;&gt; table1 / table2 &gt;&gt; paper</code></p>
+                    </div>
+                </div>
+                </div>
+            </div>
+            <p class="visually-hidden pipe-live" aria-live="polite"></p>
+        </section>
+        <section class="dd-block" aria-labelledby="pdr-paper-res-h">
+            <h2 id="pdr-paper-res-h">Results <em>so far</em></h2>
+            
+            <ul class="dd-stats"><li class="bezel"><div class="core">
+                    <span class="metric-value">−17.03% MCC</span>
+                    <span class="metric-label">XGBoost: the steepest drop at 50% noise</span>
+                    <span class="dd-base">Baseline: XGBoost&#39;s own clean-data MCC: 0.975</span>
+                    <span class="dd-plain">The model that looked best on clean data lost the most when its inputs got noisy.</span>
+                    <span class="metric-context">Trained clean, tested noisy; MCC 0.975 → 0.809; mean of 25 runs</span>
+                    <span class="dd-source">Source: <code>ICORIS PAPER 547 Folder Audi/E-Express PDF 547 ICORIS Paper Audi.pdf (Table 2, Table 4)</code></span>
+                </div></li>
+<li class="bezel"><div class="core">
+                    <span class="metric-value">−12.12% MCC</span>
+                    <span class="metric-label">Random Forest: the smallest drop of the strong models</span>
+                    <span class="dd-base">Baseline: Random Forest&#39;s own clean-data MCC: 0.978</span>
+                    <span class="dd-plain">Averaging many trees smooths out the random noise, so it kept the best ranking ability under heavy noise (AUC-ROC 0.979).</span>
+                    <span class="metric-context">Trained clean, tested noisy; MCC 0.978 → 0.859</span>
+                    <span class="dd-source">Source: <code>ICORIS PAPER 547 Folder Audi/E-Express PDF 547 ICORIS Paper Audi.pdf (Table 2, Table 4)</code></span>
+                </div></li>
+<li class="bezel"><div class="core">
+                    <span class="metric-value">9.63% vs 12.85%</span>
+                    <span class="metric-label">MLP decay: noise in training vs noise only at test time</span>
+                    
+                    <span class="dd-plain">Showing the neural network noisy data during training made it hold up better later.</span>
+                    <span class="metric-context">MCC decay at 50% noise, the two scenarios</span>
+                    <span class="dd-source">Source: <code>ICORIS PAPER 547 Folder Audi/E-Express PDF 547 ICORIS Paper Audi.pdf (Table 4)</code></span>
+                </div></li>
+<li class="bezel"><div class="core">
+                    <span class="metric-value">under 2%</span>
+                    <span class="metric-label">SVM decay, but from a much lower start</span>
+                    
+                    <span class="dd-plain">A small drop is not good news when the model was weak to begin with: SVM&#39;s clean MCC was 0.766, against 0.97+ for the others.</span>
+                    <span class="metric-context">MCC decay 1.69% (trained clean) and 1.82% (trained noisy)</span>
+                    <span class="dd-source">Source: <code>ICORIS PAPER 547 Folder Audi/E-Express PDF 547 ICORIS Paper Audi.pdf (Table 2, Table 4)</code></span>
+                </div></li></ul>
+            <figure class="dd-chart bezel"><div class="core">
+                <figcaption><span class="dt-title">MCC lost at 50% noise (trained clean, tested noisy)</span><span class="dt-source">Source: <code>ICORIS PAPER 547 Folder Audi/E-Express PDF 547 ICORIS Paper Audi.pdf (Table 4)</code></span></figcaption>
+                <ul class="bars">
+                    <li class="bar"><span class="bar-label">XGBoost</span><span class="bar-track" aria-hidden="true"><span class="bar-fill" style="--w: 100.0%"></span></span><span class="bar-value">17.03%</span></li>
+                    <li class="bar"><span class="bar-label">MLP</span><span class="bar-track" aria-hidden="true"><span class="bar-fill" style="--w: 75.5%"></span></span><span class="bar-value">12.85%</span></li>
+                    <li class="bar"><span class="bar-label">Random Forest</span><span class="bar-track" aria-hidden="true"><span class="bar-fill" style="--w: 71.2%"></span></span><span class="bar-value">12.12%</span></li>
+                    <li class="bar"><span class="bar-label">SVM</span><span class="bar-track" aria-hidden="true"><span class="bar-fill" style="--w: 9.9%"></span></span><span class="bar-value">1.69%</span></li>
+                </ul>
+                <p class="dd-plain">Higher means more fragile. XGBoost loses the most. SVM loses almost nothing, but it started far lower than the other three.</p>
+            </div></figure>
+            
+        </section>
+        
+        <section class="dd-block" aria-labelledby="pdr-paper-cite-h"><h2 id="pdr-paper-cite-h">Cite <em>it</em></h2><p class="citation">A. J. Rahardja, A. Praditha Efendi, Diana, and S. Pricillia, &quot;Evaluating and Analyzing Performance Degradation of Intelligent Systems Models Against AWGN in Tabular Data using Performance Decay Rate (PDR),&quot; in 2026 8th International Conference on Cybernetics and Intelligent Systems (ICORIS), 2026, pp. 1–6, doi: 10.1109/ICORIS71889.2026.11768607.</p></section>
+        
+        <div class="dd-grid">
+            <section class="dd-block" aria-labelledby="pdr-paper-learn-h"><h2 id="pdr-paper-learn-h">What I <em>learned</em></h2><ul class="cs-list"><li>A model&#39;s clean-data score can hide how fragile it is: XGBoost and MLP started near the top and lost the most once the inputs were noisy.</li><li>A small drop can be misleading. SVM barely moved because it never learned the clean data well, which is why PDR is read next to the starting score, not alone.</li><li>Noise during training worked like regularisation for the MLP (9.63% decay vs 12.85%), so adding noise on purpose is a cheap way to toughen a neural network.</li></ul></section>
+            <section class="dd-block" aria-labelledby="pdr-paper-next-h"><h2 id="pdr-paper-next-h">What's <em>next</em></h2><ul class="cs-list"><li>Repeat the framework on more datasets from other fields (from the paper&#39;s conclusion).</li><li>Test other kinds of corruption besides AWGN (from the paper&#39;s conclusion).</li></ul></section>
+        </div>
+        <nav class="dd-pager" aria-label="More projects">
+            <a href="../projects/voice-chess.html" data-dd="voice-chess" rel="prev"><span class="dd-pager-k">← Previous</span><span class="dd-pager-t">Voice Chess</span></a>
+            <a href="../projects/brightnest-rag.html" data-dd="brightnest-rag" rel="next"><span class="dd-pager-k">Next →</span><span class="dd-pager-t">Brightnest Knowledge Assistants</span></a>
+        </nav>
+    </article>
     </main>
 
     <footer class="footer">
@@ -95,8 +287,8 @@
             <p>&copy; 2026 Audi Joel Rahardja</p>
         </div>
     </footer>
-    <script src="../pixel.js?v=mwz8ss0u" defer></script>
-    <script src="../script.js?v=mwz8ss0u" defer></script>
-    
+    <script src="../pixel.js?v=mwz9upwa" defer></script>
+    <script src="../script.js?v=mwz9upwa" defer></script>
+    <script src="../deepdive.js?v=mwz9upwa" defer></script>
 </body>
 </html>

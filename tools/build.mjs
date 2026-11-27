@@ -30,7 +30,7 @@ const STATUS = {
 const LINK_LABEL = { demo: 'Live demo', code: 'Code', paper: 'Paper (IEEE Xplore)', model: 'Model', video: 'Video' };
 
 // ---------- TODOs: unknown facts stay in the data file, never on the site ----------
-const isTodo = (v) => typeof v === 'string' && /^TODO:/.test(v.trim());
+const isTodo = (v) => typeof v === 'string' && /^TODO\b/.test(v.trim());
 const todos = [];
 function stripTodos(v, where) {
   if (Array.isArray(v)) {
@@ -67,11 +67,12 @@ function validate() {
     if (p.featured && !p.problem) errors.push(`${p.slug}: featured project needs a problem statement`);
     if (!STATUS[p.status]) errors.push(`${p.slug}: status must be shipped, in-progress or planned`);
     if (hasDD(p)) {
-      for (const f of ['problem', 'role']) if (!p[f]) errors.push(`${p.slug}: deep-dive needs "${f}"`);
+      const rawP = rawProjects.find((r) => r.slug === p.slug);
+      for (const f of ['problem', 'role']) if (!p[f] && !isTodo(rawP[f])) errors.push(`${p.slug}: deep-dive needs "${f}"`);
       for (const s of p.pipeline) {
         const raw = rawProjects.find((r) => r.slug === p.slug).pipeline.find((x) => x.id === s.id) || {};
         for (const f of ['id', 'label', 'input', 'operation', 'output']) if (!s[f] && !isTodo(raw[f])) errors.push(`${p.slug}/${s.id}: stage needs "${f}"`);
-        if (!s.bullets || s.bullets.length < 2 || s.bullets.length > 3) errors.push(`${p.slug}/${s.id}: stage needs 2-3 bullets`);
+        if (!s.bullets || s.bullets.length < 1 || s.bullets.length > 3) errors.push(`${p.slug}/${s.id}: stage needs 1-3 bullets`);
         if (s.status && !STAGE_STATUS[s.status]) errors.push(`${p.slug}/${s.id}: unknown stage status "${s.status}"`);
       }
       for (const r of p.results || []) if (!r.source) errors.push(`${p.slug}: result "${r.value}" has no source file`);
@@ -335,7 +336,7 @@ async function deepDive(p, prefix) {
             </section>
             <section class="dd-block" aria-labelledby="${p.slug}-role-h">
                 <h2 id="${p.slug}-role-h">My <em>part</em></h2>
-                <p>${esc(p.role)}</p>
+                <p>${p.role ? esc(p.role) : '<span class="pd-unknown">To be decided.</span>'}</p>
                 <p class="cs-team">${esc(p.team)} · ${esc(p.kind)}</p>
                 <ul class="tech" aria-label="Tech used">${p.tech.map((t) => `<li>${esc(t)}</li>`).join('')}${(p.techPlanned || []).map((t) => `<li class="tech--planned">${esc(t)}<span class="visually-hidden"> (planned)</span></li>`).join('')}</ul>
             </section>
@@ -343,6 +344,8 @@ async function deepDive(p, prefix) {
 
         ${pipelineHTML(p)}
         ${statsHTML(p)}
+        ${(p.tables || []).length ? `<div class="cs-tables dd-tables">${p.tables.map((t) => `<div class="bezel"><div class="core">${dataTable(t)}</div></div>`).join('\n')}</div>` : ''}
+        ${p.citation ? `<section class="dd-block" aria-labelledby="${p.slug}-cite-h"><h2 id="${p.slug}-cite-h">Cite <em>it</em></h2><p class="citation">${esc(p.citation)}</p></section>` : ''}
         ${
           p.embed
             ? `<section class="dd-block" aria-labelledby="${p.slug}-try-h">
