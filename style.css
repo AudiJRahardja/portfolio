@@ -1334,10 +1334,11 @@ body:has(.sky-toggle:hover) .moon { transform: rotate(-25deg) scale(1.12); }
 .rest-camp > * { position: absolute; }
 .rc-deco, .rc-flames { line-height: 0; pointer-events: none; }
 .rc-flames { pointer-events: none; }
-.rc-actor .rc-frame { display: none; }
-.rc-actor[data-frame="idle"] .rc-frame--idle,
-.rc-actor[data-frame="toss"] .rc-frame--toss,
-.rc-actor[data-frame="catch"] .rc-frame--catch { display: block; }
+/* only one pose visible at a time, even while hopping (the hop rule elsewhere sets display:block) */
+.rest-camp .rc-actor .rc-frame { display: none; }
+.rest-camp .rc-actor[data-frame="idle"] .rc-frame--idle,
+.rest-camp .rc-actor[data-frame="toss"] .rc-frame--toss,
+.rest-camp .rc-actor[data-frame="catch"] .rc-frame--catch { display: block; }
 .rc-food { line-height: 0; pointer-events: none; z-index: 3; }
 .rest-camp .px-bubble { font-size: 0.62rem; z-index: 5; }
 /* very wide screens: pinned to the bottom-left corner, in the empty margin */
@@ -1346,3 +1347,4 @@ body:has(.sky-toggle:hover) .moon { transform: rotate(-25deg) scale(1.12); }
 }
 .no-pixels .rest-camp, .no-pixels .sky-life { display: none; }
 @media (prefers-reduced-motion: reduce) { .sky-life { display: none; } }
+.rc-tent { opacity: 0.95; }

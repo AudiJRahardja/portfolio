@@ -149,33 +149,82 @@
             '..kkkkkkkkkk..',
         ],
         bite: ['mc', 'cm'],
-        // man resting by the fire, eating a burger
-        manIdle: [
-            '....hhhh........',
-            '...hhhhhh.......',
-            '...hhffff.......',
-            '...hffeff..uuu..',
-            '....ffff..EEEE..',
-            '...SSSSSSffqqq..',
-            '..SSSSSSS..uuu..',
-            '..SSSSSSS.......',
-            '..SSSSSSS.......',
-            '..PPPPPPPPPPP...',
-            '..PPPPPPPPPPPkk.',
+        // little red tent
+        tent: [
+            '.........m..........',
+            '........rRr.........',
+            '.......rrRRr........',
+            '......rrrRRRr.......',
+            '.....rrrrRkRRr......',
+            '....rrrrrRkkRRr.....',
+            '...rrrrrrRkkkRRr....',
+            '..rrrrrrrRkkkkRRr...',
+            '.rrrrrrrrRkkkkkRRr..',
+            'rrrrrrrrrRkkkkkkRRr.',
+            'rrrrrrrrrRkkkkkkRRrr',
+            'm..................m',
         ],
-        // man tossing a bite to the dog
+        // fish snack
+        fish: [
+            '...zzzzz...z',
+            '.zzzzzzzz.zz',
+            'zezzzzzzzzz.',
+            'zllllllzzzz.',
+            '.zzzzzzzz.zz',
+            '...zzzzz...z',
+        ],
+        // cookie snack
+        cookie: [
+            '...uuuu...',
+            '.uuuuuuuu.',
+            '.uquuuuqu.',
+            'uuuuuquuuu',
+            'uuquuuuuuu',
+            'uuuuuuuquu',
+            'uuuquuuuuu',
+            '.uuuuuuqu.',
+            '.uuuuuuuu.',
+            '...uuuu...',
+        ],
+        // man (beard, red flannel, jeans) sitting on a trunk, eating a burger
+        manIdle: [
+            '.....hhhh.......',
+            '....hhhhhh......',
+            '....hhffff......',
+            '....hffeff......',
+            '....hfffffff.uu.',
+            '....hhhffff.uuuu',
+            '.....hhhff..EEEE',
+            '...rRrRrrrfffqqq',
+            '..rRrRrRrRr..uuu',
+            '..RrRrRrRrR.....',
+            '..rRrRrRrRr.....',
+            '..BBBBBBBBBBBB..',
+            '..NBBBBBBBBBBB..',
+            '..........BB....',
+            '..........BB....',
+            '..........BB....',
+            '.........LLLL...',
+        ],
+        // man tossing a bite to the dog (burger resting on his lap)
         manToss: [
-            '....hhhh..ff....',
-            '...hhhhhh.ff....',
-            '...hhffffSS.....',
-            '...hffeffS......',
-            '....ffff........',
-            '...SSSSSS.uuu...',
-            '..SSSSSSS.qqq...',
-            '..SSSSSSS.uuu...',
-            '..SSSSSSS.......',
-            '..PPPPPPPPPPP...',
-            '..PPPPPPPPPPPkk.',
+            '.....hhhh...ff..',
+            '....hhhhhh..ff..',
+            '....hhffff.ff...',
+            '....hffeffrf....',
+            '....hfffffr.....',
+            '....hhhfffr.....',
+            '.....hhhff......',
+            '...rRrRrrr..uuu.',
+            '..rRrRrRrRr.qqq.',
+            '..RrRrRrRrRfuuu.',
+            '..rRrRrRrRr.....',
+            '..BBBBBBBBBBBB..',
+            '..NBBBBBBBBBBB..',
+            '..........BB....',
+            '..........BB....',
+            '..........BB....',
+            '.........LLLL...',
         ],
         // dog catching (head up, mouth open)
         dogCatch: [
@@ -188,13 +237,13 @@
             'DDDDDDDD..',
             '.DD.DD.DD.',
         ],
-        // tree stump to lean on
+        // cut tree trunk (rings on top) that the man sits on
         stump: [
-            '.LLLL.',
-            'LmmmmL',
-            'LmLmmL',
-            'LmmmLL',
-            'LLLLLL',
+            'LccuuccccL',
+            'LmmmmmmmmL',
+            'LmLmmmmLmL',
+            'LmmmLmmmmL',
+            'LLLmmmmLLL',
         ],
         // marshmallow on a stick planted in the ground
         mallowStick: [
@@ -462,7 +511,7 @@
         el.textContent = `${k} · ${m}`;
     });
 
-    const NAMES = { onigiri: 'an onigiri', boba: 'a boba tea', donut: 'a donut' };
+    const NAMES = { onigiri: 'an onigiri', boba: 'a boba tea', donut: 'a donut', fish: 'a fish', cookie: 'a cookie' };
     document.querySelectorAll('[data-snack]').forEach((slot) => {
         const kind = slot.dataset.snack;
         if (!SPRITES[kind]) return;
@@ -805,7 +854,7 @@
         glow.style.height = `${20 * S}px`;
         at(glow, 12, 6);
 
-        deco('stump', 0, 14);
+        deco('tent', 40, 12, 'rc-deco rc-tent');
         deco('logs', 26, 20, 'rc-deco cf-logs');
         const flames = document.createElement('span');
         flames.className = 'rc-flames';
@@ -814,17 +863,18 @@
         at(flames, 29, 10);
         deco('mallowStick', 18, 10);
         deco('mallowStick', 38, 10, 'rc-deco cf-flip');
+        deco('stump', 2, 19); // the cut trunk he sits on (drawn before him, so his legs are in front)
 
-        const mk = (frames, x, y, label, flip) => {
+        const mk = (frames, x, y, label, flip, pal) => {
             const b = document.createElement('button');
             b.type = 'button';
             b.className = 'cf-actor rc-actor';
             b.setAttribute('aria-label', label);
-            b.innerHTML = frames.map(([name, sprite]) => `<span class="cf-sprite rc-frame rc-frame--${name}${flip ? ' cf-flip' : ''}">${svg(sprite, S)}</span>`).join('') + '<span class="px-bubble" aria-hidden="true"></span>';
+            b.innerHTML = frames.map(([name, sprite]) => `<span class="cf-sprite rc-frame rc-frame--${name}${flip ? ' cf-flip' : ''}">${svg(sprite, S, pal)}</span>`).join('') + '<span class="px-bubble" aria-hidden="true"></span>';
             b.dataset.frame = frames[0][0];
             return at(b, x, y);
         };
-        const man = mk([['idle', 'manIdle'], ['toss', 'manToss']], 1, 13, 'Man by the fire eating a burger', false);
+        const man = mk([['idle', 'manIdle'], ['toss', 'manToss']], 1, 6, 'Man sitting on a tree trunk, eating a burger', false, { h: '#3b2418', f: '#e0b48a' });
         const dog = mk([['idle', 'dog'], ['catch', 'dogCatch']], 50, 16, 'His dog, waiting for a bite', true);
 
         const talk = (b, text, ms = 1500) => {
@@ -848,7 +898,7 @@
             const food = document.createElement('span');
             food.className = 'rc-food';
             food.innerHTML = svg('bite', S, { m: '#3b2418', c: '#e8a95c' });
-            at(food, 11, 13);
+            at(food, 13, 6);
             const land = () => {
                 food.remove();
                 frame(dog, 'catch', 600);
@@ -858,11 +908,11 @@
                 tossing = false;
             };
             if (reduced || !food.animate) { land(); return; }
-            const dx = (50 - 11) * S, dy = (17 - 13) * S;
+            const dx = (50 - 13) * S, dy = (18 - 6) * S;
             food.animate(
                 [
                     { transform: 'translate(0, 0) rotate(0)' },
-                    { transform: `translate(${dx * 0.5}px, ${-12 * S}px) rotate(180deg)`, offset: 0.5 },
+                    { transform: `translate(${dx * 0.5}px, ${-6 * S}px) rotate(180deg)`, offset: 0.5 },
                     { transform: `translate(${dx}px, ${dy}px) rotate(360deg)` },
                 ],
                 { duration: 800, easing: 'cubic-bezier(0.3, 0, 0.6, 1)' }
