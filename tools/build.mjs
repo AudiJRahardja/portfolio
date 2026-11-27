@@ -191,7 +191,7 @@ ${p.results
     <meta property="og:image" content="${ogImg}">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="color-scheme" content="light dark">
-    <script>/*theme*/document.documentElement.classList.add('js');try{var t=localStorage.getItem('theme');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+    <script>/*theme*/(function(){var r=document.documentElement,t=null;r.classList.add('js');try{t=localStorage.getItem('theme')}catch(e){}if(t)r.dataset.theme=t;if((t||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'))==='dark')r.classList.add('is-night')})()</script>
     <link rel="icon" href="../favicon.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -200,7 +200,7 @@ ${p.results
 </head>
 <body class="case-study">
     <a class="skip-link" href="#main">Skip to content</a>
-    <div class="wallpaper" aria-hidden="true"><span class="blob blob--1"></span><span class="blob blob--2"></span><span class="blob blob--3"></span></div>
+    <div class="wallpaper" aria-hidden="true"><span class="blob blob--1"></span><span class="blob blob--2"></span><span class="blob blob--3"></span><span class="sun"></span><span class="moon"></span><canvas class="stars"></canvas></div>
     <div class="scroll-progress" aria-hidden="true"><span></span></div>
     <header class="nav-wrap">
         <nav class="nav-pill" aria-label="Main">

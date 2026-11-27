@@ -211,3 +211,125 @@ if (navToggle && menuOverlay) {
         }, n === 0 ? 2800 : 3400), n * 700); // stagger so they don't change at the same moment
     });
 })();
+
+
+
+// 7. Night sky: twinkling stars and the occasional shooting star (drawn only in dark mode)
+(() => {
+    const canvas = document.querySelector('.stars');
+    if (!canvas) return;
+    const root = document.documentElement;
+    const media = matchMedia('(prefers-color-scheme: dark)');
+    const calm = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const isNight = () => (root.dataset.theme || (media.matches ? 'dark' : 'light')) === 'dark';
+    const ctx = canvas.getContext('2d');
+    let W = 0, H = 0, stars = [], shoot = null, nextShoot = 0, running = false, last = 0;
+
+    const make = () => {
+        const dpr = Math.min(window.devicePixelRatio || 1, 2);
+        W = innerWidth; H = innerHeight;
+        canvas.width = W * dpr; canvas.height = H * dpr;
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        const n = Math.round((W * H) / 2600);
+        stars = Array.from({ length: n }, () => {
+            const big = Math.random() < 0.06;
+            const tintRoll = Math.random();
+            return {
+                x: Math.random() * W,
+                y: Math.random() * H,
+                r: big ? 1.1 + Math.random() * 0.9 : 0.35 + Math.random() * 0.75,
+                a: 0.35 + Math.random() * 0.6,
+                s: 0.4 + Math.random() * 1.6, // twinkle speed
+                p: Math.random() * Math.PI * 2, // twinkle phase
+                big,
+                tint: tintRoll < 0.12 ? '#dcd0ff' : tintRoll < 0.2 ? '#fff1d6' : '#ffffff',
+            };
+        });
+    };
+
+    const draw = (t, dt) => {
+        ctx.clearRect(0, 0, W, H);
+        for (const st of stars) {
+            const tw = calm ? 1 : 0.6 + 0.4 * Math.sin((t / 1000) * st.s + st.p);
+            const horizon = 1 - Math.max(0, st.y / H - 0.65) * 2; // fade towards the warm horizon
+            const alpha = Math.max(0, st.a * tw * horizon);
+            ctx.globalAlpha = alpha;
+            ctx.fillStyle = st.tint;
+            ctx.beginPath();
+            ctx.arc(st.x, st.y, st.r, 0, Math.PI * 2);
+            ctx.fill();
+            if (st.big) { // soft cross glint on the brightest stars
+                ctx.globalAlpha = alpha * 0.45;
+                ctx.fillRect(st.x - st.r * 3.2, st.y - 0.35, st.r * 6.4, 0.7);
+                ctx.fillRect(st.x - 0.35, st.y - st.r * 3.2, 0.7, st.r * 6.4);
+            }
+        }
+        if (!calm) {
+            if (!shoot && t > nextShoot) {
+                const fromLeft = Math.random() < 0.5;
+                shoot = {
+                    x: fromLeft ? Math.random() * W * 0.45 : W * 0.55 + Math.random() * W * 0.45,
+                    y: Math.random() * H * 0.35,
+                    vx: (fromLeft ? 1 : -1) * (0.75 + Math.random() * 0.35),
+                    vy: 0.3 + Math.random() * 0.2,
+                    life: 0,
+                    max: 900 + Math.random() * 500,
+                };
+            }
+            if (shoot) {
+                shoot.life += dt;
+                const k = shoot.life / shoot.max;
+                const hx = shoot.x + shoot.vx * shoot.life, hy = shoot.y + shoot.vy * shoot.life;
+                const len = 140, sp = Math.hypot(shoot.vx, shoot.vy);
+                const tx = hx - (shoot.vx / sp) * len, ty = hy - (shoot.vy / sp) * len;
+                const fade = Math.sin(Math.min(1, k) * Math.PI); // ease in and out
+                const g = ctx.createLinearGradient(tx, ty, hx, hy);
+                g.addColorStop(0, 'rgba(255,255,255,0)');
+                g.addColorStop(1, `rgba(255,255,255,${0.9 * fade})`);
+                ctx.globalAlpha = 1;
+                ctx.strokeStyle = g;
+                ctx.lineWidth = 1.6;
+                ctx.lineCap = 'round';
+                ctx.beginPath(); ctx.moveTo(tx, ty); ctx.lineTo(hx, hy); ctx.stroke();
+                ctx.fillStyle = `rgba(255,255,255,${fade})`;
+                ctx.beginPath(); ctx.arc(hx, hy, 1.4, 0, Math.PI * 2); ctx.fill();
+                if (k >= 1) { shoot = null; nextShoot = t + 8000 + Math.random() * 10000; }
+            }
+        }
+        ctx.globalAlpha = 1;
+    };
+
+    const loop = (t) => {
+        if (!running) return;
+        const dt = Math.min(64, t - last);
+        if (dt >= 32) { // ~30 fps is plenty for a calm sky
+            last = t;
+            if (!document.hidden) draw(t, dt);
+        }
+        requestAnimationFrame(loop);
+    };
+
+    const update = () => {
+        const night = isNight();
+        root.classList.toggle('is-night', night);
+        if (night && calm) { draw(0, 0); return; }
+        if (night && !running) {
+            running = true;
+            last = performance.now();
+            nextShoot = last + 3000 + Math.random() * 5000; // first one comes fairly soon
+            requestAnimationFrame(loop);
+        } else if (!night) {
+            running = false;
+        }
+    };
+
+    let rt;
+    addEventListener('resize', () => {
+        clearTimeout(rt);
+        rt = setTimeout(() => { make(); if (calm && isNight()) draw(0, 0); }, 200);
+    });
+    new MutationObserver(update).observe(root, { attributes: true, attributeFilter: ['data-theme'] });
+    media.addEventListener('change', update);
+    make();
+    update();
+})();

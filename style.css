@@ -1,28 +1,27 @@
 /* --- Tokens --- */
 :root {
-    --bg: #f8f4ec;              /* warm cream */
-    --surface: #fffdf8;
-    --ink: #1f1830;             /* purple-black */
-    --muted: #6a6280;
+    --bg: #eef5fc;              /* warm cream */
+    --surface: #fbfdff;
+    --ink: #1d2238;             /* purple-black */
+    --muted: #56607a;
     --accent: #5b3a9c;          /* purple */
     --accent-deep: #2a1b4d;
-    --accent-soft: #ece4f7;
-    --hair: rgba(31, 24, 48, 0.08);
-    --shell: rgba(31, 24, 48, 0.035);
+    --accent-soft: #e6e3f7;
+    --hair: rgba(29, 34, 56, 0.09);
+    --shell: rgba(29, 34, 56, 0.035);
     --core-hl: rgba(255, 255, 255, 0.9);
-    --glass: rgba(255, 253, 248, 0.72);
-    --overlay: rgba(248, 244, 236, 0.86);
-    --visual-a: #f1ebe0;
-    --visual-b: #e9e1f2;
-    --cover-ink: rgba(42, 27, 77, 0.16);
+    --glass: rgba(251, 253, 255, 0.72);
+    --overlay: rgba(238, 245, 252, 0.9);
+    --visual-a: #e6f0fa;
+    --visual-b: #ece8f8;
+    --cover-ink: rgba(42, 27, 77, 0.14);
     --live-bg: #e3f1e7; --live-fg: #1d5a32;
     --wip-bg: #fbecd2;  --wip-fg: #7a4a06;
-    --grain: 0.05;
-    --blob-1: rgba(150, 112, 228, 0.42);
-    --blob-2: rgba(244, 162, 89, 0.32);
-    --blob-3: rgba(110, 185, 220, 0.30);
-    --dot: rgba(42, 27, 77, 0.10);
-    --sparkles: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240' shape-rendering='crispEdges'%3E%3Crect x='12' y='20' width='3' height='3' fill='%235b3a9c' opacity='0.35'/%3E%3Crect x='70' y='8' width='2' height='2' fill='%235b3a9c' opacity='0.35'/%3E%3Crect x='150' y='30' width='3' height='3' fill='%235b3a9c' opacity='0.35'/%3E%3Crect x='210' y='90' width='2' height='2' fill='%235b3a9c' opacity='0.35'/%3E%3Crect x='40' y='120' width='2' height='2' fill='%235b3a9c' opacity='0.35'/%3E%3Crect x='110' y='96' width='3' height='3' fill='%235b3a9c' opacity='0.35'/%3E%3Crect x='180' y='170' width='3' height='3' fill='%235b3a9c' opacity='0.35'/%3E%3Crect x='20' y='200' width='2' height='2' fill='%235b3a9c' opacity='0.35'/%3E%3Crect x='90' y='210' width='2' height='2' fill='%235b3a9c' opacity='0.35'/%3E%3Crect x='230' y='220' width='3' height='3' fill='%235b3a9c' opacity='0.35'/%3E%3Crect x='130' y='150' width='2' height='2' fill='%235b3a9c' opacity='0.35'/%3E%3Crect x='60' y='60' width='2' height='2' fill='%235b3a9c' opacity='0.35'/%3E%3C/svg%3E");
+    --grain: 0.035;
+    --blob-1: rgba(255, 255, 255, 0.75);
+    --blob-2: rgba(150, 200, 245, 0.35);
+    --blob-3: rgba(185, 165, 240, 0.22);
+    --dot: rgba(40, 70, 120, 0.10);
     color-scheme: light;
 
     --font-display: 'Fraunces', Georgia, serif;
@@ -37,61 +36,65 @@
     --z-menu: 90;
     --z-modal: 200;
     --z-grain: 300;
+    --sky: linear-gradient(180deg, #bfe0fb 0%, #d8ebfb 30%, #eaf3fc 60%, #f5f9fd 100%);
+    --horizon: transparent;
 }
 
 /* Dark theme: explicit choice, or system preference when no choice is stored */
 :root[data-theme="dark"] {
-    --bg: #15111d;
-    --surface: #1e1829;
-    --ink: #eee8f7;
-    --muted: #aaa1c0;
+    --bg: #0c0a1d;
+    --surface: #161330;
+    --ink: #eee9fb;
+    --muted: #aaa4c8;
     --accent: #bba2f2;
     --accent-deep: #ddd0fb;
-    --accent-soft: #2d2442;
-    --hair: rgba(238, 232, 247, 0.1);
-    --shell: rgba(238, 232, 247, 0.04);
+    --accent-soft: #2a2452;
+    --hair: rgba(238, 233, 251, 0.1);
+    --shell: rgba(238, 233, 251, 0.04);
     --core-hl: rgba(255, 255, 255, 0.04);
-    --glass: rgba(30, 24, 41, 0.72);
-    --overlay: rgba(21, 17, 29, 0.9);
-    --visual-a: #231c31;
-    --visual-b: #2b2140;
+    --glass: rgba(22, 19, 48, 0.72);
+    --overlay: rgba(12, 10, 29, 0.9);
+    --visual-a: #1b1838;
+    --visual-b: #241d48;
     --cover-ink: rgba(221, 208, 251, 0.14);
     --live-bg: #1b3325; --live-fg: #9fe0b4;
     --wip-bg: #3a2b12;  --wip-fg: #f3c978;
-    --grain: 0.035;
-    --blob-1: rgba(140, 100, 230, 0.30);
-    --blob-2: rgba(244, 162, 89, 0.14);
-    --blob-3: rgba(90, 170, 210, 0.16);
-    --dot: rgba(238, 232, 247, 0.07);
-    --sparkles: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240' shape-rendering='crispEdges'%3E%3Crect x='12' y='20' width='3' height='3' fill='%23ddd0fb' opacity='0.30'/%3E%3Crect x='70' y='8' width='2' height='2' fill='%23ddd0fb' opacity='0.30'/%3E%3Crect x='150' y='30' width='3' height='3' fill='%23ddd0fb' opacity='0.30'/%3E%3Crect x='210' y='90' width='2' height='2' fill='%23ddd0fb' opacity='0.30'/%3E%3Crect x='40' y='120' width='2' height='2' fill='%23ddd0fb' opacity='0.30'/%3E%3Crect x='110' y='96' width='3' height='3' fill='%23ddd0fb' opacity='0.30'/%3E%3Crect x='180' y='170' width='3' height='3' fill='%23ddd0fb' opacity='0.30'/%3E%3Crect x='20' y='200' width='2' height='2' fill='%23ddd0fb' opacity='0.30'/%3E%3Crect x='90' y='210' width='2' height='2' fill='%23ddd0fb' opacity='0.30'/%3E%3Crect x='230' y='220' width='3' height='3' fill='%23ddd0fb' opacity='0.30'/%3E%3Crect x='130' y='150' width='2' height='2' fill='%23ddd0fb' opacity='0.30'/%3E%3Crect x='60' y='60' width='2' height='2' fill='%23ddd0fb' opacity='0.30'/%3E%3C/svg%3E");
+    --grain: 0.03;
+    --blob-1: rgba(124, 84, 224, 0.26);
+    --blob-2: rgba(64, 96, 210, 0.18);
+    --blob-3: rgba(190, 90, 200, 0.12);
+    --dot: rgba(238, 233, 251, 0.06);
     color-scheme: dark;
+    --sky: linear-gradient(180deg, #060514 0%, #0b0a22 35%, #171036 70%, #26173f 100%);
+    --horizon: rgba(247, 147, 30, 0.10);
 }
 @media (prefers-color-scheme: dark) {
     :root:not([data-theme="light"]) {
-        --bg: #15111d;
-        --surface: #1e1829;
-        --ink: #eee8f7;
-        --muted: #aaa1c0;
+        --bg: #0c0a1d;
+        --surface: #161330;
+        --ink: #eee9fb;
+        --muted: #aaa4c8;
         --accent: #bba2f2;
         --accent-deep: #ddd0fb;
-        --accent-soft: #2d2442;
-        --hair: rgba(238, 232, 247, 0.1);
-        --shell: rgba(238, 232, 247, 0.04);
+        --accent-soft: #2a2452;
+        --hair: rgba(238, 233, 251, 0.1);
+        --shell: rgba(238, 233, 251, 0.04);
         --core-hl: rgba(255, 255, 255, 0.04);
-        --glass: rgba(30, 24, 41, 0.72);
-        --overlay: rgba(21, 17, 29, 0.9);
-        --visual-a: #231c31;
-        --visual-b: #2b2140;
+        --glass: rgba(22, 19, 48, 0.72);
+        --overlay: rgba(12, 10, 29, 0.9);
+        --visual-a: #1b1838;
+        --visual-b: #241d48;
         --cover-ink: rgba(221, 208, 251, 0.14);
         --live-bg: #1b3325; --live-fg: #9fe0b4;
         --wip-bg: #3a2b12;  --wip-fg: #f3c978;
-        --grain: 0.035;
-    --blob-1: rgba(140, 100, 230, 0.30);
-    --blob-2: rgba(244, 162, 89, 0.14);
-    --blob-3: rgba(90, 170, 210, 0.16);
-    --dot: rgba(238, 232, 247, 0.07);
-    --sparkles: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240' shape-rendering='crispEdges'%3E%3Crect x='12' y='20' width='3' height='3' fill='%23ddd0fb' opacity='0.30'/%3E%3Crect x='70' y='8' width='2' height='2' fill='%23ddd0fb' opacity='0.30'/%3E%3Crect x='150' y='30' width='3' height='3' fill='%23ddd0fb' opacity='0.30'/%3E%3Crect x='210' y='90' width='2' height='2' fill='%23ddd0fb' opacity='0.30'/%3E%3Crect x='40' y='120' width='2' height='2' fill='%23ddd0fb' opacity='0.30'/%3E%3Crect x='110' y='96' width='3' height='3' fill='%23ddd0fb' opacity='0.30'/%3E%3Crect x='180' y='170' width='3' height='3' fill='%23ddd0fb' opacity='0.30'/%3E%3Crect x='20' y='200' width='2' height='2' fill='%23ddd0fb' opacity='0.30'/%3E%3Crect x='90' y='210' width='2' height='2' fill='%23ddd0fb' opacity='0.30'/%3E%3Crect x='230' y='220' width='3' height='3' fill='%23ddd0fb' opacity='0.30'/%3E%3Crect x='130' y='150' width='2' height='2' fill='%23ddd0fb' opacity='0.30'/%3E%3Crect x='60' y='60' width='2' height='2' fill='%23ddd0fb' opacity='0.30'/%3E%3C/svg%3E");
+        --grain: 0.03;
+        --blob-1: rgba(124, 84, 224, 0.26);
+        --blob-2: rgba(64, 96, 210, 0.18);
+        --blob-3: rgba(190, 90, 200, 0.12);
+        --dot: rgba(238, 233, 251, 0.06);
         color-scheme: dark;
+        --sky: linear-gradient(180deg, #060514 0%, #0b0a22 35%, #171036 70%, #26173f 100%);
+        --horizon: rgba(247, 147, 30, 0.10);
     }
 }
 
@@ -916,7 +919,7 @@ article > .cs-block { margin-bottom: 4rem; }
    ========================================================= */
 
 /* Abstract wallpaper: drifting colour fields + dot grid + pixel sparkles */
-.wallpaper { position: fixed; inset: 0; z-index: -1; overflow: hidden; pointer-events: none; }
+.wallpaper { position: fixed; inset: 0; z-index: -1; overflow: hidden; pointer-events: none; background: var(--sky); transition: background 0.9s ease; }
 .wallpaper::before {
     content: "";
     position: absolute; inset: 0;
@@ -925,12 +928,10 @@ article > .cs-block { margin-bottom: 4rem; }
     -webkit-mask-image: radial-gradient(120% 80% at 50% 0%, #000 30%, transparent 85%);
     mask-image: radial-gradient(120% 80% at 50% 0%, #000 30%, transparent 85%);
 }
-.wallpaper::after {
+.wallpaper::after { /* warm campfire glow on the horizon (night only) */
     content: "";
-    position: absolute; inset: -240px 0 0;
-    background-image: var(--sparkles);
-    background-size: 240px 240px;
-    animation: sparkle-drift 90s linear infinite;
+    position: absolute; left: -10%; right: -10%; bottom: -20vh; height: 55vh;
+    background: radial-gradient(50% 60% at 50% 100%, var(--horizon), transparent 70%);
 }
 .blob {
     position: absolute;
@@ -948,7 +949,6 @@ article > .cs-block { margin-bottom: 4rem; }
     50%  { transform: translate(8vw, 6vh) scale(1.12) rotate(25deg); }
     100% { transform: translate(-6vw, 10vh) scale(0.95) rotate(-15deg); }
 }
-@keyframes sparkle-drift { to { transform: translateY(240px); } }
 
 /* Slow theme change: circular reveal from the toggle */
 ::view-transition-old(root), ::view-transition-new(root) { animation: none; mix-blend-mode: normal; }
@@ -1091,7 +1091,7 @@ article > .cs-block { margin-bottom: 4rem; }
     .px-cat { bottom: 2px; }
 }
 @media (prefers-reduced-motion: reduce) {
-    .blob, .wallpaper::after { animation: none !important; }
+    .blob, .sun, .moon { animation: none !important; }
 }
 
 /* ---------- Big Mochi + bite feeder (beside the name) ---------- */
@@ -1224,3 +1224,33 @@ article > .cs-block { margin-bottom: 4rem; }
 
 h2 em.rotator { color: var(--accent); }
 #about-h { min-height: 4.2em; } /* room for the longest rotating ending, so nothing below jumps */
+
+/* =========================================================
+   Sky: day (sun, soft clouds) and night (moon, stars, shooting stars)
+   ========================================================= */
+.stars { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; transition: opacity 0.9s ease; }
+.is-night .stars { opacity: 1; }
+
+.sun, .moon { position: absolute; border-radius: 50%; transition: opacity 0.9s ease, transform 0.9s ease; }
+.sun {
+    top: 7vh; right: 9vw;
+    width: 110px; height: 110px;
+    background: radial-gradient(circle, #fffaf0 0 38%, #ffe9b8 52%, rgba(255, 214, 140, 0.35) 64%, transparent 72%);
+    box-shadow: 0 0 120px 60px rgba(255, 224, 160, 0.28);
+    animation: sun-breathe 9s ease-in-out infinite;
+}
+@keyframes sun-breathe { 50% { transform: scale(1.06); box-shadow: 0 0 150px 75px rgba(255, 224, 160, 0.34); } }
+.moon {
+    top: 9vh; right: 11vw;
+    width: 70px; height: 70px;
+    background: transparent;
+    box-shadow: inset -16px 8px 0 0 #f4f0ff, 0 0 40px 6px rgba(221, 208, 251, 0.12);
+    opacity: 0;
+    transform: translateY(20px) rotate(-15deg);
+}
+.is-night .sun { opacity: 0; transform: translateY(30px) scale(0.8); }
+.is-night .moon { opacity: 1; transform: rotate(-15deg); }
+@media (max-width: 768px) {
+    .sun { width: 70px; height: 70px; top: 4vh; right: 6vw; }
+    .moon { width: 46px; height: 46px; top: 5vh; right: 8vw; box-shadow: inset -11px 6px 0 0 #f4f0ff, 0 0 30px 4px rgba(221, 208, 251, 0.12); }
+}
