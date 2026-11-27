@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brightnest Knowledge Assistants | Audi Joel Rahardja</title>
+    <meta name="description" content="One retrieval engine behind two chatbots, for employees and for customers, that answers in English or Indonesian with citations and never leaks internal data.">
+    <link rel="canonical" href="https://audijrahardja.github.io/portfolio/projects/brightnest-rag.html">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Brightnest Knowledge Assistants">
+    <meta property="og:description" content="One retrieval engine behind two chatbots, for employees and for customers, that answers in English or Indonesian with citations and never leaks internal data.">
+    <meta property="og:url" content="https://audijrahardja.github.io/portfolio/projects/brightnest-rag.html">
+    <meta property="og:image" content="https://audijrahardja.github.io/portfolio/images/og.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="color-scheme" content="light dark">
+    <script>/*theme*/document.documentElement.classList.add('js');try{var t=localStorage.getItem('theme');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+    <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..600&family=Geist:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css?v=mwyssihr">
+</head>
+<body class="case-study">
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="nav-wrap">
+        <nav class="nav-pill" aria-label="Main">
+            <a href="../index.html" class="nav-mark" aria-label="Home">AJ</a>
+            <ul class="nav-links nav-links--always">
+                <li><a href="../index.html#projects">All projects</a></li>
+            </ul>
+            <button type="button" class="theme-toggle" aria-label="Switch to dark theme" hidden></button>
+        </nav>
+    </header>
+
+    <main id="main" class="cs">
+        <article>
+            <header class="cs-head">
+                <a class="back-link" href="../index.html#projects">← All projects</a>
+                <div class="badges"><span class="badge">Personal project</span><span class="badge">Solo</span></div>
+                <h1>Brightnest Knowledge Assistants</h1>
+                <p class="cs-tagline">One retrieval engine behind two chatbots, for employees and for customers, that answers in English or Indonesian with citations and never leaks internal data.</p>
+                <p class="cs-meta">Nov 2026</p>
+                <div class="card-links"><a class="text-link" href="https://github.com/AudiJRahardja/Company-Knowledge-Assistant-with-RAG" target="_blank" rel="noopener noreferrer">Code<span class="visually-hidden"> for Brightnest Knowledge Assistants (opens in a new tab)</span></a></div>
+            </header>
+
+            <figure class="cs-visual bezel"><div class="core"><span class="cover" aria-hidden="true">RAG</span></div></figure>
+
+            <div class="cs-grid">
+                <section class="cs-block" aria-labelledby="problem-h">
+                    <h2 id="problem-h">Problem</h2>
+                    <p>Company chatbots have to give grounded answers from internal documents, and must never show HR-only or internal information to someone who isn&#39;t allowed to see it.</p>
+                </section>
+                <section class="cs-block" aria-labelledby="approach-h">
+                    <h2 id="approach-h">Approach</h2>
+                    <ul class="cs-list">
+                        <li>Hybrid retrieval: vectors plus BM25 with rank fusion, then a cross-encoder reranker. Follow-up questions are rewritten, two-part questions are split, and outdated policies are filtered out.</li>
+                        <li>Separate public, internal and restricted collections with JWT roles (employee, manager, HR). Inputs are checked for prompt injection, and outputs are checked for leaks using hashed fingerprints.</li>
+                        <li>LLM tools for leave balance, tickets, order status and store hours. An embeddable chat widget, plus an analytics page for feedback.</li>
+                        <li>Eval harness of 86 internal, 82 external and 38 leak-attack questions, with an ablation table.</li>
+                    </ul>
+                </section>
+                <section class="cs-block" aria-labelledby="role-h">
+                    <h2 id="role-h">My role</h2>
+                    <p>Everything: retrieval design, security model, tools, evaluation and deployment config.</p>
+                    <p class="cs-team">Solo · Personal project</p>
+                </section>
+                <section class="cs-block" aria-labelledby="tech-h">
+                    <h2 id="tech-h">Tech</h2>
+                    <ul class="tech" aria-label="Tech used"><li>Python</li><li>FastAPI</li><li>Qdrant</li><li>BGE-M3</li><li>BM25</li><li>Gemini / Ollama</li><li>Streamlit</li><li>Docker</li></ul>
+                </section>
+            </div>
+            <section class="cs-block" aria-labelledby="results-h">
+                <h2 id="results-h">Results</h2>
+                <ul class="results">
+                    <li class="bezel"><div class="core"><span class="metric-value">0 / 38</span><span class="metric-label">attacks that leaked restricted data</span><span class="metric-context">Leak-attack eval set</span></div></li>
+                    <li class="bezel"><div class="core"><span class="metric-value">33% → 100%</span><span class="metric-label">multi-document retrieval for the customer bot</span><span class="metric-context">Before vs after the ablation changes</span></div></li>
+                    <li class="bezel"><div class="core"><span class="metric-value">0.93 → 1.00</span><span class="metric-label">retrieval MRR, internal bot</span><span class="metric-context">0.93 → 0.98 for the external bot</span></div></li>
+                </ul>
+                
+            </section>
+            
+        </article>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-row">
+            <div class="footer-links">
+                <a href="../index.html#contact">Contact</a>
+                <a href="https://github.com/AudiJRahardja" target="_blank" rel="noopener noreferrer">GitHub</a>
+                <a href="https://www.linkedin.com/in/audijoelrahardja/" target="_blank" rel="noopener noreferrer">LinkedIn</a>            </div>
+            <p>&copy; 2026 Audi Joel Rahardja</p>
+        </div>
+    </footer>
+    <script src="../script.js?v=mwyssihr" defer></script>
+</body>
+</html>
