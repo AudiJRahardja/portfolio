@@ -22,11 +22,13 @@
     <link rel="icon" href="favicon.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..600&family=Geist:wght@400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=mwyv3v7p">
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..600&family=Geist:wght@400;500;600&family=Silkscreen&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css?v=mwyvww3k">
 </head>
 <body>
     <a class="skip-link" href="#main">Skip to content</a>
+    <div class="wallpaper" aria-hidden="true"><span class="blob blob--1"></span><span class="blob blob--2"></span><span class="blob blob--3"></span></div>
+    <div class="scroll-progress" aria-hidden="true"><span></span></div>
 
     <!-- Floating Island Navigation -->
     <header class="nav-wrap">
@@ -59,7 +61,7 @@
         <!-- Hero Section -->
         <section id="hero" class="hero">
             <div class="hero-text">
-                <span class="eyebrow reveal">Portfolio &middot; 2026</span>
+                <span class="eyebrow reveal">Currently: <span class="rotator" data-rotate='["training speech models","benchmarking OCR on tricky labels","hardening RAG against leaks","writing up results","feeding Mochi the cat"]'>building ML systems</span></span>
                 <h1 class="reveal" style="--d: 80ms">Audi Joel<br><em>Rahardja</em></h1>
                 <p class="hero-role reveal" style="--d: 160ms">Computer Science student, AI stream &middot; BINUS University</p>
                 <a class="hero-pub reveal" style="--d: 190ms" href="https://ieeexplore.ieee.org/document/11768607" target="_blank" rel="noopener noreferrer">
@@ -99,6 +101,7 @@
                     </div>
                 </div>
                 <figcaption>5th semester, School of Computer Science</figcaption>
+                <span class="knight-slot" data-knight></span>
             </figure>
 
             <a href="#about" class="scroll-cue" aria-label="Scroll to About">
@@ -112,6 +115,7 @@
             <div class="split-head">
                 <span class="eyebrow reveal">About</span>
                 <h2 id="about-h" class="reveal" style="--d: 80ms">Curious about<br><em>how models fail</em></h2>
+                <span class="snack-slot" data-snack="onigiri"></span>
             </div>
             <div class="about-body">
                 <div class="prose reveal">
@@ -147,12 +151,14 @@
             </div>
         </section>
 
+        <div class="px-divider" data-px="sword" aria-hidden="true"></div>
+
         <!-- Projects (cards are generated from data/projects.mjs by tools/build.mjs) -->
         <section id="projects" class="section projects" aria-labelledby="projects-h">
             <div class="section-head">
                 <div>
                     <span class="eyebrow reveal">Selected work</span>
-                    <h2 id="projects-h" class="reveal" style="--d: 80ms">Featured <em>Projects</em></h2>
+                    <h2 id="projects-h" class="reveal" style="--d: 80ms">Featured <em>Projects</em><span class="snack-slot snack-slot--inline" data-snack="boba"></span></h2>
                 </div>
                 <p class="section-note reveal" style="--d: 120ms">Every number shows what it was measured on, and team projects say what my part was.</p>
             </div>
@@ -416,11 +422,14 @@
             <p class="filter-empty" data-filter-empty hidden>No projects with this tag in this list.</p>
         </section>
 
+        <div class="px-divider" data-px="sword" aria-hidden="true"></div>
+
         <!-- Experience, Education & Publication -->
         <section id="experiences" class="section split" aria-labelledby="exp-h">
             <div class="split-head">
                 <span class="eyebrow reveal">Background</span>
                 <h2 id="exp-h" class="reveal" style="--d: 80ms">Research &amp;<br><em>Experience</em></h2>
+                <span class="snack-slot" data-snack="donut"></span>
             </div>
 
             <div class="bg-groups">
@@ -569,10 +578,12 @@
                 <a href="https://github.com/AudiJRahardja" target="_blank" rel="noopener noreferrer">GitHub</a>
                 <a href="https://www.linkedin.com/in/audijoelrahardja/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
             </div>
+            <div class="pixel-controls" data-pixel-controls hidden></div>
             <p>&copy; 2026 Audi Joel Rahardja</p>
         </div>
     </footer>
 
-    <script defer src="script.js?v=mwyv3v7p"></script>
+    <script defer src="pixel.js?v=mwyvww3k"></script>
+    <script defer src="script.js?v=mwyvww3k"></script>
 </body>
 </html>

@@ -34,11 +34,29 @@
         btn.innerHTML = dark ? SUN : MOON;
         btn.setAttribute('aria-label', dark ? 'Switch to light theme' : 'Switch to dark theme');
     };
-    btn.addEventListener('click', () => {
-        const next = current() === 'dark' ? 'light' : 'dark';
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const apply = (next) => {
         root.dataset.theme = next;
         try { localStorage.setItem('theme', next); } catch (e) { /* private mode: still works for this visit */ }
         render();
+    };
+    btn.addEventListener('click', () => {
+        const next = current() === 'dark' ? 'light' : 'dark';
+        if (reducedMotion.matches) { apply(next); return; }
+
+        // Slow circular reveal from the toggle (View Transitions), or a gentle colour fade as fallback.
+        if (document.startViewTransition) {
+            const r = btn.getBoundingClientRect();
+            const cx = r.left + r.width / 2, cy = r.top + r.height / 2;
+            root.style.setProperty('--vt-x', `${cx}px`);
+            root.style.setProperty('--vt-y', `${cy}px`);
+            root.style.setProperty('--vt-r', `${Math.hypot(Math.max(cx, innerWidth - cx), Math.max(cy, innerHeight - cy))}px`);
+            document.startViewTransition(() => apply(next));
+        } else {
+            root.classList.add('theme-fade');
+            apply(next);
+            setTimeout(() => root.classList.remove('theme-fade'), 900);
+        }
     });
     media.addEventListener('change', render);
     render();
@@ -138,4 +156,58 @@ if (navToggle && menuOverlay) {
 
     buttons.forEach((b) => b.addEventListener('click', () => apply(b.dataset.filter)));
     bar.hidden = false;
+})();
+
+
+// 4. Reading progress bar
+(() => {
+    const bar = document.querySelector('.scroll-progress span');
+    if (!bar) return;
+    let ticking = false;
+    const update = () => {
+        const max = document.documentElement.scrollHeight - innerHeight;
+        bar.style.transform = `scaleX(${max > 0 ? scrollY / max : 0})`;
+        ticking = false;
+    };
+    addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(update); } }, { passive: true });
+    update();
+})();
+
+
+// 5. Cards: a soft light follows the pointer; featured cards tilt slightly (mouse only, not with reduced motion)
+(() => {
+    const fine = matchMedia('(hover: hover) and (pointer: fine)').matches;
+    const calm = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!fine) return;
+    document.querySelectorAll('.feat-card, .mini-card, .skills .bezel, .exp-list > li, .pub-card, .results .bezel').forEach((card) => {
+        card.classList.add('spot');
+        const tilt = !calm && card.classList.contains('feat-card');
+        card.addEventListener('pointermove', (e) => {
+            const r = card.getBoundingClientRect();
+            const px = (e.clientX - r.left) / r.width, py = (e.clientY - r.top) / r.height;
+            card.style.setProperty('--mx', `${px * 100}%`);
+            card.style.setProperty('--my', `${py * 100}%`);
+            if (tilt) card.style.transform = `perspective(1200px) rotateX(${(0.5 - py) * 3}deg) rotateY(${(px - 0.5) * 4}deg)`;
+        });
+        card.addEventListener('pointerleave', () => { card.style.transform = ''; });
+    });
+})();
+
+
+// 6. Hero: rotating "currently" line (static text stays for screen readers)
+(() => {
+    const el = document.querySelector('[data-rotate]');
+    if (!el) return;
+    const words = JSON.parse(el.dataset.rotate);
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    let i = 0;
+    setInterval(() => {
+        if (document.hidden) return;
+        el.classList.add('out');
+        setTimeout(() => {
+            i = (i + 1) % words.length;
+            el.textContent = words[i];
+            el.classList.remove('out');
+        }, 350);
+    }, 2800);
 })();
