@@ -485,6 +485,47 @@ h2 { font-size: clamp(2.5rem, 5vw, 4rem); }
     margin-top: 1.5rem;
 }
 .group-title:first-child { margin-top: 0; }
+.pub-card { box-shadow: 0 0 0 1px var(--accent); }
+.pub-highlights { list-style: none; display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 0.25rem; }
+.pub-label {
+    margin-top: 1.5rem;
+    font-size: 0.72rem !important;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+}
+.btn--sm { padding: 0.25rem 0.25rem 0.25rem 1rem; font-size: 0.88rem; }
+.btn--sm .btn-icon { width: 1.8rem; height: 1.8rem; }
+
+/* Hero publication highlight */
+.hero-pub {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    max-width: 100%;
+    margin-bottom: 1.5rem;
+    padding: 0.35rem 0.9rem 0.35rem 0.35rem;
+    border-radius: 999px;
+    background: var(--surface);
+    box-shadow: 0 0 0 1px var(--hair);
+    color: var(--ink);
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: box-shadow 0.4s var(--ease);
+}
+.hero-pub:hover { box-shadow: 0 0 0 1px var(--accent); }
+.hero-pub-tag {
+    flex-shrink: 0;
+    padding: 0.15rem 0.65rem;
+    border-radius: 999px;
+    background: var(--accent-deep);
+    color: var(--bg);
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+.hero-pub svg { flex-shrink: 0; width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+
 .pub-title { font-family: var(--font-display); font-size: 1.2rem; line-height: 1.35; color: var(--ink) !important; margin-bottom: 0.6rem; }
 .pub-authors { font-size: 0.92rem; }
 .pub-authors strong { color: var(--ink); font-weight: 600; }
