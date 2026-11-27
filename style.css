@@ -1111,8 +1111,20 @@ article > .cs-block { margin-bottom: 4rem; }
 @keyframes breathe-big { 50% { transform: scaleY(1.03); } }
 .fd-mochi.munch { animation: fd-munch 0.5s steps(3); }
 @keyframes fd-munch { 33% { transform: translateY(-4px); } 66% { transform: translateY(1px) scaleX(1.04); } }
-.fd-tower { display: block; transform-origin: bottom center; animation: fd-wobble 4s ease-in-out infinite; }
-@keyframes fd-wobble { 25% { transform: rotate(-1.2deg); } 75% { transform: rotate(1.2deg); } }
+.fd-tower { position: relative; display: block; }
+/* a glint of light sweeping across the kibble column every few seconds */
+.fd-tower::after {
+    content: "";
+    position: absolute;
+    left: 4px; right: 4px; top: 4px; height: 60px;
+    background: linear-gradient(115deg, transparent 35%, rgba(255, 255, 255, 0.55) 50%, transparent 65%) no-repeat;
+    background-size: 250% 100%;
+    background-position: 150% 0;
+    animation: fd-glint 4.5s ease-in-out infinite;
+    mix-blend-mode: soft-light;
+    pointer-events: none;
+}
+@keyframes fd-glint { 0%, 60% { background-position: 150% 0; } 100% { background-position: -50% 0; } }
 
 /* ---------- Campfire scene (under the photo) ---------- */
 .hero-photo figcaption { margin-bottom: 1.25rem; }
@@ -1165,7 +1177,7 @@ article > .cs-block { margin-bottom: 4rem; }
 @media (prefers-reduced-motion: reduce) {
     .cf-flame { animation: none; }
     .cf-flame:first-child { opacity: 1; }
-    .cf-glow, .fd-tower, .fd-mochi .fd-face--idle { animation: none !important; }
+    .cf-glow, .fd-tower::after, .fd-mochi .fd-face--idle { animation: none !important; }
 }
 .no-pixels .feeder, .no-pixels .campfire { display: none; }
 
