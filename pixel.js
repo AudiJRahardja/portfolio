@@ -15,6 +15,7 @@
         // feeder + campfire
         l: '#cfe8f5', c: '#c98a4b', m: '#8a5a2b', v: '#5b3a9c', z: '#8d8a9e',
         a: '#f7931e', Y: '#ffd23f', f: '#f2c9a0', S: '#5b3a9c', P: '#3b3f5c', D: '#b07a4a', L: '#7a4a2a',
+        B: '#3d6fd8', N: '#23408f', R: '#a8323e',
     };
     const BIG_TOP = [
         '..kk........kk..',
@@ -67,20 +68,23 @@
     const SPRITES = {
         catA: [...CAT_TOP, '..kk.kk...kk.kk.'],
         catB: [...CAT_TOP, '...kk.kk.kk.kk..'],
+        // standing knight: silver armour, blue plume, tabard and shoulder plates, gold emblem
         knight: [
-            '...rrr......',
-            '..kkkkk...b.',
-            '.ksssssk..b.',
-            '.ksdddsk..b.',
-            '.ksssssk..b.',
-            '..kkkkk...b.',
-            '.kdsssdk..b.',
-            'kdssgssdk.b.',
-            'kdssgssdkggg',
-            '.kssssskkh..',
-            '.kdddddk.h..',
+            '....BB......',
+            '...BBBB...b.',
+            '..kkkkkk..b.',
+            '.kbssssdk.b.',
+            '.ksskkkdk.b.',
+            '.kssssddk.b.',
+            '..kkkkkk..b.',
+            '.kBsbbsBk.b.',
+            'kBNsgssNBggg',
+            'kBNssssNBkh.',
+            '.kNBBBBNk.h.',
+            '.kBBBgBBk...',
             '.kss.ssk....',
             '.kss.ssk....',
+            '.kdd.ddk....',
             'kkkk.kkkk...',
         ],
         onigiri: [
@@ -125,30 +129,64 @@
             '.kkkkkkkkkkkk.',
         ],
         // neat rectangular stack of kibble with a shine stripe, in a glossy bowl
-        // neat stack of round cat bites (brick pattern, each with a highlight), in a glossy bowl
+        // a rounded hill of cat bites (brick pattern, highlight down the left slope) in a glossy bowl
         tower: [
-            '..kkkkkkkk..',
-            '.kwucmwucmk.',
-            'kwucmwucmwuk',
-            'kucmmucmmuck',
-            'kmmmmmmmmmmk',
-            'kucmwucmwuck',
-            'kcmmucmmucmk',
-            'kmmmmmmmmmmk',
-            'kwucmwucmwuk',
-            'kucmmucmmuck',
-            'kmmmmmmmmmmk',
-            'kucmwucmwuck',
-            'kcmmucmmucmk',
-            'kmmmmmmmmmmk',
-            'kwucmwucmwuk',
-            'kucmmucmmuck',
-            'kkkkkkkkkkkk',
-            'kvwvvvvvvvvk',
-            '.kvvvvvvvvk.',
-            '..kkkkkkkk..',
+            '.....kkkk.....',
+            '....kwmmuk....',
+            '...kwmmmmmk...',
+            '...kwcmwuck...',
+            '..kwcmmucmmk..',
+            '..kwmmmmmmmk..',
+            '.kwmwucmwucmk.',
+            '.kwmucmmucmmk.',
+            '.kwmmmmmmmmmk.',
+            'kwmwucmwucmwuk',
+            'kwmucmmucmmuck',
+            'kwmmmmmmmmmmmk',
+            'kkkkkkkkkkkkkk',
+            'kvwvvvvvvvvvvk',
+            '.kvvvvvvvvvvk.',
+            '..kkkkkkkkkk..',
         ],
         bite: ['mc', 'cm'],
+        // kneeling knight: red cape and plume, hands on the hilt of a sword planted in the ground
+        knightKneel: [
+            '....rr........',
+            '...kkkkk......',
+            '..ksbsssk.....',
+            '..kssskkk..g..',
+            '.Rksssssssshs.',
+            '.RRkssssskggg.',
+            '.RRkrrrrrk.b..',
+            '.RRRkrrrrk.b..',
+            '.RRRksssss.b..',
+            '.RRRRkss.ssb..',
+            '.RRRRkss.ssb..',
+            'RRRRkkkk.kkbm.',
+        ],
+        // long log bench
+        bench: [
+            '.LmmmmmmmmmmmmmmmmmmmmL.',
+            'cLmmLmmmmmmmLmmmmmmLmmLc',
+            'cLmmmmmmLmmmmmmmmLmmmmLc',
+            '.LLLLLLLLLLLLLLLLLLLLLL.',
+        ],
+        // curled-up sleeping cat
+        sleepCat: [
+            '......o.o.',
+            '..ooooooo.',
+            '.ooookkooo',
+            'oooooooooo',
+            'oowwwwooo.',
+        ],
+        // stretched-out sleeping dog
+        sleepDog: [
+            '........DD..',
+            '..DDDDDDDDD.',
+            '.DDDDDDLDkkD',
+            'DDDDDDDDDDDn',
+            '.DDDDDDDDDD.',
+        ],
 
         // campfire scene
         person: PERSON,
@@ -512,65 +550,69 @@
     });
 
     // ---------- campfire scene (under the profile picture) ----------
+    // Layout is in scene pixels (W x H); ground is the bottom row. Logs are benches.
     document.querySelectorAll('[data-campfire]').forEach((scene) => {
-        // px per pixel, chosen so the scene fits the screen; OX shifts everything right to leave room for the knight
-        const S = window.innerWidth < 420 ? 2.75 : window.innerWidth < 640 ? 3 : 3.5, OX = 13, W = 100 + OX, H = 32;
+        const W = 134, H = 34;
+        const S = window.innerWidth < 420 ? 2.3 : window.innerWidth < 640 ? 2.6 : 3; // px per pixel, so it fits the screen
         scene.style.width = `${W * S}px`;
         scene.style.height = `${H * S}px`;
-        const at = (el, x, y) => { el.style.left = `${(x + OX) * S}px`; el.style.top = `${y * S}px`; scene.append(el); return el; };
+        const at = (el, x, y) => { el.style.left = `${x * S}px`; el.style.top = `${y * S}px`; scene.append(el); return el; };
+        const deco = (sprite, x, y, cls, pal) => {
+            const d = document.createElement('span');
+            d.className = cls;
+            d.innerHTML = svg(sprite, S, pal);
+            return at(d, x, y);
+        };
 
-        // the knight stands guard at the left end of the camp
-        const kslot = document.createElement('span');
-        kslot.className = 'knight-slot';
-        at(kslot, -OX, 18);
-        makeKnight(kslot, S);
-
+        const FIRE_X = 63, FIRE_Y = 20; // flames top-left
         const glow = document.createElement('span');
         glow.className = 'cf-glow';
         glow.style.width = `${64 * S}px`;
         glow.style.height = `${28 * S}px`;
-        at(glow, 18, 4);
+        at(glow, FIRE_X + 5 - 32, FIRE_Y + 6 - 14);
 
-        const chatter = (btn, lines) => {
+        const chatter = (btn, lines, cls = 'hop') => {
             const bb = btn.querySelector('.px-bubble');
             let i = 0, t;
             btn.addEventListener('click', () => {
                 bb.textContent = lines[i++ % lines.length];
                 btn.classList.add('talking');
-                btn.classList.remove('hop'); void btn.offsetWidth; btn.classList.add('hop');
+                btn.classList.remove(cls); void btn.offsetWidth; btn.classList.add(cls);
                 clearTimeout(t);
                 t = setTimeout(() => btn.classList.remove('talking'), 1700);
                 say(bb.textContent);
             });
         };
-        const actor = (sprite, x, y, label, lines, { flip = false, pal } = {}) => {
+        const actor = (sprite, x, y, label, lines, { flip = false, pal, cls = 'cf-actor', anim = 'hop' } = {}) => {
             const b = document.createElement('button');
             b.type = 'button';
-            b.className = 'cf-actor';
+            b.className = cls;
             b.setAttribute('aria-label', label);
             b.innerHTML = `<span class="cf-sprite${flip ? ' cf-flip' : ''}">${svg(sprite, S, pal)}</span><span class="px-bubble" aria-hidden="true"></span>`;
             at(b, x, y);
-            chatter(b, lines);
+            chatter(b, lines, anim);
             return b;
         };
 
+        // benches first, so everyone sitting on them is drawn in front
+        deco('bench', 36, 30, 'cf-bench');
+        deco('bench', 77, 30, 'cf-bench');
+
         // fire: logs + 3 flickering frames, clickable to stoke
-        const logs = document.createElement('span');
-        logs.className = 'cf-logs';
-        logs.innerHTML = svg('logs', S);
-        at(logs, 38, 28);
+        deco('logs', FIRE_X - 3, 30, 'cf-logs');
         const fire = document.createElement('button');
         fire.type = 'button';
         fire.className = 'cf-fire';
         fire.setAttribute('aria-label', 'Stoke the campfire');
+        fire.style.width = fire.style.height = `${10 * S}px`;
         fire.innerHTML = `<span class="cf-flame">${svg('fire1', S)}</span><span class="cf-flame">${svg('fire2', S)}</span><span class="cf-flame">${svg('fire3', S)}</span><span class="px-bubble" aria-hidden="true"></span>`;
-        at(fire, 41, 18);
+        at(fire, FIRE_X, FIRE_Y);
 
         const spark = (burst = false) => {
             const s = document.createElement('span');
             s.className = 'cf-spark';
-            s.style.left = `${(43 + OX + Math.random() * 6) * S}px`;
-            s.style.top = `${18 * S}px`;
+            s.style.left = `${(FIRE_X + 2 + Math.random() * 6) * S}px`;
+            s.style.top = `${FIRE_Y * S}px`;
             s.style.setProperty('--sx', `${(Math.random() - 0.5) * (burst ? 60 : 24)}px`);
             s.style.setProperty('--sy', `${-(burst ? 50 : 30) - Math.random() * 30}px`);
             scene.append(s);
@@ -589,22 +631,38 @@
         });
         if (!reduced) setInterval(() => { if (on && !document.hidden && scene.offsetParent) spark(); }, 450);
 
-        // people, cats, dogs
-        actor('smallCat', 2, 24, 'Orange cat by the fire', ['meow', '*stares at the flames*', 'mrrp?'], { pal: { o: '#f4a259' } });
-        actor('person', 12, 18, 'Friend toasting a marshmallow', ['Perfect night for this.', 'Mine is going to be golden.', 'Model is still training…'], { pal: { h: '#2a1b4d', S: '#5b3a9c' } });
-        actor('dog', 26, 24, 'Brown dog', ['woof!', '*tail wag*', 'bork?'], {});
-        actor('smallCat', 55, 24, 'Grey cat', ['…mew', '*loafs*', 'is that a marshmallow'], { flip: true, pal: { o: '#9b97ad' } });
-        actor('person', 65, 18, 'Friend with a marshmallow stick', ['Who brought snacks?', 'Ahh, cozy.', 'Mine caught fire again.'], { flip: true, pal: { h: '#7a4a2a', S: '#d64550', f: '#e0b48a' } });
-        actor('personIdle', 78, 18, 'Friend warming their hands', ['Tell a scary story!', 'I hear an owl…', 'Best evening.'], { flip: true, pal: { h: '#3b2418', S: '#2f8f6b', P: '#2a1b4d', f: '#c9966b' } });
-        actor('dog', 90, 24, 'White dog', ['woof woof!', '*sniffs marshmallow*', 'arf'], { flip: true, pal: { D: '#e9e4f0', L: '#b6b0c4' } });
+        // the two knights guard the left end of the camp
+        const kslot = document.createElement('span');
+        kslot.className = 'knight-slot';
+        at(kslot, 0, H - 16);
+        makeKnight(kslot, S);
+        actor('knightKneel', 12, H - 12, 'Kneeling knight with a red cape', ['…', 'I keep watch.', 'May your models converge.', 'For the realm!'], { anim: 'bow' });
 
-        // marshmallows on the two sticks: click to toast (white -> golden -> brown -> burnt -> new one)
+        // ground sleepers
+        actor('sleepCat', 26, H - 5, 'Sleeping cat', ['zzz…', '*snore*', 'five more minutes…'], { cls: 'cf-actor cf-sleep', anim: 'stir', pal: { o: '#e7a56a' } });
+        actor('sleepDog', 122, H - 5, 'Sleeping dog', ['zzz…', '*dreams of bones*', '*snore*'], { cls: 'cf-actor cf-sleep', anim: 'stir' });
+
+        // on the left bench
+        actor('smallCat', 37, 22, 'Orange cat on the log', ['meow', '*stares at the flames*', 'mrrp?'], { pal: { o: '#f4a259' } });
+        actor('person', 46, 19, 'Friend toasting a marshmallow', ['Perfect night for this.', 'Mine is going to be golden.', 'Model is still training…'], { pal: { h: '#2a1b4d', S: '#5b3a9c' } });
+
+        // on the right bench
+        actor('person', 79, 19, 'Friend with a marshmallow stick', ['Who brought snacks?', 'Ahh, cozy.', 'Mine caught fire again.'], { flip: true, pal: { h: '#7a4a2a', S: '#d64550', f: '#e0b48a' } });
+        actor('smallCat', 90, 22, 'Grey cat on the log', ['…mew', '*loafs*', 'is that a marshmallow'], { flip: true, pal: { o: '#9b97ad' } });
+
+        // ground sitters on the right
+        actor('personIdle', 101, H - 14, 'Friend sitting on the ground', ['Ground is comfier.', 'I hear an owl…', 'Best evening.'], { flip: true, pal: { h: '#3b2418', S: '#2f8f6b', P: '#2a1b4d', f: '#c9966b' } });
+        actor('dog', 112, H - 8, 'Brown dog', ['woof!', '*tail wag*', 'bork?'], { flip: true });
+
+        // marshmallows on the two sticks: click to toast (raw -> golden -> toasted -> burnt -> fresh)
         const STAGES = [['#fffaf0', 'raw'], ['#f3d79a', 'golden'], ['#c98a4b', 'toasted'], ['#3a2a20', 'burnt']];
-        [[23, 21, 'left'], [63, 21, 'right']].forEach(([x, y, side]) => {
+        [[57, 22, 'left'], [76, 22, 'right']].forEach(([x, y, side]) => {
             const b = document.createElement('button');
             b.type = 'button';
             b.className = 'cf-mallow';
             b.innerHTML = '<i></i><span class="px-bubble" aria-hidden="true"></span>';
+            b.style.width = b.style.height = `${6 * S}px`;
+            b.querySelector('i').style.width = b.querySelector('i').style.height = `${2 * S}px`;
             at(b, x - 2, y - 2); // 6x6-pixel hit area around the 2x2 marshmallow
             const dot = b.querySelector('i');
             const mbb = b.querySelector('.px-bubble');

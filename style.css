@@ -1116,8 +1116,9 @@ article > .cs-block { margin-bottom: 4rem; }
 .fd-tower::after {
     content: "";
     position: absolute;
-    left: 4px; right: 4px; top: 4px; height: 60px;
-    background: linear-gradient(115deg, transparent 35%, rgba(255, 255, 255, 0.55) 50%, transparent 65%) no-repeat;
+    left: 0; right: 0; top: 0; height: 48px; /* the hill part of the sprite */
+    clip-path: polygon(36% 0, 64% 0, 100% 100%, 0 100%);
+    background: linear-gradient(115deg, transparent 35%, rgba(255, 255, 255, 0.6) 50%, transparent 65%) no-repeat;
     background-size: 250% 100%;
     background-position: 150% 0;
     animation: fd-glint 4.5s ease-in-out infinite;
@@ -1194,3 +1195,29 @@ article > .cs-block { margin-bottom: 4rem; }
 @media (max-width: 1024px) { .hero-photo { justify-self: center; } }
 .campfire .knight-slot { position: absolute; right: auto !important; bottom: auto !important; }
 .campfire .px-knight { padding: 0; line-height: 0; }
+
+/* campfire: benches, sleepers, knight animations */
+.cf-bench { pointer-events: none; }
+.cf-actor.bow .cf-sprite { display: block; animation: cf-bow 0.6s steps(3); transform-origin: bottom center; }
+@keyframes cf-bow { 50% { transform: translateY(2px) rotate(3deg); } }
+.cf-actor.stir .cf-sprite { display: block; animation: cf-stir 0.5s steps(4); }
+@keyframes cf-stir { 25% { transform: translateX(-1px); } 75% { transform: translateX(1px); } }
+.cf-sleep::before, .cf-sleep::after {
+    content: "z";
+    position: absolute;
+    right: -2px; top: -10px;
+    font-family: 'Silkscreen', ui-monospace, monospace;
+    font-size: 9px;
+    color: var(--muted);
+    opacity: 0;
+    animation: cf-z 2.8s ease-out infinite;
+    pointer-events: none;
+}
+.cf-sleep::after { animation-delay: 1.4s; font-size: 7px; }
+@keyframes cf-z {
+    0% { opacity: 0; transform: translate(0, 4px); }
+    25% { opacity: 0.9; }
+    100% { opacity: 0; transform: translate(8px, -14px); }
+}
+@media (prefers-reduced-motion: reduce) { .cf-sleep::before { opacity: 0.8; animation: none; } .cf-sleep::after { display: none; } }
+.cf-sleep .px-svg { filter: drop-shadow(1px 0 0 #2a1b4d) drop-shadow(-1px 0 0 #2a1b4d) drop-shadow(0 -1px 0 #2a1b4d) drop-shadow(0 1px 0 #2a1b4d); }
