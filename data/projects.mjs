@@ -15,7 +15,6 @@ export const TAGS = {
   research: 'Research',
   design: 'Design',
   iot: 'Embedded / IoT',
-  algo: 'Algorithms',
 };
 
 export const projects = [
@@ -365,20 +364,6 @@ export const projects = [
     tech: ['Figma', 'HTML', 'CSS', 'JavaScript'],
     metric: null,
     role: 'Design and build.',
-    links: {},
-  },
-  {
-    slug: 'boogle',
-    title: 'Boogle',
-    tagline: 'Slang-word dictionary in C built on a trie: insert or update, exact search and prefix listing.',
-    kind: 'Course project · Data Structures',
-    team: 'Solo',
-    dates: 'Jun 2025',
-    status: null,
-    tags: ['algo'],
-    tech: ['C', 'Trie'],
-    metric: null,
-    role: 'Design and implementation.',
     links: {},
   },
 ];
