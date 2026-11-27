@@ -1221,3 +1221,6 @@ article > .cs-block { margin-bottom: 4rem; }
 }
 @media (prefers-reduced-motion: reduce) { .cf-sleep::before { opacity: 0.8; animation: none; } .cf-sleep::after { display: none; } }
 .cf-sleep .px-svg { filter: drop-shadow(1px 0 0 #2a1b4d) drop-shadow(-1px 0 0 #2a1b4d) drop-shadow(0 -1px 0 #2a1b4d) drop-shadow(0 1px 0 #2a1b4d); }
+
+h2 em.rotator { color: var(--accent); }
+#about-h { min-height: 4.2em; } /* room for the longest rotating ending, so nothing below jumps */

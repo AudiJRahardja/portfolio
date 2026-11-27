@@ -196,18 +196,18 @@ if (navToggle && menuOverlay) {
 
 // 6. Hero: rotating "currently" line (static text stays for screen readers)
 (() => {
-    const el = document.querySelector('[data-rotate]');
-    if (!el) return;
-    const words = JSON.parse(el.dataset.rotate);
-    if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    let i = 0;
-    setInterval(() => {
-        if (document.hidden) return;
-        el.classList.add('out');
-        setTimeout(() => {
-            i = (i + 1) % words.length;
-            el.textContent = words[i];
-            el.classList.remove('out');
-        }, 350);
-    }, 2800);
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) return; // keep the first wording, no cycling
+    document.querySelectorAll('[data-rotate]').forEach((el, n) => {
+        const words = JSON.parse(el.dataset.rotate);
+        let i = Math.max(0, words.indexOf(el.textContent.trim()));
+        setTimeout(() => setInterval(() => {
+            if (document.hidden) return;
+            el.classList.add('out');
+            setTimeout(() => {
+                i = (i + 1) % words.length;
+                el.textContent = words[i];
+                el.classList.remove('out');
+            }, 350);
+        }, n === 0 ? 2800 : 3400), n * 700); // stagger so they don't change at the same moment
+    });
 })();
