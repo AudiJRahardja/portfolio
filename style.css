@@ -1254,3 +1254,95 @@ h2 em.rotator { color: var(--accent); }
     .sun { width: 70px; height: 70px; top: 4vh; right: 6vw; }
     .moon { width: 46px; height: 46px; top: 5vh; right: 8vw; box-shadow: inset -11px 6px 0 0 #f4f0ff, 0 0 30px 4px rgba(221, 208, 251, 0.12); }
 }
+
+/* ---------- Sun / moon theme switch ---------- */
+.sky-toggle {
+    position: fixed;
+    top: 7vh; right: 9vw;
+    width: 110px; height: 110px;
+    border-radius: 50%;
+    z-index: calc(var(--z-nav) - 3);
+}
+.is-night .sky-toggle { top: 9vh; right: 11vw; width: 70px; height: 70px; }
+body:has(.sky-toggle:hover) .sun { transform: scale(1.1); }
+body:has(.sky-toggle:hover) .moon { transform: rotate(-25deg) scale(1.12); }
+.sky-toggle:focus-visible { outline-offset: 6px; }
+@media (max-width: 768px) {
+    .sky-toggle { width: 70px; height: 70px; top: 4vh; right: 6vw; }
+    .is-night .sky-toggle { width: 46px; height: 46px; top: 5vh; right: 8vw; }
+}
+[tabindex="-1"]:focus { outline: none; }
+
+/* ---------- Bible verses in the side margins ---------- */
+.verses { position: fixed; inset: 0; pointer-events: none; z-index: 0; }
+.verse {
+    position: absolute;
+    margin: 0;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 1.5s ease, transform 1.5s ease;
+}
+.verse.show { opacity: 0.9; transform: none; }
+.verse blockquote {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 1.05rem;
+    line-height: 1.5;
+    color: var(--ink);
+    opacity: 0.78;
+}
+.verse figcaption {
+    margin-top: 0.55rem;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--accent);
+}
+.is-night .verse blockquote { text-shadow: 0 0 18px rgba(221, 208, 251, 0.25); }
+@media (prefers-reduced-motion: reduce) { .verse { transform: none; transition: opacity 1.5s ease; } }
+
+/* ---------- Sky life: rocket and birds ---------- */
+.sky-life { position: fixed; inset: 0; z-index: -1; overflow: hidden; pointer-events: none; }
+.rocket { position: absolute; bottom: -80px; display: flex; flex-direction: column; align-items: center; }
+.rocket { padding-bottom: 12px; }
+.rk-body { line-height: 0; }
+.rk-flame { position: absolute; top: 44px; left: 50%; transform: translateX(-50%); line-height: 0; }
+.rk-flame--a { animation: frame-a 0.2s steps(1) infinite; }
+.rk-flame--b { animation: frame-b 0.2s steps(1) infinite; }
+@keyframes frame-a { 0%, 49% { visibility: visible; } 50%, 100% { visibility: hidden; } }
+@keyframes frame-b { 0%, 49% { visibility: hidden; } 50%, 100% { visibility: visible; } }
+.rk-smoke {
+    position: fixed;
+    width: 8px; height: 8px;
+    background: color-mix(in srgb, var(--muted) 45%, transparent);
+    animation: rk-smoke 1.5s ease-out both;
+}
+@keyframes rk-smoke { to { opacity: 0; transform: translateY(16px) scale(2.2); } }
+
+.bird { position: absolute; left: 0; color: #3b3f5c; animation: bird-bob 1.6s ease-in-out infinite; }
+.is-night .bird { color: #cfc8ee; }
+.bird { width: 15px; height: 9px; }
+.bird .bd { position: absolute; inset: 0; line-height: 0; }
+.bird .bd-a { animation: frame-a 0.32s steps(1) infinite; }
+.bird .bd-b { animation: frame-b 0.32s steps(1) infinite; }
+@keyframes bird-bob { 50% { margin-top: 6px; } }
+
+/* ---------- Bottom-left camp ---------- */
+.contact-left { display: grid; gap: 1.5rem; align-content: start; }
+.rest-camp { position: relative; }
+.rest-camp > * { position: absolute; }
+.rc-deco, .rc-flames { line-height: 0; pointer-events: none; }
+.rc-flames { pointer-events: none; }
+.rc-actor .rc-frame { display: none; }
+.rc-actor[data-frame="idle"] .rc-frame--idle,
+.rc-actor[data-frame="toss"] .rc-frame--toss,
+.rc-actor[data-frame="catch"] .rc-frame--catch { display: block; }
+.rc-food { line-height: 0; pointer-events: none; z-index: 3; }
+.rest-camp .px-bubble { font-size: 0.62rem; z-index: 5; }
+/* very wide screens: pinned to the bottom-left corner, in the empty margin */
+@media (min-width: 1680px) {
+    .rest-camp { position: fixed; left: 24px; bottom: 18px; z-index: calc(var(--z-nav) - 2); }
+}
+.no-pixels .rest-camp, .no-pixels .sky-life { display: none; }
+@media (prefers-reduced-motion: reduce) { .sky-life { display: none; } }

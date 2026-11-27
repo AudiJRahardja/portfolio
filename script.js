@@ -29,24 +29,34 @@
     const SUN = '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>';
     const MOON = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>';
     const current = () => root.dataset.theme || (media.matches ? 'dark' : 'light');
+    // The sun / moon in the sky is a second theme switch (only clickable near the top of the page,
+    // so it never sits over page content while scrolling).
+    const sky = document.createElement('button');
+    sky.type = 'button';
+    sky.className = 'sky-toggle';
+    document.body.append(sky);
     const render = () => {
         const dark = current() === 'dark';
         btn.innerHTML = dark ? SUN : MOON;
         btn.setAttribute('aria-label', dark ? 'Switch to light theme' : 'Switch to dark theme');
+        sky.setAttribute('aria-label', dark ? 'Moon: switch to light theme' : 'Sun: switch to dark theme');
     };
+    const skyVisible = () => { sky.hidden = scrollY > 160; };
+    addEventListener('scroll', skyVisible, { passive: true });
+    skyVisible();
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
     const apply = (next) => {
         root.dataset.theme = next;
         try { localStorage.setItem('theme', next); } catch (e) { /* private mode: still works for this visit */ }
         render();
     };
-    btn.addEventListener('click', () => {
+    const toggle = (origin) => {
         const next = current() === 'dark' ? 'light' : 'dark';
         if (reducedMotion.matches) { apply(next); return; }
 
-        // Slow circular reveal from the toggle (View Transitions), or a gentle colour fade as fallback.
+        // Slow circular reveal from whatever was clicked (View Transitions), or a gentle colour fade as fallback.
         if (document.startViewTransition) {
-            const r = btn.getBoundingClientRect();
+            const r = origin.getBoundingClientRect();
             const cx = r.left + r.width / 2, cy = r.top + r.height / 2;
             root.style.setProperty('--vt-x', `${cx}px`);
             root.style.setProperty('--vt-y', `${cy}px`);
@@ -57,7 +67,9 @@
             apply(next);
             setTimeout(() => root.classList.remove('theme-fade'), 900);
         }
-    });
+    };
+    btn.addEventListener('click', () => toggle(btn));
+    sky.addEventListener('click', () => toggle(sky));
     media.addEventListener('change', render);
     render();
     btn.hidden = false;
@@ -332,4 +344,69 @@ if (navToggle && menuOverlay) {
     media.addEventListener('change', update);
     make();
     update();
+})();
+
+
+
+// 8. Bible verses (World English Bible, public domain) that fade in and out in the empty side margins
+(() => {
+    const VERSES = [
+        ['Love is patient and is kind; love doesn’t envy. Love doesn’t brag, is not proud.', '1 Corinthians 13:4'],
+        ['Beloved, let’s love one another, for love is of God.', '1 John 4:7'],
+        ['I can do all things through Christ, who strengthens me.', 'Philippians 4:13'],
+        ['For we walk by faith, not by sight.', '2 Corinthians 5:7'],
+    ];
+    const layer = document.createElement('div');
+    layer.className = 'verses';
+    layer.setAttribute('aria-hidden', 'true'); // decorative; it changes on its own, so keep it out of screen-reader flow
+    document.body.append(layer);
+    let i = Math.floor(Math.random() * VERSES.length);
+    let lastSide = Math.random() < 0.5 ? 'left' : 'right';
+
+    const schedule = () => setTimeout(show, 6000 + Math.random() * 8000);
+    function show() {
+        const gutter = (innerWidth - 1180) / 2; // page content is at most 1180px wide
+        if (document.hidden || gutter < 190) { schedule(); return; }
+        const [text, ref] = VERSES[i++ % VERSES.length];
+        const el = document.createElement('figure');
+        el.className = 'verse';
+        const q = document.createElement('blockquote');
+        q.textContent = `“${text}”`;
+        const c = document.createElement('figcaption');
+        c.textContent = ref;
+        el.append(q, c);
+        const side = lastSide === 'left' ? 'right' : 'left'; // alternate sides
+        lastSide = side;
+        const w = Math.min(260, gutter - 48);
+        el.style.width = `${w}px`;
+        el.style[side] = `${Math.max(20, (gutter - w) / 2)}px`;
+        el.style.top = `${30 + Math.random() * 38}vh`; // clear of the sun/moon and the bottom-left camp
+        el.style.textAlign = side === 'right' ? 'right' : 'left';
+        layer.append(el);
+        requestAnimationFrame(() => requestAnimationFrame(() => el.classList.add('show')));
+        setTimeout(() => {
+            el.classList.remove('show');
+            setTimeout(() => el.remove(), 1600);
+            schedule();
+        }, 9000);
+    }
+    setTimeout(show, 3500);
+})();
+
+
+// 9. In-page links scroll smoothly without adding "#section" to the address bar
+(() => {
+    document.addEventListener('click', (e) => {
+        const a = e.target.closest('a[href^="#"]');
+        if (!a || a.classList.contains('skip-link') || e.defaultPrevented || e.metaKey || e.ctrlKey || e.shiftKey) return;
+        const id = a.getAttribute('href').slice(1);
+        const target = id ? document.getElementById(id) : null;
+        if (!target) return;
+        e.preventDefault();
+        if (id === 'hero') window.scrollTo({ top: 0, behavior: 'smooth' });
+        else target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        if (!target.hasAttribute('tabindex')) target.setAttribute('tabindex', '-1');
+        target.focus({ preventScroll: true }); // keyboard users continue from the section they jumped to
+        if (location.hash) history.replaceState(null, '', location.pathname + location.search);
+    });
 })();

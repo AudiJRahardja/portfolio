@@ -15,7 +15,7 @@
         // feeder + campfire
         l: '#cfe8f5', c: '#c98a4b', m: '#8a5a2b', v: '#5b3a9c', z: '#8d8a9e',
         a: '#f7931e', Y: '#ffd23f', f: '#f2c9a0', S: '#5b3a9c', P: '#3b3f5c', D: '#b07a4a', L: '#7a4a2a',
-        B: '#3d6fd8', N: '#23408f', R: '#a8323e',
+        B: '#3d6fd8', N: '#23408f', R: '#a8323e', E: '#5fbf4a',
     };
     const BIG_TOP = [
         '..kk........kk..',
@@ -149,6 +149,107 @@
             '..kkkkkkkkkk..',
         ],
         bite: ['mc', 'cm'],
+        // man resting by the fire, eating a burger
+        manIdle: [
+            '....hhhh........',
+            '...hhhhhh.......',
+            '...hhffff.......',
+            '...hffeff..uuu..',
+            '....ffff..EEEE..',
+            '...SSSSSSffqqq..',
+            '..SSSSSSS..uuu..',
+            '..SSSSSSS.......',
+            '..SSSSSSS.......',
+            '..PPPPPPPPPPP...',
+            '..PPPPPPPPPPPkk.',
+        ],
+        // man tossing a bite to the dog
+        manToss: [
+            '....hhhh..ff....',
+            '...hhhhhh.ff....',
+            '...hhffffSS.....',
+            '...hffeffS......',
+            '....ffff........',
+            '...SSSSSS.uuu...',
+            '..SSSSSSS.qqq...',
+            '..SSSSSSS.uuu...',
+            '..SSSSSSS.......',
+            '..PPPPPPPPPPP...',
+            '..PPPPPPPPPPPkk.',
+        ],
+        // dog catching (head up, mouth open)
+        dogCatch: [
+            '......DDn.',
+            '.....DDDp.',
+            '.....DeDDD',
+            '......LDDD',
+            '..DDDDDDD.',
+            '.DDDDDDDD.',
+            'DDDDDDDD..',
+            '.DD.DD.DD.',
+        ],
+        // tree stump to lean on
+        stump: [
+            '.LLLL.',
+            'LmmmmL',
+            'LmLmmL',
+            'LmmmLL',
+            'LLLLLL',
+        ],
+        // marshmallow on a stick planted in the ground
+        mallowStick: [
+            '........ww',
+            '........ww',
+            '.......m..',
+            '......mm..',
+            '......m...',
+            '.....m....',
+            '....mm....',
+            '....m.....',
+            '...mm.....',
+            '..mm......',
+            '..m.......',
+            '.m........',
+            'mm........',
+            'm.........',
+        ],
+        // rocket
+        rocket: [
+            '...r...',
+            '..rrr..',
+            '.rwwwr.',
+            '.wwBww.',
+            '.wBlBw.',
+            '.wwBww.',
+            '.wwwww.',
+            '.wwwww.',
+            'rwwwwwr',
+            'rrwwwrr',
+            'r.ddd.r',
+        ],
+        // rocket flame frame A
+        flameA: [
+            '..YaY..',
+            '...a...',
+        ],
+        // rocket flame frame B
+        flameB: [
+            '..aYa..',
+            '..YaY..',
+            '...a...',
+        ],
+        // bird, wings up
+        birdA: [
+            'k...k',
+            '.k.k.',
+            '..k..',
+        ],
+        // bird, wings level
+        birdB: [
+            '.....',
+            'kk.kk',
+            '..k..',
+        ],
         // kneeling knight: red cape and plume, hands on the hilt of a sword planted in the ground
         knightKneel: [
             '....rr........',
@@ -684,6 +785,163 @@
         });
         scene.hidden = false;
     });
+
+    // ---------- bottom-left camp: a man eating a burger, tossing bites to his dog ----------
+    document.querySelectorAll('[data-restcamp]').forEach((scene) => {
+        const S = 3.5, W = 64, H = 24;
+        scene.style.width = `${W * S}px`;
+        scene.style.height = `${H * S}px`;
+        const at = (el, x, y) => { el.style.left = `${x * S}px`; el.style.top = `${y * S}px`; scene.append(el); return el; };
+        const deco = (sprite, x, y, cls = 'rc-deco', pal) => {
+            const d = document.createElement('span');
+            d.className = cls;
+            d.innerHTML = svg(sprite, S, pal);
+            return at(d, x, y);
+        };
+
+        const glow = document.createElement('span');
+        glow.className = 'cf-glow';
+        glow.style.width = `${44 * S}px`;
+        glow.style.height = `${20 * S}px`;
+        at(glow, 12, 6);
+
+        deco('stump', 0, 14);
+        deco('logs', 26, 20, 'rc-deco cf-logs');
+        const flames = document.createElement('span');
+        flames.className = 'rc-flames';
+        flames.style.width = flames.style.height = `${10 * S}px`;
+        flames.innerHTML = `<span class="cf-flame">${svg('fire1', S)}</span><span class="cf-flame">${svg('fire2', S)}</span><span class="cf-flame">${svg('fire3', S)}</span>`;
+        at(flames, 29, 10);
+        deco('mallowStick', 18, 10);
+        deco('mallowStick', 38, 10, 'rc-deco cf-flip');
+
+        const mk = (frames, x, y, label, flip) => {
+            const b = document.createElement('button');
+            b.type = 'button';
+            b.className = 'cf-actor rc-actor';
+            b.setAttribute('aria-label', label);
+            b.innerHTML = frames.map(([name, sprite]) => `<span class="cf-sprite rc-frame rc-frame--${name}${flip ? ' cf-flip' : ''}">${svg(sprite, S)}</span>`).join('') + '<span class="px-bubble" aria-hidden="true"></span>';
+            b.dataset.frame = frames[0][0];
+            return at(b, x, y);
+        };
+        const man = mk([['idle', 'manIdle'], ['toss', 'manToss']], 1, 13, 'Man by the fire eating a burger', false);
+        const dog = mk([['idle', 'dog'], ['catch', 'dogCatch']], 50, 16, 'His dog, waiting for a bite', true);
+
+        const talk = (b, text, ms = 1500) => {
+            const bb = b.querySelector('.px-bubble');
+            bb.textContent = text;
+            b.classList.add('talking');
+            clearTimeout(b._t);
+            b._t = setTimeout(() => b.classList.remove('talking'), ms);
+        };
+        const frame = (b, f, ms) => {
+            b.dataset.frame = f;
+            clearTimeout(b._f);
+            b._f = setTimeout(() => { b.dataset.frame = b === man ? 'idle' : 'idle'; }, ms);
+        };
+
+        let tossing = false;
+        const toss = () => {
+            if (tossing || !on || document.hidden) return;
+            tossing = true;
+            frame(man, 'toss', 700);
+            const food = document.createElement('span');
+            food.className = 'rc-food';
+            food.innerHTML = svg('bite', S, { m: '#3b2418', c: '#e8a95c' });
+            at(food, 11, 13);
+            const land = () => {
+                food.remove();
+                frame(dog, 'catch', 600);
+                dog.classList.remove('hop'); void dog.offsetWidth; dog.classList.add('hop');
+                talk(dog, '*chomp*');
+                say('The dog catches a bite.');
+                tossing = false;
+            };
+            if (reduced || !food.animate) { land(); return; }
+            const dx = (50 - 11) * S, dy = (17 - 13) * S;
+            food.animate(
+                [
+                    { transform: 'translate(0, 0) rotate(0)' },
+                    { transform: `translate(${dx * 0.5}px, ${-12 * S}px) rotate(180deg)`, offset: 0.5 },
+                    { transform: `translate(${dx}px, ${dy}px) rotate(360deg)` },
+                ],
+                { duration: 800, easing: 'cubic-bezier(0.3, 0, 0.6, 1)' }
+            ).onfinish = land;
+        };
+        const MAN = ['mm, burger.', 'Want some, buddy?', 'Best seat in the house.'];
+        let mi = 0;
+        man.addEventListener('click', () => { talk(man, MAN[mi++ % MAN.length]); setTimeout(toss, 250); });
+        const DOG = ['woof!', '*begs*', 'more please'];
+        let di = 0;
+        dog.addEventListener('click', () => {
+            talk(dog, DOG[di++ % DOG.length]);
+            dog.classList.remove('hop'); void dog.offsetWidth; dog.classList.add('hop');
+        });
+        const loop = () => setTimeout(() => { toss(); if (Math.random() < 0.3) setTimeout(() => talk(man, 'mm, burger.'), 1600); loop(); }, 7000 + Math.random() * 4000);
+        if (!reduced) loop();
+        scene.hidden = false;
+    });
+
+    // ---------- sky life: a rocket now and then, small flocks of birds ----------
+    const life = document.createElement('div');
+    life.className = 'sky-life';
+    life.setAttribute('aria-hidden', 'true');
+    (document.querySelector('.wallpaper') || document.body.firstElementChild).after(life);
+
+    const launchRocket = () => {
+        if (!on || document.hidden || reduced) return;
+        const r = document.createElement('span');
+        r.className = 'rocket';
+        r.innerHTML = `<span class="rk-body">${svg('rocket', 4)}</span><span class="rk-flame rk-flame--a">${svg('flameA', 4)}</span><span class="rk-flame rk-flame--b">${svg('flameB', 4)}</span>`;
+        // launch from the side margins when there are any, otherwise anywhere
+        const g = (innerWidth - 1180) / 2;
+        const x = g > 80 ? (Math.random() < 0.5 ? 20 + Math.random() * (g - 60) : innerWidth - g + 20 + Math.random() * (g - 60)) : 20 + Math.random() * (innerWidth - 60);
+        r.style.left = `${x}px`;
+        life.append(r);
+        const drift = (Math.random() - 0.5) * 120;
+        const anim = r.animate(
+            [{ transform: 'translate(0, 0)' }, { transform: `translate(${drift}px, ${-(innerHeight + 220)}px)` }],
+            { duration: 9000 + Math.random() * 3000, easing: 'cubic-bezier(0.45, 0, 0.75, 1)' }
+        );
+        const puff = setInterval(() => {
+            const rr = r.getBoundingClientRect();
+            const p = document.createElement('span');
+            p.className = 'rk-smoke';
+            p.style.left = `${rr.left + rr.width / 2 - 4 + (Math.random() - 0.5) * 6}px`;
+            p.style.top = `${rr.bottom}px`;
+            life.append(p);
+            setTimeout(() => p.remove(), 1600);
+        }, 140);
+        anim.onfinish = () => { clearInterval(puff); r.remove(); };
+    };
+
+    const flock = () => {
+        if (!on || document.hidden || reduced) return;
+        const n = 2 + Math.floor(Math.random() * 3);
+        const ltr = Math.random() < 0.5;
+        const y = (8 + Math.random() * 30) / 100 * innerHeight;
+        const dur = 14000 + Math.random() * 6000;
+        for (let i = 0; i < n; i++) {
+            const b = document.createElement('span');
+            b.className = 'bird';
+            b.innerHTML = `<span class="bd bd-a">${svg('birdA', 3, { k: 'currentColor' })}</span><span class="bd bd-b">${svg('birdB', 3, { k: 'currentColor' })}</span>`;
+            b.style.top = `${y + (i % 2) * 14 + i * 4}px`;
+            b.style.animationDelay = `${-i * 0.17}s`;
+            life.append(b);
+            const from = ltr ? -60 - i * 30 : innerWidth + 60 + i * 30;
+            const to = ltr ? innerWidth + 80 : -80 - i * 30;
+            b.animate([{ transform: `translateX(${from}px)` }, { transform: `translateX(${to}px)` }], { duration: dur, easing: 'linear' })
+                .onfinish = () => b.remove();
+        }
+    };
+
+    if (!reduced) {
+        setTimeout(launchRocket, 12000);
+        setTimeout(flock, 5000);
+        const again = (fn, min, spread) => setTimeout(() => { fn(); again(fn, min, spread); }, min + Math.random() * spread);
+        again(launchRocket, 30000, 25000);
+        again(flock, 18000, 17000);
+    }
 
     // ---------- controls (footer) ----------
     document.querySelectorAll('[data-pixel-controls]').forEach((box) => {
