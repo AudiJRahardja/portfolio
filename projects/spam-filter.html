@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spam &amp; Scam-Type Classifier | Audi Joel Rahardja</title>
+    <meta name="description" content="A two-stage filter for English and Indonesian SMS, email and chat: is a message unwanted, and if so, is it promo, a scam, phishing or gambling?">
+    <link rel="canonical" href="https://audijrahardja.github.io/portfolio/projects/spam-filter.html">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Spam &amp; Scam-Type Classifier">
+    <meta property="og:description" content="A two-stage filter for English and Indonesian SMS, email and chat: is a message unwanted, and if so, is it promo, a scam, phishing or gambling?">
+    <meta property="og:url" content="https://audijrahardja.github.io/portfolio/projects/spam-filter.html">
+    <meta property="og:image" content="https://audijrahardja.github.io/portfolio/images/og.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="color-scheme" content="light dark">
+    <script>/*theme*/(function(){var r=document.documentElement,t=null;r.classList.add('js');try{t=localStorage.getItem('theme')}catch(e){}if(t)r.dataset.theme=t;if((t||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'))==='dark')r.classList.add('is-night')})()</script>
+    <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..600&family=Geist:wght@400;500;600&family=Silkscreen&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css?v=mwz8ss0u">
+</head>
+<body class="case-study dd-page">
+    <a class="skip-link" href="#main">Skip to content</a>
+    <div class="wallpaper" aria-hidden="true"><span class="blob blob--1"></span><span class="blob blob--2"></span><span class="blob blob--3"></span><span class="sun"></span><span class="moon"></span><canvas class="stars"></canvas></div>
+    <div class="scroll-progress" aria-hidden="true"><span></span></div>
+    <header class="nav-wrap">
+        <nav class="nav-pill" aria-label="Main">
+            <a href="../index.html" class="nav-mark" aria-label="Home">AJ</a>
+            <ul class="nav-links nav-links--always">
+                <li><a href="../index.html#projects">All projects</a></li>
+            </ul>
+            <button type="button" class="theme-toggle" aria-label="Switch to dark theme" hidden></button>
+        </nav>
+    </header>
+
+    <main id="main" class="cs">
+        <article class="dd" data-slug="spam-filter" aria-labelledby="spam-filter-title">
+        <header class="dd-head">
+            <a class="back-link" href="../index.html#projects">← All projects</a>
+            <div class="badges"><span class="badge badge--wip">In progress</span><span class="badge">Personal project</span><span class="badge">Solo</span></div>
+            <h1 id="spam-filter-title">Spam &amp; Scam-Type Classifier</h1>
+            <p class="cs-tagline">A two-stage filter for English and Indonesian SMS, email and chat: is a message unwanted, and if so, is it promo, a scam, phishing or gambling?</p>
+            <p class="cs-meta">Nov 2026 – now</p>
+            
+            <p class="dd-related"><a class="text-link" href="https://github.com/kellys-codes/NLP-Project" target="_blank" rel="noopener noreferrer">Earlier related work: Fake Review Detection (NLP course)<span class="visually-hidden"> (opens in a new tab)</span></a></p>
+        </header>
+        
+
+        <div class="dd-grid">
+            <section class="dd-block" aria-labelledby="spam-filter-prob-h">
+                <h2 id="spam-filter-prob-h">The <em>problem</em></h2>
+                <p>Scam, phishing and online-gambling (&quot;judol&quot;) messages reach people in English and Indonesian, over SMS, email and chat. Public spam datasets are mostly English and usually only say &quot;spam&quot;, not what kind. I want a filter that also says what kind of unwanted message it is and how risky it is.</p>
+            </section>
+            <section class="dd-block" aria-labelledby="spam-filter-role-h">
+                <h2 id="spam-filter-role-h">My <em>part</em></h2>
+                <p>Everything so far: the source registry, 11 dataset loaders, the anonymiser, the labelling guide, the labelling tool and the hand labels.</p>
+                <p class="cs-team">Solo · Personal project</p>
+                <ul class="tech" aria-label="Tech used"><li>Python</li><li>pandas</li><li>PyArrow</li><li>Streamlit</li><li>Hugging Face Hub</li><li>Kaggle API</li><li class="tech--planned">scikit-learn<span class="visually-hidden"> (planned)</span></li><li class="tech--planned">LightGBM<span class="visually-hidden"> (planned)</span></li><li class="tech--planned">Transformers<span class="visually-hidden"> (planned)</span></li><li class="tech--planned">SHAP<span class="visually-hidden"> (planned)</span></li><li class="tech--planned">LIME<span class="visually-hidden"> (planned)</span></li></ul>
+            </section>
+        </div>
+
+        <section class="dd-block dd-pipeline" aria-labelledby="spam-filter-pipe-h">
+            <div class="dd-block-head">
+                <h2 id="spam-filter-pipe-h">How it <em>works</em></h2>
+                <button type="button" class="btn btn--ghost btn--sm pipe-run" hidden><span class="pipe-run-label">Run trace</span><span class="btn-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l10-6.5z"/></svg></span></button>
+            </div>
+            <p class="dd-hint">7 stages, 3 still planned (dashed).<span class="pipe-hint-js" hidden> Pick a stage to see what goes in, what happens and what comes out. Arrow keys move between stages.</span></p>
+            <div class="pipe-wrap">
+                <div class="pipe" role="group" aria-label="Pipeline stages" style="--cols: repeat(6, minmax(0, 1fr) 1.75rem) minmax(0, 1fr)">
+                <div class="pipe-stage">
+                    <button type="button" class="pipe-node pipe-node--done" id="spam-filter-st-collect-btn" aria-controls="spam-filter-st-collect" aria-pressed="true" data-i="0">
+                        <span class="pn-num">01</span>
+                        <span class="pn-label">Collect sources</span>
+                        <span class="pn-tech">Python · Kaggle · HF Hub</span>
+                        
+                    </button>
+                    <div class="pipe-detail" id="spam-filter-st-collect" role="region" aria-labelledby="spam-filter-st-collect-h">
+                        <div class="pd-head">
+                            <span class="pd-num">Stage 01 of 07</span>
+                            <h4 id="spam-filter-st-collect-h">Collect sources</h4>
+                            <span class="pd-status pd-status--done">Done</span>
+                        </div>
+                        <div class="pd-io">
+                            <div class="pd-card pd-card--in"><span class="pd-k">Input</span><p>12 sources listed in one registry, each with its licence, citation and label map</p></div>
+                            <span class="pd-arrow" aria-hidden="true"></span>
+                            <div class="pd-card pd-card--op"><span class="pd-k">Operation</span><p>A download script fetches each one from its URL, Kaggle, Hugging Face or Mendeley</p></div>
+                            <span class="pd-arrow" aria-hidden="true"></span>
+                            <div class="pd-card pd-card--out"><span class="pd-k">Output</span><p>Raw files in data/raw/&lt;source&gt;/, never edited by hand</p></div>
+                        </div>
+                        <ul class="pd-bullets"><li>Licences and citations were checked against each source&#39;s own page on 21 Nov 2026.</li><li>English: UCI SMS, Mendeley smishing, a phishing-email bundle (Enron, Nazario, Nigerian Fraud and more), Telegram and SmishTank.</li><li>Indonesian: two SMS sets, online-gambling comments and posts, and translated emails. The 12th source is my own collection, still a template.</li></ul>
+                        <p class="pd-flow"><span class="visually-hidden">Flow: </span><code>sources.yaml &gt;&gt; download_data &gt;&gt; data/raw/&lt;source&gt;</code></p>
+                    </div>
+                </div><span class="pipe-link" aria-hidden="true"><svg viewBox="0 0 40 14" preserveAspectRatio="none"><path class="pl-line" d="M1 7H33"/><path class="pl-head" d="M31 2.5 37.5 7 31 11.5"/></svg></span>
+                <div class="pipe-stage">
+                    <button type="button" class="pipe-node pipe-node--done" id="spam-filter-st-unify-btn" aria-controls="spam-filter-st-unify" aria-pressed="false" data-i="1">
+                        <span class="pn-num">02</span>
+                        <span class="pn-label">Unify labels</span>
+                        <span class="pn-tech">pandas · PyArrow</span>
+                        
+                    </button>
+                    <div class="pipe-detail" id="spam-filter-st-unify" role="region" aria-labelledby="spam-filter-st-unify-h">
+                        <div class="pd-head">
+                            <span class="pd-num">Stage 02 of 07</span>
+                            <h4 id="spam-filter-st-unify-h">Unify labels</h4>
+                            <span class="pd-status pd-status--done">Done</span>
+                        </div>
+                        <div class="pd-io">
+                            <div class="pd-card pd-card--in"><span class="pd-k">Input</span><p>Raw files, each with its own labels (&quot;spam&quot;, &quot;Smishing&quot;, 0 / 1…)</p></div>
+                            <span class="pd-arrow" aria-hidden="true"></span>
+                            <div class="pd-card pd-card--op"><span class="pd-k">Operation</span><p>One loader per source maps its labels onto one shared set and tags how the rows may be used</p></div>
+                            <span class="pd-arrow" aria-hidden="true"></span>
+                            <div class="pd-card pd-card--out"><span class="pd-k">Output</span><p>One table of 138,798 messages with text, label, language, channel and role</p></div>
+                        </div>
+                        <ul class="pd-bullets"><li>Shared labels: ham, promo, scam, phishing and gambling. Spam with no type stays &quot;untyped&quot; and only trains the first stage.</li><li>Every source gets a role: train, eval-only, fresh test (&quot;spam from after training&quot;) or translated slice, so held-out sets never leak into training.</li><li>Row counts are checked against the counts recorded for each source. Label fixes go in a separate file; raw data stays untouched.</li></ul>
+                        <p class="pd-flow"><span class="visually-hidden">Flow: </span><code>load_source &gt;&gt; map_labels &gt;&gt; tag_role &gt;&gt; messages.parquet</code></p>
+                    </div>
+                </div><span class="pipe-link" aria-hidden="true"><svg viewBox="0 0 40 14" preserveAspectRatio="none"><path class="pl-line" d="M1 7H33"/><path class="pl-head" d="M31 2.5 37.5 7 31 11.5"/></svg></span>
+                <div class="pipe-stage">
+                    <button type="button" class="pipe-node pipe-node--done" id="spam-filter-st-anonymise-btn" aria-controls="spam-filter-st-anonymise" aria-pressed="false" data-i="2">
+                        <span class="pn-num">03</span>
+                        <span class="pn-label">Anonymise</span>
+                        <span class="pn-tech">Python · regex</span>
+                        
+                    </button>
+                    <div class="pipe-detail" id="spam-filter-st-anonymise" role="region" aria-labelledby="spam-filter-st-anonymise-h">
+                        <div class="pd-head">
+                            <span class="pd-num">Stage 03 of 07</span>
+                            <h4 id="spam-filter-st-anonymise-h">Anonymise</h4>
+                            <span class="pd-status pd-status--done">Done</span>
+                        </div>
+                        <div class="pd-io">
+                            <div class="pd-card pd-card--in"><span class="pd-k">Input</span><p>Messages from real phones, collected with consent</p></div>
+                            <span class="pd-arrow" aria-hidden="true"></span>
+                            <div class="pd-card pd-card--op"><span class="pd-k">Operation</span><p>Mask e-mails, phone and account numbers, names and the personal parts of links</p></div>
+                            <span class="pd-arrow" aria-hidden="true"></span>
+                            <div class="pd-card pd-card--out"><span class="pd-k">Output</span><p>Text with &lt;PHONE&gt;, &lt;EMAIL&gt;, &lt;ACCOUNT&gt;, &lt;NAME&gt; and &lt;ID&gt; tokens, plus rows flagged for a human check</p></div>
+                        </div>
+                        <ul class="pd-bullets"><li>Keeps the useful spam signals: link domains, money amounts and short codes.</li><li>Over-masks on purpose: a wrong &lt;ACCOUNT&gt; costs a little signal, a leaked number costs someone&#39;s privacy.</li><li>Covered by unit tests.</li></ul>
+                        <p class="pd-flow"><span class="visually-hidden">Flow: </span><code>mask_email &gt;&gt; mask_numbers &gt;&gt; mask_names &gt;&gt; mask_url &gt;&gt; flag_residual</code></p>
+                    </div>
+                </div><span class="pipe-link" aria-hidden="true"><svg viewBox="0 0 40 14" preserveAspectRatio="none"><path class="pl-line" d="M1 7H33"/><path class="pl-head" d="M31 2.5 37.5 7 31 11.5"/></svg></span>
+                <div class="pipe-stage">
+                    <button type="button" class="pipe-node pipe-node--in-progress" id="spam-filter-st-label-btn" aria-controls="spam-filter-st-label" aria-pressed="false" data-i="3">
+                        <span class="pn-num">04</span>
+                        <span class="pn-label">Hand-label</span>
+                        <span class="pn-tech">Streamlit</span>
+                        <span class="pn-status">Ongoing</span>
+                    </button>
+                    <div class="pipe-detail" id="spam-filter-st-label" role="region" aria-labelledby="spam-filter-st-label-h">
+                        <div class="pd-head">
+                            <span class="pd-num">Stage 04 of 07</span>
+                            <h4 id="spam-filter-st-label-h">Hand-label</h4>
+                            <span class="pd-status pd-status--in-progress">Ongoing</span>
+                        </div>
+                        <div class="pd-io">
+                            <div class="pd-card pd-card--in"><span class="pd-k">Input</span><p>Spam rows that have no type yet</p></div>
+                            <span class="pd-arrow" aria-hidden="true"></span>
+                            <div class="pd-card pd-card--op"><span class="pd-k">Operation</span><p>Give each one a type in a Streamlit tool, following a written labelling guide</p></div>
+                            <span class="pd-arrow" aria-hidden="true"></span>
+                            <div class="pd-card pd-card--out"><span class="pd-k">Output</span><p>300 messages so far: 283 labelled, 17 skipped as unclear</p></div>
+                        </div>
+                        <ul class="pd-bullets"><li>The guide asks five questions in a fixed order and stops at the first &quot;yes&quot;. Rules settle tricky cases: a prize with a link is phishing, without a link it is a scam.</li><li>Review mode and whole-word label suggestions make it faster.</li><li>So far: 130 scam, 107 promo, 27 phishing, 14 gambling and 5 that turned out to be normal.</li></ul>
+                        <p class="pd-flow"><span class="visually-hidden">Flow: </span><code>sample_untyped &gt;&gt; label_tool &gt;&gt; hand_labels.csv</code></p>
+                    </div>
+                </div><span class="pipe-link pipe-link--planned" aria-hidden="true"><svg viewBox="0 0 40 14" preserveAspectRatio="none"><path class="pl-line" d="M1 7H33"/><path class="pl-head" d="M31 2.5 37.5 7 31 11.5"/></svg></span>
+                <div class="pipe-stage">
+                    <button type="button" class="pipe-node pipe-node--planned" id="spam-filter-st-clean-btn" aria-controls="spam-filter-st-clean" aria-pressed="false" data-i="4">
+                        <span class="pn-num">05</span>
+                        <span class="pn-label">Clean &amp; dedupe</span>
+                        <span class="pn-tech">lingua · datasketch</span>
+                        <span class="pn-status">Planned</span>
+                    </button>
+                    <div class="pipe-detail" id="spam-filter-st-clean" role="region" aria-labelledby="spam-filter-st-clean-h">
+                        <div class="pd-head">
+                            <span class="pd-num">Stage 05 of 07</span>
+                            <h4 id="spam-filter-st-clean-h">Clean &amp; dedupe</h4>
+                            <span class="pd-status pd-status--planned">Planned</span>
+                        </div>
+                        <div class="pd-io">
+                            <div class="pd-card pd-card--in"><span class="pd-k">Input</span><p>The unified table</p></div>
+                            <span class="pd-arrow" aria-hidden="true"></span>
+                            <div class="pd-card pd-card--op"><span class="pd-k">Operation</span><p>Check each message&#39;s language and drop near-duplicate messages</p></div>
+                            <span class="pd-arrow" aria-hidden="true"></span>
+                            <div class="pd-card pd-card--out"><span class="pd-k">Output</span><p><span class="pd-unknown">Not known yet</span></p></div>
+                        </div>
+                        <ul class="pd-bullets"><li>Planned. The language-detection and near-duplicate libraries are already in the project, but the step is not written yet.</li><li>Matters because many datasets repeat the same spam templates.</li></ul>
+                        <p class="pd-flow"><span class="visually-hidden">Flow: </span><code>detect_language &gt;&gt; minhash_dedupe &gt;&gt; clean_table</code></p>
+                    </div>
+                </div><span class="pipe-link pipe-link--planned" aria-hidden="true"><svg viewBox="0 0 40 14" preserveAspectRatio="none"><path class="pl-line" d="M1 7H33"/><path class="pl-head" d="M31 2.5 37.5 7 31 11.5"/></svg></span>
+                <div class="pipe-stage">
+                    <button type="button" class="pipe-node pipe-node--planned" id="spam-filter-st-train-btn" aria-controls="spam-filter-st-train" aria-pressed="false" data-i="5">
+                        <span class="pn-num">06</span>
+                        <span class="pn-label">Train &amp; compare</span>
+                        <span class="pn-tech">scikit-learn · LightGBM · Transformers</span>
+                        <span class="pn-status">Planned</span>
+                    </button>
+                    <div class="pipe-detail" id="spam-filter-st-train" role="region" aria-labelledby="spam-filter-st-train-h">
+                        <div class="pd-head">
+                            <span class="pd-num">Stage 06 of 07</span>
+                            <h4 id="spam-filter-st-train-h">Train &amp; compare</h4>
+                            <span class="pd-status pd-status--planned">Planned</span>
+                        </div>
+                        <div class="pd-io">
+                            <div class="pd-card pd-card--in"><span class="pd-k">Input</span><p>Train / validation / test splits by message id</p></div>
+                            <span class="pd-arrow" aria-hidden="true"></span>
+                            <div class="pd-card pd-card--op"><span class="pd-k">Operation</span><p>Stage A: normal vs unwanted. Stage B: promo, scam, phishing or gambling. Four models on the same splits</p></div>
+                            <span class="pd-arrow" aria-hidden="true"></span>
+                            <div class="pd-card pd-card--out"><span class="pd-k">Output</span><p>Scores per language and channel, each next to a baseline</p></div>
+                        </div>
+                        <ul class="pd-bullets"><li>TF-IDF + Naive Bayes, the simplest model, as the baseline.</li><li>Logistic Regression and LightGBM on word and character n-grams plus message metadata, and a fine-tuned multilingual transformer.</li><li>Also tested on the fresh SmishTank spam and the translated slice, which are never trained on.</li></ul>
+                        <p class="pd-flow"><span class="visually-hidden">Flow: </span><code>make_splits &gt;&gt; tfidf &gt;&gt; fit(nb, logreg, lgbm, transformer) &gt;&gt; compare</code></p>
+                    </div>
+                </div><span class="pipe-link pipe-link--planned" aria-hidden="true"><svg viewBox="0 0 40 14" preserveAspectRatio="none"><path class="pl-line" d="M1 7H33"/><path class="pl-head" d="M31 2.5 37.5 7 31 11.5"/></svg></span>
+                <div class="pipe-stage">
+                    <button type="button" class="pipe-node pipe-node--planned" id="spam-filter-st-explain-btn" aria-controls="spam-filter-st-explain" aria-pressed="false" data-i="6">
+                        <span class="pn-num">07</span>
+                        <span class="pn-label">Explain &amp; demo</span>
+                        <span class="pn-tech">SHAP · LIME · Streamlit</span>
+                        <span class="pn-status">Planned</span>
+                    </button>
+                    <div class="pipe-detail" id="spam-filter-st-explain" role="region" aria-labelledby="spam-filter-st-explain-h">
+                        <div class="pd-head">
+                            <span class="pd-num">Stage 07 of 07</span>
+                            <h4 id="spam-filter-st-explain-h">Explain &amp; demo</h4>
+                            <span class="pd-status pd-status--planned">Planned</span>
+                        </div>
+                        <div class="pd-io">
+                            <div class="pd-card pd-card--in"><span class="pd-k">Input</span><p>A trained model and a new message</p></div>
+                            <span class="pd-arrow" aria-hidden="true"></span>
+                            <div class="pd-card pd-card--op"><span class="pd-k">Operation</span><p>Show which words pushed the decision and give a harm risk score</p></div>
+                            <span class="pd-arrow" aria-hidden="true"></span>
+                            <div class="pd-card pd-card--out"><span class="pd-k">Output</span><p>A Streamlit demo: paste a message, see its type, risk and why</p></div>
+                        </div>
+                        <ul class="pd-bullets"><li>Scam, phishing and gambling count as harmful; promo is annoying, not dangerous.</li><li>The filter&#39;s strictness will be adjustable.</li></ul>
+                        <p class="pd-flow"><span class="visually-hidden">Flow: </span><code>predict &gt;&gt; explain(shap, lime) &gt;&gt; risk_score &gt;&gt; streamlit</code></p>
+                    </div>
+                </div>
+                </div>
+            </div>
+            <p class="visually-hidden pipe-live" aria-live="polite"></p>
+        </section>
+        <section class="dd-block" aria-labelledby="spam-filter-res-h">
+            <h2 id="spam-filter-res-h">Results <em>so far</em></h2>
+            <p class="dd-note">No model is trained yet, so there are no accuracy numbers. They will appear here next to a baseline.</p>
+            <ul class="dd-stats"><li class="bezel"><div class="core">
+                    <span class="metric-value">138,798</span>
+                    <span class="metric-label">messages in one table</span>
+                    
+                    <span class="dd-plain">About 139 thousand messages to learn from.</span>
+                    <span class="metric-context">11 datasets; 134,900 of them may be used for training</span>
+                    <span class="dd-source">Source: <code>reports/metrics/dataset_counts.csv</code></span>
+                </div></li>
+<li class="bezel"><div class="core">
+                    <span class="metric-value">23,362</span>
+                    <span class="metric-label">Indonesian messages</span>
+                    
+                    <span class="dd-plain">About 1 in 6 messages is Indonesian; the other 115,436 are English.</span>
+                    <span class="metric-context">Language as declared by each source</span>
+                    <span class="dd-source">Source: <code>reports/metrics/dataset_counts.csv</code></span>
+                </div></li>
+<li class="bezel"><div class="core">
+                    <span class="metric-value">1,062</span>
+                    <span class="metric-label">fresh spam messages held out</span>
+                    
+                    <span class="dd-plain">Newer spam the models never see in training, to check they still work on new scams.</span>
+                    <span class="metric-context">SmishTank, used only as a test set</span>
+                    <span class="dd-source">Source: <code>reports/metrics/dataset_counts.csv</code></span>
+                </div></li>
+<li class="bezel"><div class="core">
+                    <span class="metric-value">300</span>
+                    <span class="metric-label">messages labelled by hand</span>
+                    
+                    <span class="dd-plain">283 got a type; 17 were too unclear and skipped.</span>
+                    <span class="metric-context">Untyped spam, labelled with the written guide</span>
+                    <span class="dd-source">Source: <code>data/hand_labels.csv</code></span>
+                </div></li></ul>
+            <figure class="dd-chart bezel"><div class="core">
+                <figcaption><span class="dt-title">What the messages are labelled as</span><span class="dt-source">Source: <code>reports/metrics/dataset_counts.csv</code></span></figcaption>
+                <ul class="bars">
+                    <li class="bar"><span class="bar-label">Normal (ham)</span><span class="bar-track" aria-hidden="true"><span class="bar-fill" style="--w: 100.0%"></span></span><span class="bar-value">76,717</span></li>
+                    <li class="bar"><span class="bar-label">Spam, type unknown</span><span class="bar-track" aria-hidden="true"><span class="bar-fill" style="--w: 61.9%"></span></span><span class="bar-value">47,477</span></li>
+                    <li class="bar"><span class="bar-label">Gambling</span><span class="bar-track" aria-hidden="true"><span class="bar-fill" style="--w: 8.4%"></span></span><span class="bar-value">6,406</span></li>
+                    <li class="bar"><span class="bar-label">Scam</span><span class="bar-track" aria-hidden="true"><span class="bar-fill" style="--w: 5.0%"></span></span><span class="bar-value">3,836</span></li>
+                    <li class="bar"><span class="bar-label">Phishing</span><span class="bar-track" aria-hidden="true"><span class="bar-fill" style="--w: 3.6%"></span></span><span class="bar-value">2,741</span></li>
+                    <li class="bar"><span class="bar-label">Promo</span><span class="bar-track" aria-hidden="true"><span class="bar-fill" style="--w: 2.1%"></span></span><span class="bar-value">1,621</span></li>
+                </ul>
+                <p class="dd-plain">Over half the messages are normal. The typed spam groups are small, which the type classifier will have to cope with.</p>
+            </div></figure>
+            
+        </section>
+        
+        <div class="dd-grid">
+            <section class="dd-block" aria-labelledby="spam-filter-learn-h"><h2 id="spam-filter-learn-h">What I <em>learned</em></h2><ul class="cs-list"><li>Public datasets label spam very differently. Mapping them all onto one shared label set, and keeping &quot;untyped&quot; spam out of the type classifier, mattered more than any model choice so far.</li><li>Scam vs phishing vs promo is a judgement call. A written decision order with rules for tricky cases made my hand labels consistent.</li><li>Privacy comes before the data: messages from real phones are masked before they are stored, and the rules over-mask on purpose.</li></ul></section>
+            <section class="dd-block" aria-labelledby="spam-filter-next-h"><h2 id="spam-filter-next-h">What's <em>next</em></h2><ul class="cs-list"><li>Clean and de-duplicate the table, then make the train / validation / test splits.</li><li>Train the four models and compare them against the Naive Bayes baseline.</li><li>Collect my own Indonesian messages as a second &quot;spam from after training&quot; test set.</li><li>Add an illegal online-loan (&quot;pinjol&quot;) label once there are 150 examples.</li><li>Publish the Streamlit demo.</li></ul></section>
+        </div>
+        
+    </article>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-row">
+            <div class="footer-links">
+                <a href="../index.html#contact">Contact</a>
+                <a href="https://github.com/AudiJRahardja" target="_blank" rel="noopener noreferrer">GitHub</a>
+                <a href="https://www.linkedin.com/in/audijoelrahardja/" target="_blank" rel="noopener noreferrer">LinkedIn</a>            </div>
+            <div class="pixel-controls" data-pixel-controls hidden></div>
+            <p>&copy; 2026 Audi Joel Rahardja</p>
+        </div>
+    </footer>
+    <script src="../pixel.js?v=mwz8ss0u" defer></script>
+    <script src="../script.js?v=mwz8ss0u" defer></script>
+    <script src="../deepdive.js?v=mwz8ss0u" defer></script>
+</body>
+</html>
