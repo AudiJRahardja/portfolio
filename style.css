@@ -1102,6 +1102,16 @@ article > .cs-block { margin-bottom: 4rem; }
 .fd-machine { transform-origin: bottom center; }
 .fd-machine:hover .px-svg { filter: brightness(1.08); }
 .fd-machine.shake { animation: fd-shake 0.35s steps(4); }
+.fd-machine:not(.used):not(:hover):not(:focus-visible) { animation: fd-nudge 5s ease-in-out 1.5s infinite; }
+/* a little "press me" wobble every few seconds until the machine is first used */
+@keyframes fd-nudge {
+    0%, 14%, 100% { transform: none; }
+    2% { transform: rotate(-5deg); }
+    4% { transform: translateY(-3px) rotate(4deg); }
+    6% { transform: rotate(-3deg); }
+    8% { transform: translateY(-1px) rotate(2deg); }
+    10% { transform: rotate(-1deg); }
+}
 @keyframes fd-shake { 25% { transform: rotate(-4deg); } 50% { transform: translateY(-3px) rotate(3deg); } 75% { transform: rotate(-2deg); } }
 .fd-face { display: none; }
 .fd-mochi[data-mood="idle"] .fd-face--idle,
@@ -1178,7 +1188,7 @@ article > .cs-block { margin-bottom: 4rem; }
 @media (prefers-reduced-motion: reduce) {
     .cf-flame { animation: none; }
     .cf-flame:first-child { opacity: 1; }
-    .cf-glow, .fd-tower::after, .fd-mochi .fd-face--idle { animation: none !important; }
+    .cf-glow, .fd-tower::after, .fd-mochi .fd-face--idle, .fd-machine:not(.shake) { animation: none !important; }
 }
 .no-pixels .feeder, .no-pixels .campfire { display: none; }
 

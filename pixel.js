@@ -661,6 +661,7 @@
         machine.addEventListener('click', () => {
             if (busy) return;
             busy = true;
+            machine.classList.add('used');
             machine.classList.remove('shake'); void machine.offsetWidth; machine.classList.add('shake');
             const m = machine.getBoundingClientRect();
             const c = mochi.getBoundingClientRect();
