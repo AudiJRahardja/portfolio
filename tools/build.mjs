@@ -83,13 +83,39 @@ async function visual(p, prefix, { sizes = '(max-width: 768px) 100vw, 560px', ea
   return `<span class="cover" aria-hidden="true">${esc(p.cover || p.title.split(' ')[0])}</span>`;
 }
 
+// Results table shown in place of a picture (real HTML table: readable, themeable, accessible)
+function dataTable(t, { compact = false } = {}) {
+  const hiCol = t.highlightCol ?? -1;
+  const hiRow = t.highlight ?? -1;
+  const cell = (v, i, tag) => `<${tag}${i === hiCol ? ' class="hi"' : ''}${tag === 'th' && i === 0 ? ' scope="row"' : ''}>${esc(v)}</${tag}>`;
+  return `<figure class="data-table${compact ? ' data-table--compact' : ''}">
+    <figcaption><span class="dt-title">${esc(t.title)}</span><span class="dt-source">Source: ${esc(t.source)}</span></figcaption>
+    <div class="dt-scroll" tabindex="0" role="region" aria-label="${esc(t.title)}">
+        <table>
+            <thead><tr>${t.head.map((h) => `<th scope="col">${esc(h)}</th>`).join('')}</tr></thead>
+            <tbody>
+${t.rows.map((r, ri) => `                <tr${ri === hiRow ? ' class="hi"' : ''}>${r.map((v, i) => cell(v, i, i === 0 ? 'th' : 'td')).join('')}</tr>`).join('\n')}
+            </tbody>
+        </table>
+    </div>
+</figure>`;
+}
+
+async function cardVisual(p) {
+  const t = (p.tables || []).find((x) => !x.detailOnly);
+  if (!(p.image && (await exists(p.image))) && t) {
+    return `<div class="feat-visual feat-visual--data">${dataTable(t, { compact: true })}</div>`;
+  }
+  return `<a class="feat-visual" href="projects/${p.slug}.html" tabindex="-1" aria-hidden="true">${await visual(p, '')}</a>`;
+}
+
 // ---------- index regions ----------
 async function featuredHTML() {
   const cards = [];
   for (const p of projects.filter((x) => x.featured)) {
     cards.push(`<article class="feat-card bezel reveal" data-tags="${p.tags.join(' ')}">
     <div class="core">
-        <a class="feat-visual" href="projects/${p.slug}.html" tabindex="-1" aria-hidden="true">${await visual(p, '')}</a>
+        ${await cardVisual(p)}
         <div class="feat-body">
             ${badges(p)}
             <h3><a href="projects/${p.slug}.html">${esc(p.title)}</a></h3>
@@ -195,7 +221,11 @@ ${p.results
                 ${linkRow(p, '../', { details: false })}
             </header>
 
-            <figure class="cs-visual bezel"><div class="core">${await visual(p, '../', { sizes: '(max-width: 1180px) 100vw, 1100px', eager: true })}</div></figure>
+            ${
+              !(p.image && (await exists(p.image))) && (p.tables || []).length
+                ? `<section class="cs-tables" aria-label="Results tables">${p.tables.map((t) => `<div class="bezel"><div class="core">${dataTable(t)}</div></div>`).join('\n')}</section>`
+                : `<figure class="cs-visual bezel"><div class="core">${await visual(p, '../', { sizes: '(max-width: 1180px) 100vw, 1100px', eager: true })}</div></figure>`
+            }
 
             <div class="cs-grid">
                 <section class="cs-block" aria-labelledby="problem-h">

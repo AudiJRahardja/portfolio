@@ -116,7 +116,37 @@ export const projects = [
       code: 'https://github.com/AudiJRahardja/Company-Knowledge-Assistant-with-RAG',
     },
     image: null,
-    cover: 'RAG',
+    tables: [
+      {
+        title: 'First version vs now',
+        highlightCol: 2,
+        source: 'Project README · my own eval sets (86 internal, 82 external, 38 leak attacks)',
+        head: ['Metric', 'First version', 'Now'],
+        rows: [
+          ['Right docs found (2+ doc questions, customer bot)', '33%', '100%'],
+          ['Follow-up questions: right doc found', '67%', '100%'],
+          ['Key facts in answer (internal / external)', '97% / 100%', '100% / 100%'],
+          ['Answers using an outdated policy', '1–3%', '0%'],
+          ['Tool questions handled correctly', '–', '100%'],
+          ['Leak rate (38 attacks)', '0%', '0%'],
+        ],
+      },
+      {
+        title: 'Retrieval ablation: what each change added',
+        source: 'Project README · same eval sets',
+        detailOnly: true,
+        head: ['Step', 'Internal: all docs found', 'Internal MRR', 'External: all docs found', 'External MRR'],
+        rows: [
+          ['Baseline: vector search, fixed 220-word chunks', '97%', '0.93', '87%', '0.93'],
+          ['A. One chunk per section', '95%', '0.97', '95%', '1.00'],
+          ['B. Keep one language copy of each section', '97%', '0.97', '97%', '1.00'],
+          ['C. Add BM25 keyword search, fuse rankings', '95%', '0.95', '97%', '0.96'],
+          ['D. Add a reranker', '95%', '0.97', '98%', '0.98'],
+          ['E. Rewrite follow-up questions', '98%', '1.00', '98%', '0.98'],
+          ['F. Search each part of two-part questions', '100%', '1.00', '100%', '0.98'],
+        ],
+      },
+    ],
   },
   {
     slug: 'medsnap',
@@ -181,7 +211,20 @@ export const projects = [
       code: 'https://github.com/kellys-codes/NLP-Project',
     },
     image: null,
-    cover: 'NLP',
+    tables: [
+      {
+        title: 'Model comparison',
+        source: 'Final project report · test set from 40,432 balanced reviews · Phi-4-mini on a 100-sample zero-shot test',
+        head: ['Model', 'F1', 'ROC-AUC', 'Accuracy'],
+        highlight: 2,
+        rows: [
+          ['TF-IDF + Logistic Regression', '84.61%', '92.37%', '84.68%'],
+          ['PosAtt-BiLSTM', '89.25%', '95.87%', '88.82%'],
+          ['DistilBERT', '97.67%', '99.84%', '97.64%'],
+          ['Phi-4-mini (zero-shot)', '51.35%', '—', '64%'],
+        ],
+      },
+    ],
   },
   {
     slug: 'grand-treasure-raid',

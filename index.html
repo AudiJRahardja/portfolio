@@ -23,7 +23,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..600&family=Geist:wght@400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=mwyv04sn">
+    <link rel="stylesheet" href="style.css?v=mwyv3v7p">
 </head>
 <body>
     <a class="skip-link" href="#main">Skip to content</a>
@@ -202,7 +202,22 @@
                 </article>
                 <article class="feat-card bezel reveal" data-tags="nlp ai web">
                     <div class="core">
-                        <a class="feat-visual" href="projects/brightnest-rag.html" tabindex="-1" aria-hidden="true"><span class="cover" aria-hidden="true">RAG</span></a>
+                        <div class="feat-visual feat-visual--data"><figure class="data-table data-table--compact">
+                    <figcaption><span class="dt-title">First version vs now</span><span class="dt-source">Source: Project README · my own eval sets (86 internal, 82 external, 38 leak attacks)</span></figcaption>
+                    <div class="dt-scroll" tabindex="0" role="region" aria-label="First version vs now">
+                        <table>
+                            <thead><tr><th scope="col">Metric</th><th scope="col">First version</th><th scope="col">Now</th></tr></thead>
+                            <tbody>
+                                <tr><th scope="row">Right docs found (2+ doc questions, customer bot)</th><td>33%</td><td class="hi">100%</td></tr>
+                                <tr><th scope="row">Follow-up questions: right doc found</th><td>67%</td><td class="hi">100%</td></tr>
+                                <tr><th scope="row">Key facts in answer (internal / external)</th><td>97% / 100%</td><td class="hi">100% / 100%</td></tr>
+                                <tr><th scope="row">Answers using an outdated policy</th><td>1–3%</td><td class="hi">0%</td></tr>
+                                <tr><th scope="row">Tool questions handled correctly</th><td>–</td><td class="hi">100%</td></tr>
+                                <tr><th scope="row">Leak rate (38 attacks)</th><td>0%</td><td class="hi">0%</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </figure></div>
                         <div class="feat-body">
                             <div class="badges"><span class="badge">Personal project</span><span class="badge">Solo</span></div>
                             <h3><a href="projects/brightnest-rag.html">Brightnest Knowledge Assistants</a></h3>
@@ -228,7 +243,20 @@
                 </article>
                 <article class="feat-card bezel reveal" data-tags="nlp ai research">
                     <div class="core">
-                        <a class="feat-visual" href="projects/fake-review-detection.html" tabindex="-1" aria-hidden="true"><span class="cover" aria-hidden="true">NLP</span></a>
+                        <div class="feat-visual feat-visual--data"><figure class="data-table data-table--compact">
+                    <figcaption><span class="dt-title">Model comparison</span><span class="dt-source">Source: Final project report · test set from 40,432 balanced reviews · Phi-4-mini on a 100-sample zero-shot test</span></figcaption>
+                    <div class="dt-scroll" tabindex="0" role="region" aria-label="Model comparison">
+                        <table>
+                            <thead><tr><th scope="col">Model</th><th scope="col">F1</th><th scope="col">ROC-AUC</th><th scope="col">Accuracy</th></tr></thead>
+                            <tbody>
+                                <tr><th scope="row">TF-IDF + Logistic Regression</th><td>84.61%</td><td>92.37%</td><td>84.68%</td></tr>
+                                <tr><th scope="row">PosAtt-BiLSTM</th><td>89.25%</td><td>95.87%</td><td>88.82%</td></tr>
+                                <tr class="hi"><th scope="row">DistilBERT</th><td>97.67%</td><td>99.84%</td><td>97.64%</td></tr>
+                                <tr><th scope="row">Phi-4-mini (zero-shot)</th><td>51.35%</td><td>—</td><td>64%</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </figure></div>
                         <div class="feat-body">
                             <div class="badges"><span class="badge">Course project · NLP</span><span class="badge">Group of 3</span></div>
                             <h3><a href="projects/fake-review-detection.html">Fake Review Detection</a></h3>
@@ -545,6 +573,6 @@
         </div>
     </footer>
 
-    <script defer src="script.js?v=mwyv04sn"></script>
+    <script defer src="script.js?v=mwyv3v7p"></script>
 </body>
 </html>
