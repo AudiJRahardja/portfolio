@@ -113,16 +113,7 @@ body {
     -webkit-font-smoothing: antialiased;
 }
 
-/* Paper grain: fixed, never scrolls */
-body::after {
-    content: "";
-    position: fixed;
-    inset: 0;
-    z-index: var(--z-grain);
-    pointer-events: none;
-    opacity: var(--grain);
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-}
+
 
 h1, h2, h3, .footer-name {
     font-family: var(--font-display);
@@ -267,13 +258,11 @@ svg path { vector-effect: non-scaling-stroke; }
 .js .reveal {
     opacity: 0;
     transform: translateY(3rem);
-    filter: blur(8px);
     transition:
         opacity 0.9s var(--ease) var(--d, 0ms),
-        transform 0.9s var(--ease) var(--d, 0ms),
-        filter 0.9s var(--ease) var(--d, 0ms);
+        transform 0.9s var(--ease) var(--d, 0ms);
 }
-.js .reveal.visible { opacity: 1; transform: none; filter: none; }
+.js .reveal.visible { opacity: 1; transform: none; }
 
 /* --- Floating Island Nav --- */
 .nav-wrap {
@@ -293,9 +282,7 @@ svg path { vector-effect: non-scaling-stroke; }
     gap: 0.5rem;
     padding: 0.4rem;
     border-radius: 999px;
-    background: var(--glass);
-    backdrop-filter: blur(18px) saturate(1.4);
-    -webkit-backdrop-filter: blur(18px) saturate(1.4);
+    background: color-mix(in srgb, var(--surface) 92%, transparent);
     box-shadow: 0 0 0 1px var(--hair), 0 16px 40px -20px rgba(42, 27, 77, 0.25);
 }
 .nav-mark {
@@ -350,8 +337,6 @@ svg path { vector-effect: non-scaling-stroke; }
     align-items: center;
     padding: 0 1.5rem;
     background: var(--overlay);
-    backdrop-filter: blur(40px);
-    -webkit-backdrop-filter: blur(40px);
     opacity: 0;
     visibility: hidden;
     transition: opacity 0.6s var(--ease), visibility 0s linear 0.6s;
@@ -938,12 +923,10 @@ article > .cs-block { margin-bottom: 4rem; }
     width: 62vmax; height: 62vmax;
     border-radius: 50%;
     background: radial-gradient(closest-side, var(--blob-1), transparent);
-    animation: drift 38s ease-in-out infinite alternate;
-    will-change: transform;
 }
 .blob--1 { top: -24vmax; left: -18vmax; }
-.blob--2 { top: 28vh; right: -26vmax; background: radial-gradient(closest-side, var(--blob-2), transparent); animation-duration: 47s; animation-delay: -14s; }
-.blob--3 { bottom: -32vmax; left: 18vw; background: radial-gradient(closest-side, var(--blob-3), transparent); animation-duration: 55s; animation-delay: -27s; }
+.blob--2 { top: 28vh; right: -26vmax; background: radial-gradient(closest-side, var(--blob-2), transparent); }
+.blob--3 { bottom: -32vmax; left: 18vw; background: radial-gradient(closest-side, var(--blob-3), transparent); }
 @keyframes drift {
     0%   { transform: translate(0, 0) scale(1) rotate(0deg); }
     50%  { transform: translate(8vw, 6vh) scale(1.12) rotate(25deg); }
@@ -1249,7 +1232,7 @@ h2 em.rotator { color: var(--accent); }
     box-shadow: 0 0 120px 60px rgba(255, 224, 160, 0.28);
     animation: sun-breathe 9s ease-in-out infinite;
 }
-@keyframes sun-breathe { 50% { transform: scale(1.06); box-shadow: 0 0 150px 75px rgba(255, 224, 160, 0.34); } }
+@keyframes sun-breathe { 50% { transform: scale(1.06); } }
 .moon {
     top: 9vh; right: 11vw;
     width: 70px; height: 70px;
@@ -1336,7 +1319,7 @@ body:has(.sky-toggle:hover) .moon { transform: rotate(-25deg) scale(1.12); }
 .bird .bd { position: absolute; inset: 0; line-height: 0; }
 .bird .bd-a { animation: frame-a 0.32s steps(1) infinite; }
 .bird .bd-b { animation: frame-b 0.32s steps(1) infinite; }
-@keyframes bird-bob { 50% { margin-top: 6px; } }
+@keyframes bird-bob { 50% { translate: 0 6px; } }
 
 /* ---------- Bottom-left camp ---------- */
 .contact-left { display: grid; gap: 1.5rem; align-content: start; }
@@ -1446,7 +1429,7 @@ body:has(.sky-toggle:hover) .moon { transform: rotate(-25deg) scale(1.12); }
 @keyframes pd-in { from { opacity: 0; transform: translateY(6px); } }
 .pd-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.35rem 0.9rem; margin-bottom: 1rem; }
 .pd-num { font-family: 'Silkscreen', monospace; font-size: 0.72rem; color: var(--accent); }
-.pd-head h4 { margin: 0; font-family: var(--font-display); font-size: 1.4rem; font-weight: 500; letter-spacing: -0.01em; }
+.pd-head h3 { margin: 0; font-family: var(--font-display); font-size: 1.4rem; font-weight: 500; letter-spacing: -0.01em; }
 .pd-status { margin-left: auto; padding: 0.1rem 0.6rem; border-radius: 999px; font-size: 0.72rem; font-weight: 600; }
 .pd-status--done { background: var(--live-bg); color: var(--live-fg); }
 .pd-status--in-progress { background: var(--wip-bg); color: var(--wip-fg); }
@@ -1592,7 +1575,7 @@ html:has(.dd-dialog[open]) { overflow: hidden; }
     overflow: hidden;
 }
 .dd-dialog[open] { animation: dd-in 0.26s var(--ease); }
-.dd-dialog::backdrop { background: rgba(12, 10, 29, 0.55); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); animation: dd-fade 0.26s ease; }
+.dd-dialog::backdrop { background: rgba(12, 10, 29, 0.72); animation: dd-fade 0.26s ease; }
 @keyframes dd-in { from { opacity: 0; transform: translateY(18px) scale(0.985); } }
 @keyframes dd-fade { from { opacity: 0; } }
 .dd-frame { max-height: calc(100dvh - 2rem); overflow-y: auto; overscroll-behavior: contain; }
@@ -1625,3 +1608,40 @@ html:has(.dd-dialog[open]) { overflow: hidden; }
 }
 
 .dd-tables { margin: 1.25rem 0 0; }
+
+/* Night sky motion: tiny compositor-only animations (the star field itself is a still canvas) */
+.twinkles, .meteor { display: none; }
+.is-night .twinkles { display: block; position: absolute; inset: 0; }
+.twinkles i {
+    position: absolute;
+    width: var(--s); height: var(--s);
+    border-radius: 50%;
+    background: #fff;
+    box-shadow: 0 0 4px 1px rgba(255, 255, 255, 0.45);
+    opacity: 0.15;
+    animation: twinkle var(--t) ease-in-out var(--d) infinite alternate;
+}
+@keyframes twinkle { to { opacity: 0.95; } }
+.is-night .meteor {
+    display: block;
+    position: absolute;
+    width: 140px; height: 2px;
+    margin-left: -140px;
+    border-radius: 2px;
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0), #fff);
+    transform-origin: 100% 50%;
+    opacity: 0;
+    pointer-events: none;
+}
+.is-night .meteor.go { animation: meteor 1.2s ease-in-out forwards; }
+@keyframes meteor {
+    0% { opacity: 0; transform: translate(0, 0) rotate(var(--a)); }
+    25%, 70% { opacity: 1; }
+    100% { opacity: 0; transform: translate(var(--dx), var(--dy)) rotate(var(--a)); }
+}
+@media (prefers-reduced-motion: reduce) { .twinkles i { animation: none; opacity: 0.7; } .meteor { display: none !important; } }
+
+/* JS paints the whole wallpaper into the one canvas (see script.js section 7), so the CSS layers go */
+.sky-painted .blob, .sky-painted .wallpaper::before, .sky-painted .wallpaper::after { display: none; }
+.sky-painted .wallpaper { transition: none; }
+.sky-painted .stars { z-index: -1; opacity: 1; transition: none; }

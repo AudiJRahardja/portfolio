@@ -458,7 +458,12 @@
         }
     };
     // move the button, mirror only the sprite (so the speech bubble text never flips)
-    const place = () => { cat.style.transform = `translateX(${x}px)`; cat.style.setProperty('--dir', dir); };
+    let px = null, pdir = null; // only touch the style when something changed
+    const place = () => {
+        const rx = Math.round(x);
+        if (rx !== px) { cat.style.transform = `translateX(${rx}px)`; px = rx; }
+        if (dir !== pdir) { cat.style.setProperty('--dir', dir); pdir = dir; }
+    };
 
     const PET = ['mrrp!', 'purr…', 'meow :3', '*headbutt*', 'more pets pls'];
     cat.addEventListener('click', () => {

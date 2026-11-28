@@ -223,7 +223,7 @@ function pipelineHTML(p) {
     const detail = `<div class="pipe-detail" id="${sid(s)}" role="region" aria-labelledby="${sid(s)}-h">
                         <div class="pd-head">
                             <span class="pd-num">Stage ${num(i)} of ${num(st.length - 1)}</span>
-                            <h4 id="${sid(s)}-h">${esc(s.label)}</h4>
+                            <h3 id="${sid(s)}-h">${esc(s.label)}</h3>
                             <span class="pd-status pd-status--${status}">${STAGE_STATUS[status]}</span>
                         </div>
                         <div class="pd-io">

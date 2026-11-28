@@ -287,8 +287,6 @@ export const projects = [
     links: {
       paper: 'https://ieeexplore.ieee.org/document/11768607',
       code: 'https://github.com/AudiJRahardja/Evaluating-Models-against-Data-Degradation',
-      video: 'https://youtu.be/tEsLpkmgfrI',
-      trailer: 'https://youtu.be/0tRsNts6-vA',
     },
     image: 'images/projects/pdr-paper.webp',
     imageAlt: 'Line chart from the paper: F1, MCC and AUC-ROC of MLP, Random Forest, SVM and XGBoost as AWGN noise rises from 0 to 50%. XGBoost MCC falls the most.',
@@ -824,7 +822,7 @@ export const projects = [
       'Fine-tuned DistilBERT, plus zero-shot Phi-4-mini as an LLM reference point.',
       'Served the best model through a Flask web app.',
     ],
-    role: 'Overall planning and pipeline. Trained the Logistic Regression and DistilBERT models, and took part in the results analysis.',
+    role: 'Overall planning and pipeline. Trained the DistilBERT model, and took part in the results analysis.',
     results: [
       {
         value: '97.67%',
@@ -861,8 +859,6 @@ export const projects = [
     ],
     links: {
       code: 'https://github.com/kellys-codes/NLP-Project',
-      video: 'https://drive.google.com/drive/folders/19QWiUWpybigX3JNMT05trKlXvz2Js0bN',
-      slides: 'https://canva.link/isvl1iiptdchz2x12',
     },
     image: null,
     tables: [
@@ -1370,7 +1366,6 @@ export const projects = [
     links: {
       demo: 'https://linear-regression-lq-45-ml.vercel.app',
       code: 'https://github.com/AngeloBryan2705/LinearRegression_LQ45_ML',
-      video: 'https://drive.google.com/file/d/1QiKMN4aLyce8TtXNm6dBIiG7tjda9sOE/view?usp=sharing',
     },
     problem: 'Stock prices are noisy and change behaviour suddenly, and a single indicator such as a moving average or RSI is a weak signal on its own. The goal was not a perfect forecast, but a simple, transparent model whose weights can be read, served end to end as a web app for Indonesian LQ45 stocks.',
     pipeline: [
@@ -1507,7 +1502,6 @@ export const projects = [
     links: {
       demo: 'https://fruit-classifier-mu.vercel.app',
       code: 'https://github.com/nvalliant/Fruit-Classifier',
-      video: 'https://drive.google.com/file/d/1evsxpuwGlRBknmRCyO7dqr6xx_wWLeKm/view?usp=sharing',
     },
     problem: 'Fruit ripeness is still mostly checked by eye, which is slow, subjective and leads to food waste. Deep learning needs a lot of labelled data and computing power. We tested whether a classical, explainable computer-vision pipeline is good enough to sort fruit into unripe, ripe and rotten.',
     pipeline: [
@@ -1803,7 +1797,7 @@ export const projects = [
     tags: ['design'],
     tech: ['UML', 'Use-case / class / activity / sequence diagrams', 'SDLC', 'GitHub workflow'],
     metric: null,
-    role: 'Made all the UML, activity and sequence diagrams, and co-wrote the architecture and user-flow documentation with a teammate.',
+    role: 'Made all the UML, activity and sequence diagrams, and co-wrote the architecture and user-flow documentation with a teammate (in the SRS document, submitted through BinusMaya).',
     links: {},
     problem: 'A library needs members to find and reserve books, see when a loan is late and pay the fine, while an admin keeps the catalogue and member list up to date. Our group had to design this system before building it. My part was turning those requirements into diagrams the build could follow.',
     pipeline: [

@@ -41,7 +41,7 @@
         btn.setAttribute('aria-label', dark ? 'Switch to light theme' : 'Switch to dark theme');
         sky.setAttribute('aria-label', dark ? 'Moon: switch to light theme' : 'Sun: switch to dark theme');
     };
-    const skyVisible = () => { sky.hidden = scrollY > 160; };
+    const skyVisible = () => { const h = scrollY > 160; if (sky.hidden !== h) sky.hidden = h; };
     addEventListener('scroll', skyVisible, { passive: true });
     skyVisible();
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -226,7 +226,11 @@ if (navToggle && menuOverlay) {
 
 
 
-// 7. Night sky: twinkling stars and the occasional shooting star (drawn only in dark mode)
+// 7. Wallpaper: the sky, its soft colour fields, the dot grid, the horizon glow and (at night) the
+//    stars are painted ONCE into a single opaque canvas and then left alone. Only a few tiny
+//    twinkling stars and the occasional shooting star move, as CSS animations. One still layer
+//    instead of six stacked full-screen ones keeps scrolling smooth, even without a GPU.
+//    (Without JS the CSS version of the wallpaper is shown instead.)
 (() => {
     const canvas = document.querySelector('.stars');
     if (!canvas) return;
@@ -234,118 +238,151 @@ if (navToggle && menuOverlay) {
     const media = matchMedia('(prefers-color-scheme: dark)');
     const calm = matchMedia('(prefers-reduced-motion: reduce)').matches;
     const isNight = () => (root.dataset.theme || (media.matches ? 'dark' : 'light')) === 'dark';
-    const ctx = canvas.getContext('2d');
-    let W = 0, H = 0, stars = [], shoot = null, nextShoot = 0, running = false, last = 0;
+    const ctx = canvas.getContext('2d', { alpha: false });
 
-    const make = () => {
-        const dpr = Math.min(window.devicePixelRatio || 1, 2);
-        W = innerWidth; H = innerHeight;
-        canvas.width = W * dpr; canvas.height = H * dpr;
-        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-        const n = Math.round((W * H) / 2600);
-        stars = Array.from({ length: n }, () => {
-            const big = Math.random() < 0.06;
-            const tintRoll = Math.random();
-            return {
-                x: Math.random() * W,
-                y: Math.random() * H,
-                r: big ? 1.1 + Math.random() * 0.9 : 0.35 + Math.random() * 0.75,
-                a: 0.35 + Math.random() * 0.6,
-                s: 0.4 + Math.random() * 1.6, // twinkle speed
-                p: Math.random() * Math.PI * 2, // twinkle phase
-                big,
-                tint: tintRoll < 0.12 ? '#dcd0ff' : tintRoll < 0.2 ? '#fff1d6' : '#ffffff',
-            };
-        });
+    // same colours as the CSS tokens in style.css
+    const THEMES = {
+        light: {
+            sky: [[0, '#bfe0fb'], [0.3, '#d8ebfb'], [0.6, '#eaf3fc'], [1, '#f5f9fd']],
+            blobs: ['rgba(255,255,255,0.75)', 'rgba(150,200,245,0.35)', 'rgba(185,165,240,0.22)'],
+            dot: [40, 70, 120, 0.10],
+            horizon: null,
+        },
+        dark: {
+            sky: [[0, '#060514'], [0.35, '#0b0a22'], [0.7, '#171036'], [1, '#26173f']],
+            blobs: ['rgba(124,84,224,0.26)', 'rgba(64,96,210,0.18)', 'rgba(190,90,200,0.12)'],
+            dot: [238, 233, 251, 0.06],
+            horizon: 'rgba(247,147,30,0.10)',
+        },
     };
+    const clear = (c) => c.replace(/[\d.]+\)$/, '0)');
 
-    const draw = (t, dt) => {
-        ctx.clearRect(0, 0, W, H);
-        for (const st of stars) {
-            const tw = calm ? 1 : 0.6 + 0.4 * Math.sin((t / 1000) * st.s + st.p);
-            const horizon = 1 - Math.max(0, st.y / H - 0.65) * 2; // fade towards the warm horizon
-            const alpha = Math.max(0, st.a * tw * horizon);
-            ctx.globalAlpha = alpha;
-            ctx.fillStyle = st.tint;
-            ctx.beginPath();
-            ctx.arc(st.x, st.y, st.r, 0, Math.PI * 2);
-            ctx.fill();
-            if (st.big) { // soft cross glint on the brightest stars
-                ctx.globalAlpha = alpha * 0.45;
-                ctx.fillRect(st.x - st.r * 3.2, st.y - 0.35, st.r * 6.4, 0.7);
-                ctx.fillRect(st.x - 0.35, st.y - st.r * 3.2, 0.7, st.r * 6.4);
+    const twinkles = document.createElement('div');
+    twinkles.className = 'twinkles';
+    const meteor = document.createElement('span');
+    meteor.className = 'meteor';
+    canvas.after(twinkles, meteor);
+    root.classList.add('sky-painted'); // CSS hides its own wallpaper layers from here on
+
+    let dW = 0, dH = 0, dTheme = ''; // what was last painted (URL-bar resizes on phones don't repaint)
+    const paint = (force = false) => {
+        const W = innerWidth, H = innerHeight, theme = isNight() ? 'dark' : 'light';
+        if (!force && theme === dTheme && W === dW && H <= dH + 120) return;
+        dW = W; dH = H; dTheme = theme;
+        const T = THEMES[theme];
+        const dpr = Math.min(window.devicePixelRatio || 1, 2);
+        canvas.width = Math.round(W * dpr); canvas.height = Math.round(H * dpr);
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        const vmax = Math.max(W, H) / 100;
+
+        // sky
+        const g = ctx.createLinearGradient(0, 0, 0, H);
+        T.sky.forEach(([o, c]) => g.addColorStop(o, c));
+        ctx.fillStyle = g;
+        ctx.fillRect(0, 0, W, H);
+
+        // soft colour fields (were three drifting blobs)
+        const R = 31 * vmax;
+        [[13 * vmax, 7 * vmax], [W - 5 * vmax, 0.28 * H + R], [0.18 * W + R, H + vmax]].forEach(([x, y], i) => {
+            const rg = ctx.createRadialGradient(x, y, 0, x, y, R);
+            rg.addColorStop(0, T.blobs[i]);
+            rg.addColorStop(1, clear(T.blobs[i]));
+            ctx.fillStyle = rg;
+            ctx.fillRect(x - R, y - R, R * 2, R * 2);
+        });
+
+        // dot grid, fading out away from the top centre
+        const [r, gg, b, a] = T.dot;
+        for (let y = 13; y < H; y += 26) {
+            for (let x = 13; x < W; x += 26) {
+                const d = Math.hypot((x - W / 2) / (1.2 * W), y / (0.8 * H));
+                const f = d <= 0.3 ? 1 : d >= 0.85 ? 0 : 1 - (d - 0.3) / 0.55;
+                if (f <= 0) continue;
+                ctx.fillStyle = `rgba(${r},${gg},${b},${(a * f).toFixed(3)})`;
+                ctx.fillRect(x - 1.2, y - 1.2, 2.4, 2.4);
             }
         }
-        if (!calm) {
-            if (!shoot && t > nextShoot) {
-                const fromLeft = Math.random() < 0.5;
-                shoot = {
-                    x: fromLeft ? Math.random() * W * 0.45 : W * 0.55 + Math.random() * W * 0.45,
-                    y: Math.random() * H * 0.35,
-                    vx: (fromLeft ? 1 : -1) * (0.75 + Math.random() * 0.35),
-                    vy: 0.3 + Math.random() * 0.2,
-                    life: 0,
-                    max: 900 + Math.random() * 500,
-                };
-            }
-            if (shoot) {
-                shoot.life += dt;
-                const k = shoot.life / shoot.max;
-                const hx = shoot.x + shoot.vx * shoot.life, hy = shoot.y + shoot.vy * shoot.life;
-                const len = 140, sp = Math.hypot(shoot.vx, shoot.vy);
-                const tx = hx - (shoot.vx / sp) * len, ty = hy - (shoot.vy / sp) * len;
-                const fade = Math.sin(Math.min(1, k) * Math.PI); // ease in and out
-                const g = ctx.createLinearGradient(tx, ty, hx, hy);
-                g.addColorStop(0, 'rgba(255,255,255,0)');
-                g.addColorStop(1, `rgba(255,255,255,${0.9 * fade})`);
-                ctx.globalAlpha = 1;
-                ctx.strokeStyle = g;
-                ctx.lineWidth = 1.6;
-                ctx.lineCap = 'round';
-                ctx.beginPath(); ctx.moveTo(tx, ty); ctx.lineTo(hx, hy); ctx.stroke();
-                ctx.fillStyle = `rgba(255,255,255,${fade})`;
-                ctx.beginPath(); ctx.arc(hx, hy, 1.4, 0, Math.PI * 2); ctx.fill();
-                if (k >= 1) { shoot = null; nextShoot = t + 8000 + Math.random() * 10000; }
+
+        // warm campfire glow on the horizon (night only)
+        if (T.horizon) {
+            ctx.save();
+            ctx.translate(W / 2, 1.2 * H);
+            ctx.scale(0.6 * W, 0.33 * H);
+            const hg = ctx.createRadialGradient(0, 0, 0, 0, 0, 1);
+            hg.addColorStop(0, T.horizon);
+            hg.addColorStop(0.7, clear(T.horizon));
+            ctx.fillStyle = hg;
+            ctx.fillRect(-1, -1, 2, 2);
+            ctx.restore();
+        }
+
+        if (theme !== 'dark') { twinkles.replaceChildren(); return; }
+
+        // stars
+        const n = Math.round((W * H) / 2600);
+        for (let i = 0; i < n; i++) {
+            const big = Math.random() < 0.06;
+            const x = Math.random() * W, y = Math.random() * H;
+            const rad = big ? 1.1 + Math.random() * 0.9 : 0.35 + Math.random() * 0.75;
+            const horizon = 1 - Math.max(0, y / H - 0.65) * 2; // fade towards the warm horizon
+            const alpha = Math.max(0, (0.3 + Math.random() * 0.55) * horizon);
+            const roll = Math.random();
+            ctx.globalAlpha = alpha;
+            ctx.fillStyle = roll < 0.12 ? '#dcd0ff' : roll < 0.2 ? '#fff1d6' : '#ffffff';
+            ctx.beginPath();
+            ctx.arc(x, y, rad, 0, Math.PI * 2);
+            ctx.fill();
+            if (big) { // soft cross glint on the brightest stars
+                ctx.globalAlpha = alpha * 0.45;
+                ctx.fillRect(x - rad * 3.2, y - 0.35, rad * 6.4, 0.7);
+                ctx.fillRect(x - 0.35, y - rad * 3.2, 0.7, rad * 6.4);
             }
         }
         ctx.globalAlpha = 1;
+
+        // a handful of stars that twinkle (tiny elements the browser animates cheaply)
+        if (calm) { twinkles.replaceChildren(); return; }
+        const count = Math.min(36, Math.round(n / 22));
+        twinkles.replaceChildren(...Array.from({ length: count }, () => {
+            const s = document.createElement('i');
+            s.style.cssText = `left:${(Math.random() * 100).toFixed(2)}%;top:${(Math.random() * 62).toFixed(2)}%;--s:${(1.5 + Math.random() * 1.6).toFixed(1)}px;--t:${(1.6 + Math.random() * 2.8).toFixed(2)}s;--d:${(-Math.random() * 4).toFixed(2)}s`;
+            return s;
+        }));
     };
 
-    const loop = (t) => {
-        if (!running) return;
-        const dt = Math.min(64, t - last);
-        if (dt >= 32) { // ~30 fps is plenty for a calm sky
-            last = t;
-            if (!document.hidden) draw(t, dt);
-        }
-        requestAnimationFrame(loop);
-    };
+    let meteorTimer;
+    const schedule = (ms) => { clearTimeout(meteorTimer); meteorTimer = setTimeout(shoot, ms ?? 8000 + Math.random() * 10000); };
+    function shoot() {
+        if (!isNight() || calm) return;
+        if (document.hidden) { schedule(); return; }
+        const fromLeft = Math.random() < 0.5;
+        const dx = (fromLeft ? 1 : -1) * (240 + Math.random() * 180);
+        const dy = 110 + Math.random() * 90;
+        meteor.style.left = `${fromLeft ? Math.random() * 45 : 55 + Math.random() * 40}vw`;
+        meteor.style.top = `${Math.random() * 32}vh`;
+        meteor.style.setProperty('--dx', `${dx}px`);
+        meteor.style.setProperty('--dy', `${dy}px`);
+        meteor.style.setProperty('--a', `${Math.atan2(dy, dx)}rad`);
+        meteor.classList.remove('go');
+        void meteor.offsetWidth; // restart the animation
+        meteor.classList.add('go');
+        schedule();
+    }
 
     const update = () => {
         const night = isNight();
         root.classList.toggle('is-night', night);
-        if (night && calm) { draw(0, 0); return; }
-        if (night && !running) {
-            running = true;
-            last = performance.now();
-            nextShoot = last + 3000 + Math.random() * 5000; // first one comes fairly soon
-            requestAnimationFrame(loop);
-        } else if (!night) {
-            running = false;
-        }
+        paint();
+        if (night && !calm) schedule(3000 + Math.random() * 5000);
+        else clearTimeout(meteorTimer);
     };
 
     let rt;
-    addEventListener('resize', () => {
-        clearTimeout(rt);
-        rt = setTimeout(() => { make(); if (calm && isNight()) draw(0, 0); }, 200);
-    });
+    addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(() => paint(), 250); });
     new MutationObserver(update).observe(root, { attributes: true, attributeFilter: ['data-theme'] });
     media.addEventListener('change', update);
-    make();
     update();
 })();
-
 
 
 // 8. Bible verses (World English Bible, public domain) that fade in and out in the empty side margins
