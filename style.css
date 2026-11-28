@@ -1470,7 +1470,7 @@ body:has(.sky-toggle:hover) .moon { transform: rotate(-25deg) scale(1.12); }
 
 /* ---------- pipeline: wide diagram (JS on, enough room) ---------- */
 @container (min-width: 760px) {
-    .is-live .pipe { grid-template-columns: var(--cols); row-gap: 1.4rem; }
+    .is-live .pipe { grid-template-columns: var(--cols); row-gap: 2rem; }
     .is-live .pipe-stage { display: contents; }
     .is-live .pipe-node {
         grid-row: 1;
@@ -1494,8 +1494,11 @@ body:has(.sky-toggle:hover) .moon { transform: rotate(-25deg) scale(1.12); }
         box-shadow: 3px 0 var(--accent-deep), 6px 0 var(--accent-deep), 9px 0 var(--accent-deep), 12px 0 var(--accent-deep),
                     3px 3px var(--accent-deep), 6px 3px var(--accent-deep), 9px 3px var(--accent-deep), 6px 6px var(--accent-deep);
     }
-    .is-live .pipe-link { grid-row: 1; align-self: center; height: 14px; margin: 0; border: 0; }
-    .is-live .pipe-link svg { display: block; width: 100%; height: 14px; overflow: visible; }
+    .is-live .pipe-link { grid-row: 1; align-self: stretch; position: relative; height: auto; margin: 0; border: 0; }
+    .is-live .pipe-link svg { display: block; position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+    /* zig-zag: every other stage sits lower, so the row breathes */
+    .is-live .pipe-stage:nth-child(4n+1) .pipe-node { align-self: start; margin-bottom: 4.25rem; }
+    .is-live .pipe-stage:nth-child(4n+3) .pipe-node { align-self: end; margin-top: 4.25rem; }
     .pl-line, .pl-head { fill: none; stroke: var(--muted); stroke-width: 1.6; stroke-linecap: square; vector-effect: non-scaling-stroke; transition: stroke 0.2s ease; }
     .pipe-link--planned .pl-line { stroke-dasharray: 3 3; }
     .pipe-link.is-lit .pl-line, .pipe-link.is-lit .pl-head { stroke: var(--accent); }
@@ -1645,3 +1648,28 @@ html:has(.dd-dialog[open]) { overflow: hidden; }
 .sky-painted .blob, .sky-painted .wallpaper::before, .sky-painted .wallpaper::after { display: none; }
 .sky-painted .wallpaper { transition: none; }
 .sky-painted .stars { z-index: -1; opacity: 1; transition: none; }
+
+/* Night: the floating nav gets its own lifted colour and a soft lavender rim, so it never melts into the sky */
+.is-night .nav-pill {
+    background: rgba(40, 32, 82, 0.94);
+    box-shadow: 0 0 0 1px rgba(187, 162, 242, 0.42), 0 0 26px -6px rgba(187, 162, 242, 0.38), 0 16px 40px -18px rgba(0, 0, 0, 0.7);
+}
+.is-night .nav-links a { color: #d9d1f5; }
+.is-night .nav-links a:hover, .is-night .nav-links a.active { color: #fff; }
+.is-night .nav-links a.active { background: rgba(187, 162, 242, 0.24); }
+
+/* Stargazers scene: in the footer, or pinned bottom-right on very wide screens */
+.star-camp { position: relative; grid-column: 2; justify-self: end; margin-top: 1rem; }
+.star-camp > * { position: absolute; }
+.sg-deco { line-height: 0; pointer-events: none; }
+.sg-star { opacity: 0.35; animation: twinkle 2.4s ease-in-out infinite alternate; }
+.sg-actor { padding: 0; line-height: 0; }
+.sg-actor:hover .px-svg { filter: drop-shadow(0 0 4px color-mix(in srgb, var(--accent) 70%, transparent)); }
+.star-camp .px-bubble { font-size: 0.62rem; z-index: 5; }
+.is-night .star-camp .sg-actor .px-svg, .is-night .star-camp .sg-deco:not(.sg-star) .px-svg { filter: drop-shadow(0 0 1px rgba(221, 208, 251, 0.6)); }
+@media (max-width: 1024px) { .star-camp { grid-column: auto; justify-self: start; } }
+@media (min-width: 1680px) {
+    .star-camp { position: fixed; right: 24px; bottom: 18px; margin: 0; z-index: calc(var(--z-nav) - 2); }
+}
+.no-pixels .star-camp { display: none; }
+@media (prefers-reduced-motion: reduce) { .sg-star { animation: none; } }

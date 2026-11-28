@@ -245,7 +245,7 @@ function pipelineHTML(p) {
                     ${detail}
                 </div>${link}`;
   });
-  const cols = `repeat(${st.length - 1}, minmax(0, 1fr) 1.75rem) minmax(0, 1fr)`;
+  const cols = `repeat(${st.length - 1}, minmax(0, 1fr) 3.5rem) minmax(0, 1fr)`;
   return `<section class="dd-block dd-pipeline" aria-labelledby="${p.slug}-pipe-h">
             <div class="dd-block-head">
                 <h2 id="${p.slug}-pipe-h">How it <em>works</em></h2>

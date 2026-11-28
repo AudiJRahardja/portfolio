@@ -150,6 +150,65 @@
         ],
         bite: ['mc', 'cm'],
         // little red tent
+        telescope: [
+            '............zz..',
+            '...........zssz.',
+            '..........zsssz.',
+            '.........zsssz..',
+            '........zsssz...',
+            '.......zsssz....',
+            '......zsssz.....',
+            '...PPzsssz......',
+            '...PPzzzz.......',
+            '.......dd.......',
+            '.......dd.......',
+            '......d.dd......',
+            '......d.dd......',
+            '.....d..d.d.....',
+            '.....d..d.d.....',
+            '....d...d..d....',
+            '....d...d..d....',
+            '....d...d..d....',
+            '...d....d...d...',
+            '...d....d...d...',
+            '..d.....d....d..',
+            '..d.....d....d..',
+            '.d......d.....d.',
+            '.d......d.....d.',
+        ],
+        astronomer: [
+            '...hhhh...',
+            '..hhhhhh..',
+            '..hhhfff..',
+            '..hhffef..',
+            '...hffff..',
+            '....ff....',
+            '..BBBBBBff',
+            '.BBBBBBBf.',
+            '.BBBBBNN..',
+            '.BBBBBB...',
+            '.BBBBBB...',
+            '.BBBBBB...',
+            '..PPPPP...',
+            '..PPPPP...',
+            '..PP.PP...',
+            '..PP.PP...',
+            '..PP.PP...',
+            '..PP.PP...',
+            '..PP.PP...',
+            '.qqq.qqq..',
+        ],
+        lyingGazer: [
+            '.....................PP.....',
+            '..hhh...............PPPP....',
+            '.hhffh.............PP..PP...',
+            '.hhfef.SSSSSSSSSPPPP....PP..',
+            '.hhfff.SSSSSSSSSPPPP.....qq.',
+            '..fff.fSSSSSSSSS.........qqq',
+            'RRRRRRRRRRRRRRRRRRRRRRRRRRRR',
+            'RrRrRrRrRrRrRrRrRrRrRrRrRrRr',
+        ],
+        tinyStar: ['.y.', 'yyy', '.y.'],
         tent: [
             '.........m..........',
             '........rRr.........',
@@ -935,6 +994,59 @@
         });
         const loop = () => setTimeout(() => { toss(); if (Math.random() < 0.3) setTimeout(() => talk(man, 'mm, burger.'), 1600); loop(); }, 7000 + Math.random() * 4000);
         if (!reduced) loop();
+        scene.hidden = false;
+    });
+
+    // ---------- stargazers: one at a telescope, one lying on a blanket (bottom-right / footer) ----------
+    document.querySelectorAll('[data-stargazers]').forEach((scene) => {
+        const S = 3, W = 64, H = 28;
+        scene.style.width = `${W * S}px`;
+        scene.style.height = `${H * S}px`;
+        const at = (el, x, y) => { el.style.left = `${x * S}px`; el.style.top = `${y * S}px`; scene.append(el); return el; };
+        const deco = (sprite, x, y, cls = 'sg-deco') => {
+            const d = document.createElement('span');
+            d.className = cls;
+            d.innerHTML = svg(sprite, S);
+            return at(d, x, y);
+        };
+        [[44, 1], [55, 6], [33, 4], [61, 0], [24, 0]].forEach(([x, y], i) => {
+            deco('tinyStar', x, y, 'sg-deco sg-star').style.animationDelay = `${-i * 0.7}s`;
+        });
+        deco('telescope', 7, 3);
+        const mk = (sprite, x, y, label, pal) => {
+            const b = document.createElement('button');
+            b.type = 'button';
+            b.className = 'cf-actor sg-actor';
+            b.setAttribute('aria-label', label);
+            b.innerHTML = `${svg(sprite, S, pal)}<span class="px-bubble" aria-hidden="true"></span>`;
+            return at(b, x, y);
+        };
+        const astro = mk('astronomer', 2, 7, 'Someone looking at the stars through a telescope');
+        const lying = mk('lyingGazer', 34, 20, 'Someone lying on a blanket, stargazing', { P: '#5b82d6', q: '#2a1b4d' });
+
+        const night = () => document.documentElement.classList.contains('is-night');
+        const talk = (b, text, ms = 1800) => {
+            b.querySelector('.px-bubble').textContent = text;
+            b.classList.add('talking');
+            clearTimeout(b._t);
+            b._t = setTimeout(() => b.classList.remove('talking'), ms);
+            say(text);
+        };
+        const ASTRO_NIGHT = ['Saturn has rings!', "I can see the moon's craters.", 'Andromeda: 2.5 million light-years away.'];
+        const ASTRO_DAY = ['Waiting for the stars to come out.', 'Never point this at the sun!'];
+        const LYING_NIGHT = ['Make a wish!', 'That one looks like Kopi.', 'Is that a satellite?'];
+        const LYING_DAY = ['That cloud looks like Kopi.', 'Wake me up when it gets dark.'];
+        let ai = 0, li = 0;
+        astro.addEventListener('click', () => {
+            const lines = night() ? ASTRO_NIGHT : ASTRO_DAY;
+            talk(astro, lines[ai++ % lines.length]);
+        });
+        lying.addEventListener('click', () => {
+            const lines = night() ? LYING_NIGHT : LYING_DAY;
+            const line = lines[li++ % lines.length];
+            talk(lying, line);
+            if (line === 'Make a wish!') document.dispatchEvent(new CustomEvent('sky:shoot')); // a shooting star, on cue
+        });
         scene.hidden = false;
     });
 

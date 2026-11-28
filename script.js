@@ -381,6 +381,7 @@ if (navToggle && menuOverlay) {
     addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(() => paint(), 250); });
     new MutationObserver(update).observe(root, { attributes: true, attributeFilter: ['data-theme'] });
     media.addEventListener('change', update);
+    document.addEventListener('sky:shoot', () => { if (isNight() && !calm) shoot(); }); // the stargazer's wish
     update();
 })();
 

@@ -66,6 +66,27 @@
             });
             run.addEventListener('click', () => (timer ? stop('Trace stopped.') : start()));
 
+            // wide layout: the stages zig-zag up and down, so each connector is an S-curve drawn
+            // from the middle of one stage to the middle of the next (measured, then redrawn on resize)
+            const drawLinks = () => {
+                links.forEach((l, k) => {
+                    const svg = l.querySelector('svg');
+                    if (!svg || getComputedStyle(svg).display === 'none') return;
+                    const r = l.getBoundingClientRect();
+                    if (!r.width || !r.height) return;
+                    const a = nodes[k].getBoundingClientRect();
+                    const b = nodes[k + 1].getBoundingClientRect();
+                    const w = r.width, h = r.height;
+                    const y1 = a.top + a.height / 2 - r.top, y2 = b.top + b.height / 2 - r.top;
+                    const x2 = w - 2;
+                    svg.setAttribute('viewBox', `0 0 ${w.toFixed(1)} ${h.toFixed(1)}`);
+                    const [line, head] = svg.querySelectorAll('path');
+                    line.setAttribute('d', `M1 ${y1.toFixed(1)} C ${(w * 0.6).toFixed(1)} ${y1.toFixed(1)}, ${(w * 0.4).toFixed(1)} ${y2.toFixed(1)}, ${(x2 - 1).toFixed(1)} ${y2.toFixed(1)}`);
+                    head.setAttribute('d', `M${(x2 - 6).toFixed(1)} ${(y2 - 4.5).toFixed(1)} L${x2.toFixed(1)} ${y2.toFixed(1)} L${(x2 - 6).toFixed(1)} ${(y2 + 4.5).toFixed(1)}`);
+                });
+            };
+            if (window.ResizeObserver) new ResizeObserver(() => requestAnimationFrame(drawLinks)).observe(sec.querySelector('.pipe'));
+
             sec.classList.add('is-live');
             sec.querySelector('.pipe-hint-js').hidden = false;
             run.hidden = false;
